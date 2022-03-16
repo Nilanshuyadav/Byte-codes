@@ -10,7 +10,7 @@ class Solution {
             stack.push(pushed[i]);
             
             if(stack.peek() == popped[k]){
-                while(stack.size()>0 && stack.peek() == popped[k]){
+                while(!stack.isEmpty() && stack.peek() == popped[k]){
                     stack.pop();
                     k++;
                 }    
