@@ -1,86 +1,90 @@
 class MyLinkedList {
-    private ListNode head;
-    private ListNode tail;
-    private int count;
+    
+    class Node{
+        Node next;
+        Node pre;
+        int val;
+        
+        public Node(int i){
+            this.next = null;
+            this.pre = null;
+            this.val = i;
+        }
+        
+    }
+    
+    Node head;
+    Node tail;
+    int size;
     
     public MyLinkedList() {
-        this.head = new ListNode(-1);
-        this.tail = new ListNode(-1);
-        this.count = 0;
-        
-        // Connect the head and tail;
+        head = new Node(-1);
+        tail = new Node(-1);
         head.next = tail;
-        tail.prev = head;
+        tail.pre = head;
+        size = 0;
     }
     
     public int get(int index) {
-        if(index >= count) return -1;
+        Node curr = head.next;
+        if(index>=size) return -1;
+        while(index-->0)
+            curr = curr.next;
         
-        ListNode temp = getTheKthNode(index);
-        return temp.val;
+        return curr.val;
     }
     
     public void addAtHead(int val) {
-        addAtIndex(0, val);
-        return;
+        Node toadd = new Node(val);
+        toadd.next = head.next;
+        head.next.pre = toadd;
+        head.next = toadd;
+        toadd.pre = head;
+        size++;
     }
     
     public void addAtTail(int val) {
-        addAtIndex(count, val);
-        return;
+        Node toadd = new Node(val);
+        tail.pre.next = toadd;
+        toadd.pre = tail.pre;
+        toadd.next = tail;
+        tail.pre = toadd;
+        size++;
     }
     
     public void addAtIndex(int index, int val) {
-        // Do not append if the index is greater than the length of the linked list
-        if(index > count) return;
+        Node toadd = new Node(val);
+        Node curr = head;
+        if(index>size) return;
         
-        // The new node should be at the required index 
-        ListNode temp = getTheKthNode(index-1);
+        while(index-->0)
+            curr = curr.next;
         
-        ListNode newNode = new ListNode(val);
-        newNode.prev = temp;
-        newNode.next = temp.next;
-        
-        newNode.prev.next = newNode;
-        newNode.next.prev = newNode;
-        
-        this.count++;
-        return;
+        toadd.next = curr.next;
+        curr.next.pre = toadd;
+        curr.next = toadd;
+        toadd.pre = curr;
+        size++;
     }
     
     public void deleteAtIndex(int index) {
-        if(index >= count)  return;
+        Node curr = head;
+        if(index>=size) return;
+        while(index-->0)
+            curr = curr.next;
         
-        // Get to the node to be removed 
-        ListNode temp = getTheKthNode(index);
-        
-        temp.prev.next = temp.next;
-        temp.next.prev = temp.prev;
-        
-        this.count--;
-        return;
-    }
-    
-    private ListNode getTheKthNode(int index){
-        ListNode temp = this.head;
-        int k = index + 1;
-        while(k != 0){
-            temp = temp.next;
-            k--;
-        }
-        
-        return temp;
-    }
-    
-    private class ListNode{
-        public int val;
-        public ListNode prev;
-        public ListNode next;
-        
-        public ListNode(int val){
-            this.val = val;
-            this.prev = null;
-            this.next = null;
-        }
+        curr.next.next.pre = curr;
+        curr.next = curr.next.next;
+        size--;
     }
 }
+
+/**
+ * Your MyLinkedList object will be instantiated and called as such:
+ * MyLinkedList obj = new MyLinkedList();
+ * int param_1 = obj.get(index);
+ * obj.addAtHead(val);
+ * obj.addAtTail(val);
+ * obj.addAtIndex(index,val);
+ * obj.deleteAtIndex(index);
+ */
