@@ -17,7 +17,7 @@ class Solution {
         }
         
         
-        if(n<0) return 1/ans;
+        if(n<0) return (double)1/(double)ans;
         else return ans;
         
         
