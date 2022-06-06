@@ -27,8 +27,8 @@ class Solution {
                         
                         ans.add(list);
                         
-                        while(left<n && nums[left] == list.get(2)) left++;
-                        while(right>j && nums[right] == list.get(3)) right--;
+                        while(left<right && nums[left] == list.get(2)) left++;
+                        while(right>left && nums[right] == list.get(3)) right--;
                     }    
                 }
                 
