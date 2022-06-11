@@ -10,7 +10,7 @@ class Solution {
             
              max = Math.max(max,sum);
             if(sum < 0){
-                max = Math.max(sum,max);
+                
                 sum = 0;
             }
             
