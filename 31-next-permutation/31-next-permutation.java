@@ -1,50 +1,34 @@
 class Solution {
     public void nextPermutation(int[] nums) {
         int n = nums.length;
-        int index1 = -1,index2 = -1;;
-        int high,low,temp;
+        int mark1 = -1;
         
         for(int i=n-1;i>0;i--){
-            if(nums[i]>nums[i-1]){
-                index1 = i-1;
+            if(nums[i] > nums[i-1]) {mark1 = i-1; break;}
+        }
+        
+        if(mark1 == -1)  {reverse(0,n-1,nums); return;}
+        
+        for(int i=n-1;i>=0;i--){
+            if(nums[i] > nums[mark1]) {
+                int temp = nums[i];
+                nums[i] = nums[mark1];
+                nums[mark1] = temp;
                 break;
             }
         }
         
-        if(index1 == -1){
-            high = n-1;
-            low = 0;
-            while(low<=high){
-                temp = nums[low];
-                nums[low] = nums[high];
-                nums[high] = temp;
-                low++;
-                high--;
-            }
-            return;
-        }
-        
-        for(int i =n-1;i>=0;i--){
-            if(nums[i]>nums[index1]){
-                index2 = i;
-                break;
-            }
-        }
-        
-        temp = nums[index1];
-        nums[index1] = nums[index2];
-        nums[index2] = temp;
-        
-        high = n-1;
-        low = index1+1;
-        
-        while(low<=high){
+        reverse(mark1+1,n-1,nums);
+    }
+    
+    private void reverse(int low, int high, int[] nums){
+        int temp;
+        while(low < high){
             temp = nums[low];
             nums[low] = nums[high];
             nums[high] = temp;
             low++;
             high--;
         }
-        
     }
 }
