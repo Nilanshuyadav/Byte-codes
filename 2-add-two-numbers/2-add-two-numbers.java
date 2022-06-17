@@ -10,56 +10,52 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode();
+        ListNode curr = dummy;
         
-        ListNode ans = new ListNode();
-        ListNode it = ans;
+        ListNode ptr1 = l1, ptr2 = l2;
+        int sum = 0,carry = 0;
         
-        int sum = 0;
-        int carry=0;
-        
-        while(l1 != null && l2 != null){
-            sum = l1.val + l2.val + carry;
+        while(ptr1 != null && ptr2 != null){
+            sum = ptr1.val + ptr2.val + carry;
             
             ListNode temp = new ListNode(sum%10);
-            it.next = temp;
-            it = temp;
+            curr.next = temp;
+            curr = curr.next;
             
             carry = sum/10;
             
-            l1 = l1.next;
-            l2 = l2.next;
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
         }
         
-        while(l1 != null){
-            sum = l1.val + carry;
+        while(ptr1 != null){
+            sum = ptr1.val + carry;
             
             ListNode temp = new ListNode(sum%10);
-            it.next = temp;
-            it = temp;
+            curr.next = temp;
+            curr = curr.next;
             
             carry = sum/10;
-            
-            l1 = l1.next;
+            ptr1 = ptr1.next;
         }
         
-        while(l2 != null){
-            sum = l2.val + carry;
+        while(ptr2 != null){
+            sum = ptr2.val + carry;
             
             ListNode temp = new ListNode(sum%10);
-            it.next = temp;
-            it = temp;
+            curr.next = temp;
+            curr = curr.next;
             
             carry = sum/10;
-            
-            l2 = l2.next;
+            ptr2 = ptr2.next;
         }
         
         if(carry != 0){
             ListNode temp = new ListNode(carry);
-            it.next = temp;
+            curr.next = temp;
         }
         
-        return ans.next;
-        
+        return dummy.next;
     }
 }
