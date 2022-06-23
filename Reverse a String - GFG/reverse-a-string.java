@@ -33,17 +33,16 @@ class Reverse
         // Reverse the string str
         char[] st = str.toCharArray();
         
+        int low = 0, high = st.length-1;
+        char ch;
         
-        int n = st.length;
-        int left = 0,right = n-1;
-        
-        while(left < right){
-            char ch = st[left];
-            st[left] = st[right];
-            st[right] = ch;
-            left++;
-            right--;
+        while(low<high){
+            ch = st[low];
+            st[low] = st[high];
+            st[high] = ch;
             
+            low++;
+            high--;
         }
         
         return String.valueOf(st);
