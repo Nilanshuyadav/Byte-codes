@@ -64,8 +64,8 @@ class Compute
         long min = Long.MAX_VALUE, max = Long.MIN_VALUE;
         
         for(long i: a){
-            min = Math.min(i,min);
-            max = Math.max(i,max);
+            min = Math.min(min,i);
+            max = Math.max(max,i);
         }
         
         return new pair(min,max);
