@@ -39,47 +39,46 @@ class Solution
     public static int maxMeetings(int start[], int end[], int n)
     {
         // add your code here
+        int ans = 1;
         
-        ArrayList<meeting> meet = new ArrayList<>();
         
-        for(int i=0;i<start.length;i++) meet.add(new meeting(start[i],end[i],i+1));
+        meet[] meeting = new meet[n];
+        for(int i=0;i<n;i++){
+            meeting[i] = new meet(start[i],end[i],i+1);
+        }
         
-        meetingcomparator mc = new meetingcomparator();
+        Arrays.sort(meeting,new meetcomparator());
         
-        Collections.sort(meet,mc);
+        int meeting_end = meeting[0].end;
         
-        int count = 1;
-        int limit = meet.get(0).end;
-        
-        for(int i=1;i<start.length;i++){
-            if(meet.get(i).start > limit){
-                limit = meet.get(i).end;
-                count++;
+        for(int i = 1;i<n;i++){
+            if(meeting[i].start > meeting_end) {
+                ans++;
+                meeting_end = meeting[i].end;
             }
         }
         
-        return count;
-        
+        return ans;
     }
 }
 
-class meetingcomparator implements Comparator<meeting>{
-    public int compare(meeting o1, meeting o2){
-        if(o1.end < o2.end) return -1;
-        else if(o1.end > o2.end) return 1;
-        else if(o1.pos < o2.pos) return -1;
-        else return 1;
+class meetcomparator implements Comparator<meet>{
+    public int compare(meet o1,meet o2){
+        if(o1.end > o2.end) return 1;
+        else if(o1.end < o2.end) return -1;
+        else if(o1.id > o2.id)return 1;
+        else return -1;
     }
 }
 
-class meeting{
+class meet{
     int start;
     int end;
-    int pos;
+    int id;
     
-    meeting(int start, int end, int pos){
+    public meet(int start,int end,int id){
         this.start = start;
         this.end = end;
-        this.pos = pos;
+        this.id = id;
     }
 }
