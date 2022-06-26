@@ -36,20 +36,21 @@ class Solution{
         // code here
         ArrayList<Integer> ans = new ArrayList<>();
         
-        return subset(arr,ans,0,0,N);
+        subset(arr,ans,0,0,N);
+        return ans;
         
     }
     
-    public ArrayList<Integer> subset(ArrayList<Integer> arr, ArrayList<Integer> ans, int sum, int ind, int N){
+    public void subset(ArrayList<Integer> arr, ArrayList<Integer> ans, int sum, int ind, int N){
         if(ind == N){
            ans.add(sum);
-           return ans;
+           return;
         }
         
-        ans = subset(arr,ans,sum,ind+1,N);
+        subset(arr,ans,sum,ind+1,N);
         
-        ans = subset(arr,ans,sum+arr.get(ind),ind+1,N);
+        subset(arr,ans,sum+arr.get(ind),ind+1,N);
         
-        return ans;
+        return;
     }
 }
