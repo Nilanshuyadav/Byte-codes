@@ -1,25 +1,36 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        ArrayList<Integer> al = new ArrayList<>(Arrays.stream(nums).boxed().toList());
         
-        function(al,new ArrayList<Integer>(),ans);
+        function(0,nums,ans);
+        
         return ans;
     }
     
-    public void function(ArrayList<Integer> al, ArrayList<Integer> ds, List<List<Integer>> ans){
-        int n = al.size();
+    public void function(int ind, int[] nums, List<List<Integer>> ans){
+        int n = nums.length;
         
-        if(n <= 0){
-            ans.add(new ArrayList<Integer>(ds));
+        if(ind == n){
+            List<Integer> ds = new ArrayList<>();
+            
+            for(int i = 0;i<n;i++){
+                ds.add(nums[i]);
+            }
+            ans.add(ds);
             return;
         }
         
-        for(int i = 0;i<n;i++){
-            ds.add(al.remove(i));
-            function(al,ds,ans);
-            al.add(i,ds.remove(ds.size()-1));
-        }
         
+        for(int i = ind;i<n;i++){
+            swap(ind , i, nums);
+            function(ind+1,nums,ans);
+            swap(ind , i, nums);
+        }
+    }
+    
+    public void swap(int a,int b, int[] nums){
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
     }
 }
