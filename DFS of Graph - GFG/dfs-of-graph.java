@@ -34,30 +34,31 @@ class GFG {
 
 
 class Solution {
+    boolean[] visited;
     // Function to return a list containing the DFS traversal of the graph.
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
-        
         ArrayList<Integer> ans = new ArrayList<>();
-        boolean[] visited = new boolean[V + 1];
         
-        for(int i=0 ; i<V;i++){
-            if(visited[i] ==  false){
-                helper(i,adj,ans,visited);
+        visited = new boolean[V];
+        
+        for(int i = 0;i<V;i++){
+            if(visited[i] == false){
+                helper(i,adj,ans);
             }
         }
         
         return ans;
     }
     
-    public void helper(int v, ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> ans,boolean[] visited){
-        ans.add(v);
+    public void helper(int i,ArrayList<ArrayList<Integer>> adj,ArrayList<Integer> ans){
+        ans.add(i);
         
-        visited[v] = true;
-        for(int i : adj.get(v)){
-            if(visited[i] == false){
-                helper(i,adj,ans,visited);
-                
+        visited[i] = true;
+        
+        for(int ind = 0;ind<adj.get(i).size();ind++){
+            if(visited[adj.get(i).get(ind)] == false){
+                helper(adj.get(i).get(ind),adj,ans);
             }
         }
     }
