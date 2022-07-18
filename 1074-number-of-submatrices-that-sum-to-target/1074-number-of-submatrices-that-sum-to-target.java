@@ -10,11 +10,13 @@ class Solution {
         }
         
         int ans = 0;
+        Map<Integer,Integer> map = new HashMap<>();
+        int curr,sum;
         
         for(int start = 0;start<m;start++){
             for(int end = start;end<m;end++){
-                int curr = 0, sum = 0;
-                Map<Integer,Integer> map = new HashMap<>();
+                curr = 0; sum = 0;
+                map.clear();
                 
                 for(int  i =0;i<n;i++){
                     curr = matrix[i][end];
