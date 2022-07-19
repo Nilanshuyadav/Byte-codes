@@ -1,20 +1,21 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        long c;
         
         for(int i=1;i<=numRows;i++){
-            long c= 1;
-            int r = i;
+            c = 1;
+            List<Integer> al = new ArrayList<>();
             
-            List<Integer> temp = new ArrayList<>();
-            
-            for(int j=1;j<r;j++){
-                temp.add((int)c);
-                c = (c*(r-j))/j;
+            for(int j = 1;j<i;j++){
+                al.add((int)c);
+                
+                c = (c*(i-j))/j;
             }
-            temp.add(1);
+            al.add(1);
             
-            ans.add(temp);
+            ans.add(al);
         }
         
         return ans;
