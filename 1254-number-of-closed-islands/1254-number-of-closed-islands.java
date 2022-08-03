@@ -19,24 +19,24 @@ class Solution {
         grid[row][col] = 1;
         
         if(row-1 >= 0 && grid[row-1][col] == 0)
-            if(!function(grid,row-1,col,row_length,col_length))
-                temp = false;
-            //temp = temp && function(grid,row-1,col,row_length,col_length);
+            // if(!function(grid,row-1,col,row_length,col_length))
+            //     temp = false;
+            temp = function(grid,row-1,col,row_length,col_length) && temp;
         
         if(row+1 < row_length && grid[row+1][col] == 0)
-            if(!function(grid,row+1,col,row_length,col_length))
-                temp = false;
-            //temp = temp && function(grid,row+1,col,row_length,col_length);
+            // if(!function(grid,row+1,col,row_length,col_length))
+            //     temp = false;
+            temp = function(grid,row+1,col,row_length,col_length) && temp;
         
         if(col-1 >= 0 && grid[row][col-1] == 0)
-            if(!function(grid,row,col-1,row_length,col_length))
-                temp = false;
-            //temp = temp && function(grid,row,col-1,row_length,col_length);
+            // if(!function(grid,row,col-1,row_length,col_length))
+            //     temp = false;
+            temp = function(grid,row,col-1,row_length,col_length) && temp;
         
         if(col+1 < col_length && grid[row][col+1] == 0)
-            if(!function(grid,row,col+1,row_length,col_length))
-                temp = false;
-            //temp = temp && function(grid,row,col+1,row_length,col_length);
+            // if(!function(grid,row,col+1,row_length,col_length))
+            //     temp = false;
+            temp = function(grid,row,col+1,row_length,col_length) && temp;
         
         
         if(row == 0 || row == row_length-1 || col == 0 || col == col_length-1)
