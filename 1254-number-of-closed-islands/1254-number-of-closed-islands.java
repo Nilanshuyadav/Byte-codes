@@ -7,7 +7,6 @@ class Solution {
             for(int j=0;j<col;j++){
                 if(grid[i][j] == 0 && function(grid,i,j,row,col)){
                     count++;
-                    System.out.println(i + " " + j);
                 }
             }
         }
