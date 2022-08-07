@@ -23,13 +23,13 @@ class Solution {
                 Pair<Integer,Integer> temp = q.remove();
                 
                 for(int i = 0;i<4;i++){
-                    int row = temp.getKey(),col = temp.getValue();
+                    int row = temp.getKey()+r[i],col = temp.getValue()+c[i];
                     
-                    if(row+r[i] >= 0 && row+r[i] < n
-                      && col+c[i] >= 0 && col+c[i] < n
-                      && grid[row+r[i]][col+c[i]] == 0){
-                        q.add(new Pair(row+r[i],col+c[i]));
-                        grid[row+r[i]][col+c[i]] = 1;
+                    if(row >= 0 && row < n
+                      && col >= 0 && col < n
+                      && grid[row][col] == 0){
+                        q.add(new Pair(row,col));
+                        grid[row][col] = 1;
                     }    
                 }
                    
