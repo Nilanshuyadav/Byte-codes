@@ -8,7 +8,7 @@ class Solution {
                 if(grid[i][j] == 1)
                     q.add(new Pair(i,j));
         
-        if(q.size()/n == n) return -1;
+        if(q.size() == n*n) return -1;
         
         int[] r = new int[]{-1,1,0,0} , c = new int[]{0,0,-1,1};
         
