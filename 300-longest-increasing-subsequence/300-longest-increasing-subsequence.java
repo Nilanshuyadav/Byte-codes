@@ -28,13 +28,11 @@ class Solution {
         
         if(dp[ind] != -1) return dp[ind]+1;
         
-        int max = Integer.MIN_VALUE, i = 0;
+        int max = 0, i = 0;
         for(i=ind+1;i<n;i++){
             if(nums[i] > nums[ind])
                 max = Math.max(max,function(nums,i));
         }
-        
-        if(max == Integer.MIN_VALUE && i == n) max = 0;
         
         dp[ind] = max;
         return max+1;
