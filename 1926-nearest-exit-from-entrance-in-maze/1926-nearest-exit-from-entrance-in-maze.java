@@ -9,9 +9,8 @@ class Solution {
         int[] r = {-1,1,0,0}, c = {0,0,-1,1};
         
         int level = -1;
-        boolean flg = false;
-
-       maze[entrance[0]][entrance[1]] = '+';
+        
+        maze[entrance[0]][entrance[1]] = '+';
         
         while(!q.isEmpty()){
             level++;
@@ -21,15 +20,14 @@ class Solution {
             while(size-- > 0){
                 Pair temp = q.remove();
                 
+//                maze[temp.row][temp.col] = '+';  ye nii kr skte ...do do baar queue m input kr rha hia values ko;
                 
                 for(int i=0;i<4;i++){
                     int tr = temp.row + r[i], tc = temp.col + c[i];
                     
                     if((tr < 0 || tc < 0
                       || tr == row || tc == col) 
-                      && level != 0 && flg == true )return level;
-                    
-                    flg = true;
+                      && level != 0)return level;
                     
                     if(tr >= 0 && tc >= 0
                       && tr < row && tc < col && maze[tr][tc] == '.')
