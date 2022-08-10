@@ -8,7 +8,7 @@ class Solution {
         
         for(int i=0;i<V;i++){
             if(vis[i] != true)
-                function(i,adj);
+                function(i,adj);                    
         }
         Collections.sort(ans);
         return ans;
@@ -20,11 +20,10 @@ class Solution {
         
         for(int i : adj[ind]){
             if(vis[i] != false){
-                // if(ans.contains(i)) {ans.add(ind); return true;}
-                // else return false;
-                if(!ans.contains(i)) return false;
+                if(ans.contains(i)) {continue;}
+                else return false;
             }
-            else bool = bool && function(i,adj);
+            bool = bool && function(i,adj);
         }
         
         if(bool == true) ans.add(ind);
