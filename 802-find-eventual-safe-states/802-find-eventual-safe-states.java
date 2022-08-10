@@ -1,16 +1,24 @@
 class Solution {
     boolean[] vis;
     List<Integer> ans;
+    boolean[] sort;
     public List<Integer> eventualSafeNodes(int[][] adj) {
         int V = adj.length;
         vis = new boolean[V];
         ans = new ArrayList<>();
+        sort = new boolean[V];
         
         for(int i=0;i<V;i++){
             if(vis[i] != true)
                 function(i,adj);                    
         }
-        Collections.sort(ans);
+        // Collections.sort(ans);
+        ans.clear();
+        
+        for(int i=0;i<V;i++)
+            if(sort[i])
+                ans.add(i);
+        
         return ans;
     }
     
@@ -26,7 +34,7 @@ class Solution {
             bool = bool && function(i,adj);
         }
         
-        if(bool == true) ans.add(ind);
+        if(bool == true){sort[ind] = true; ans.add(ind);}
         return bool;
     }
 }
