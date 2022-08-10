@@ -21,7 +21,7 @@ class Solution {
     public TreeNode function(int[] nums, int low, int high){
         if(low > high) return null;
         
-        int mid = (low + high + 1)/2;
+        int mid = (low + high)/2;
         
         TreeNode root = new TreeNode(nums[mid]);
         
