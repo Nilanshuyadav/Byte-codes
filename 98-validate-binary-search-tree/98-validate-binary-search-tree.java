@@ -14,32 +14,15 @@
  * }
  */
 class Solution {
-    public boolean isValidBST(TreeNode root) {     
-        // if(root.left != null && root.left.val >= root.val) return false;
-        // if(root.right != null && root.right.val <= root.val) return false;
-        // return isValidBST2(root.left,root,1) && isValidBST2(root.right,root,0);
-        List<Integer> al = new ArrayList();
-        function(root,al);
-        
-        for(int i = 1;i<al.size();i++)
-            if(al.get(i) <= al.get(i-1)) return false;
-        
-        return true;
+    public boolean isValidBST(TreeNode root) {
+        return function(root.left,Long.MIN_VALUE,root.val) && function(root.right,root.val,Long.MAX_VALUE);
     }
     
-    public void function(TreeNode root, List<Integer> al){
-        if(root == null) return;
+    public boolean function(TreeNode root, long low, long high){
+        if(root == null) return true;
         
-        function(root.left,al);
-        al.add(root.val);
-        function(root.right,al);
+        if(root.val <= low || root.val >= high) return false;
+        
+        return function(root.left,low,root.val) && function(root.right,root.val,high);
     }
-    
-//     public boolean isValidBST2(TreeNode root, TreeNode parent,int i){
-//         if(root == null) return true;
-//         if(root.left != null && (root.left.val >= root.val || (root.left.val <= parent.val && i==0))) return false;
-//         if(root.right != null && (root.right.val <= root.val || (root.right.val >= parent.val && i == 1))) return false;
-        
-//         return isValidBST2(root.left,root,1) && isValidBST2(root.right,root,0);
-//     }
 }
