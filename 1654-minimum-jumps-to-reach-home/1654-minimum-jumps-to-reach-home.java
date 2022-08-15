@@ -1,62 +1,36 @@
 class Solution {
+    public void solve(Queue<Pair<Integer,Integer>> bfs,Set<Pair<Integer,Integer>> vis,Set<Integer> fore,int x,int flag,int[] range){
+        Pair<Integer,Integer> temp=new Pair<>(x,flag);
+        if(vis.contains(temp) || fore.contains(x) || range[0] > x || range[1] < x)return;
+        bfs.add(temp);
+        vis.add(temp);
+    }
     public int minimumJumps(int[] forbidden, int a, int b, int x) {
-        Queue<Pair> q = new LinkedList<>();
-        Set<Integer> set = Arrays.stream(forbidden).boxed().collect(Collectors.toSet());
-        Set<String> visited = new HashSet<>();
+        int m=forbidden[0];
+        for(int i:forbidden)m=Math.max(m,i);
+        int range[]={0,Math.max(m,x)+a+b}; // Main Logic is to find out the range where we can restrict the bfs algorithm
+        Set<Integer> fore=new HashSet<>(); // set for forbidden Area
+        Set<Pair<Integer,Integer>> vis=new HashSet<>(); // set for visited area
+        for(int i:forbidden)fore.add(i); 
+        Queue<Pair<Integer,Integer>> bfs=new ArrayDeque<>(); // BFS drill
+        int start=0; // starting Position
         
-        //if(x == 0) return 0;
-        
-        q.add(new Pair(0,false));
-//         visited.add(new StringBuilder().append(0).append('f').toString());
-        
-        int step = 0;
-        while(!q.isEmpty()){
-            int size = q.size();
-            
-            for(int i=0;i<size;i++){
-                Pair temp = q.remove();
-
-                if(temp.curr == x) return step;
-
-                int new_curr = temp.curr + a;
-                String temp2 = new StringBuilder()
-                               .append(new_curr)
-                               .append('f')
-                               .toString();
-
-                if(new_curr < 6000 
-                   && !visited.contains(temp2) 
-                   && !set.contains(new_curr))
-                {
-                    q.add(new Pair(new_curr,false));
-                    visited.add(temp2);
-                }
-
-                if(!temp.backward){
-                    new_curr = temp.curr - b;
-                    temp2 = new StringBuilder()
-                           .append(new_curr)
-                           .append('t').toString();
-                    if(new_curr >=0 
-                       && !visited.contains(temp2) 
-                       && !set.contains(new_curr))
-                    {
-                        q.add(new Pair(new_curr,true));
-                        visited.add(temp2);
-                    }
+        bfs.add(new Pair<>(0,1));
+        int level=0; 
+        while(bfs.size() > 0){
+            int s=bfs.size();
+            for(int i=0;i<s;i++){
+                Pair<Integer,Integer> t=bfs.poll();
+                if(t.getKey() == x)return level;
+                if(t.getValue() == 1){
+                    solve(bfs,vis,fore,t.getKey()+a,1,range);
+                    solve(bfs,vis,fore,t.getKey()-b,-1,range);
+                }else{
+                    solve(bfs,vis,fore,t.getKey()+a,1,range);
                 }
             }
-         step++;   
+            level++;
         }
         return -1;
-    }
-}
-
-class Pair{
-    int curr;
-    boolean backward;
-    public Pair(int curr, boolean backward){
-        this.curr = curr;
-        this.backward = backward;
     }
 }
