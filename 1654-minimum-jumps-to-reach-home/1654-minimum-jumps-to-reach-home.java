@@ -1,9 +1,12 @@
 class Solution {
+    
     public void solve(Queue<Pair<Integer,Integer>> bfs,Set<Pair<Integer,Integer>> vis,Set<Integer> fore,int x,int flag,int[] range){
         Pair<Integer,Integer> temp=new Pair<>(x,flag);
         if(vis.contains(temp) || fore.contains(x) || range[0] > x || range[1] < x)return;
         bfs.add(temp);
         vis.add(temp);
+        // Pair temp=new Pair(3,1);
+        //                             System.out.println(vis.contains(temp));
     }
     public int minimumJumps(int[] forbidden, int a, int b, int x) {
         int m=forbidden[0];
@@ -34,3 +37,4 @@ class Solution {
         return -1;
     }
 }
+
