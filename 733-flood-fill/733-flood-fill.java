@@ -1,28 +1,22 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
-        int mrow = image.length,mcol = image[0].length;
-        
-        Queue<Pair<Integer,Integer>> q = new LinkedList<>();
-        int present_value = image[sr][sc];
-        int[] r = {-1,1,0,0},c = {0,0,-1,1};
-        
+        int row = image.length,col = image[0].length;
         if(image[sr][sc] == color) return image;
-        
-        q.add(new Pair(sr,sc));
-        
-        while(!q.isEmpty()){
-            Pair<Integer,Integer> temp = q.remove();
-            image[temp.getKey()][temp.getValue()] = color;
-            
-            for(int i=0;i<4;i++){
-                int row = temp.getKey()+r[i];
-                int col = temp.getValue() + c[i];
-                
-                if(row>=0 && row<mrow && col>=0 && col<mcol && image[row][col] == present_value)
-                    q.add(new Pair(row,col));
-            }
-        }
+        function(image,sr,sc,color,row,col,image[sr][sc]);
         
         return image;
+    }
+    
+    public void function(int[][] image, int sr, int sc, int color, int row, int col,int present_value){
+        image[sr][sc] = color;
+        
+        if(sr+1<row && image[sr+1][sc]==present_value)
+            function(image,sr+1,sc,color,row,col,present_value);
+        if(sr-1>=0 && image[sr-1][sc]==present_value)
+            function(image,sr-1,sc,color,row,col,present_value);
+        if(sc-1>=0 && image[sr][sc-1]==present_value)
+            function(image,sr,sc-1,color,row,col,present_value);
+        if(sc+1<col && image[sr][sc+1]==present_value)
+            function(image,sr,sc+1,color,row,col,present_value);
     }
 }
