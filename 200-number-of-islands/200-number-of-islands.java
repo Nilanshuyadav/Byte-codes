@@ -16,14 +16,13 @@ class Solution {
     public void function(char[][] grid, int sr, int sc, int row, int col){
         grid[sr][sc] = '0';
         
-        int[] r={-1,1,0,0}, c={0,0,-1,1};
-        
-        for(int i=0;i<4;i++){
-            int ro = sr+r[i];
-            int co = sc+c[i];
-            
-            if(ro>=0 && ro<row && co>=0 && co<col && grid[ro][co] == '1')
-                function(grid,ro,co,row,col);
-        }
+        if(sr-1>=0 && grid[sr-1][sc] == '1')
+            function(grid,sr-1,sc,row,col);
+        if(sr+1<row && grid[sr+1][sc] == '1')
+            function(grid,sr+1,sc,row,col);
+        if(sc-1>=0 && grid[sr][sc-1] == '1')
+            function(grid,sr,sc-1,row,col);
+        if(sc+1<col && grid[sr][sc+1]=='1')
+            function(grid,sr,sc+1,row,col);
     }
 }
