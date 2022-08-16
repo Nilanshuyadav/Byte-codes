@@ -1,26 +1,30 @@
 class Solution {
+    Set<List<Integer>> ans;
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        int n = candidates.length;
         Arrays.sort(candidates);
-        List<List<Integer>> ans = new ArrayList<>();
         
-        function(0,candidates,candidates.length,target,ans,new ArrayList<Integer>());
+        ans = new HashSet<>();
         
-        return ans;
+        function(0,candidates,target,n,new ArrayList<Integer>(),0);
+        
+        return new ArrayList<>(ans);
     }
     
-    public void function(int ind, int[] candidates, int N, int target, List<List<Integer>> ans, ArrayList<Integer> ds){
-        if(target == 0){ ans.add(new ArrayList<>(ds)); return;}
-        if(ind == N) return;
-        
-        for(int i = ind;i<N;i++){
-            if(i != ind && candidates[i] == candidates[i-1]) continue;
-            ds.add(candidates[i]);
-            if(target >= candidates[i]) function(i+1,candidates,N,target-candidates[i],ans,ds);
-            
-            ds.remove(ds.size() - 1);
-            if(target < candidates[i])return;
-            
+    public void function(int ind,int[] candidates,int target,int n, List<Integer> temp,int sum){
+        if(sum > target) return;
+        if(target == sum){
+            ans.add(new ArrayList<>(temp));
+            return;
         }
         
+        for(int i=ind;i<n;i++){
+            if(i != ind && candidates[i]==candidates[i-1])continue;
+            sum += candidates[i];
+            temp.add(candidates[i]);
+            function(i+1,candidates,target,n,temp,sum);
+            temp.remove(temp.size()-1);
+            sum -= candidates[i];
+        }
     }
 }
