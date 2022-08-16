@@ -1,56 +1,28 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
-        function(image, sr, sc, color);
+        int mrow = image.length,mcol = image[0].length;
+        
+        Queue<Pair<Integer,Integer>> q = new LinkedList<>();
+        int present_value = image[sr][sc];
+        int[] r = {-1,1,0,0},c = {0,0,-1,1};
+        
+        if(image[sr][sc] == color) return image;
+        
+        q.add(new Pair(sr,sc));
+        
+        while(!q.isEmpty()){
+            Pair<Integer,Integer> temp = q.remove();
+            image[temp.getKey()][temp.getValue()] = color;
+            
+            for(int i=0;i<4;i++){
+                int row = temp.getKey()+r[i];
+                int col = temp.getValue() + c[i];
+                
+                if(row>=0 && row<mrow && col>=0 && col<mcol && image[row][col] == present_value)
+                    q.add(new Pair(row,col));
+            }
+        }
+        
         return image;
-    }
-    
-    public void function(int[][] image, int row, int col, int color){
-        if(image[row][col] == color) return;
-        int present_value = image[row][col];
-        
-        int duplicate_row = row, duplicate_col = col;
-        int row_length = image.length, col_length = image[0].length;
-        
-        while(--row >= 0){
-            if(image[row][col] == present_value){
-                image[duplicate_row][duplicate_col] = -1;
-                function(image,row,col,color);
-            }
-            else break;
-        }
-        
-        row = duplicate_row;
-        
-        while(++row < row_length){
-            if(image[row][col] == present_value){
-                image[duplicate_row][duplicate_col] = -1;
-                function(image,row,col,color);
-            }    
-            else break;
-        }
-        
-        row = duplicate_row;
-        
-        while(--col >= 0){
-            if(image[row][col] == present_value){
-                image[duplicate_row][duplicate_col] = -1;
-                function(image,row,col,color);
-            }
-            else break;
-        }
-        
-        col = duplicate_col;
-        
-        while(++col < col_length){
-            if(image[row][col] == present_value){
-                image[duplicate_row][duplicate_col] =-1;
-                function(image,row,col,color);
-            }
-            else break;
-        }
-        
-        image[duplicate_row][duplicate_col] = color;
-        
-        return;
     }
 }
