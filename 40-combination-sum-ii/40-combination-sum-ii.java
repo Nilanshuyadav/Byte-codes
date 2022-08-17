@@ -6,26 +6,26 @@ class Solution {
         
         ans = new ArrayList<>();
         
-        function(0,candidates,target,n,new ArrayList<Integer>());
+        function(0,candidates,target,n,new ArrayList<Integer>(),0);
         
         return ans;
     }
     
-    public void function(int ind,int[] candidates,int target,int n, List<Integer> temp){
+    public void function(int ind,int[] candidates,int target,int n, List<Integer> temp,int sum){
         
-        if(target == 0){
+        if(target == sum){
             ans.add(new ArrayList<>(temp));
             return;
         }
         
         for(int i=ind;i<n;i++){
             if(i != ind && candidates[i] == candidates[i-1]) continue;
-            
-            if(target-candidates[i] < 0) return;
+            sum += candidates[i];
+            if(sum > target) return;
             temp.add(candidates[i]);
-            if(target >= candidates[i])function(i+1,candidates,target-candidates[i],n,temp);
+            if(target >= candidates[i])function(i+1,candidates,target,n,temp,sum);
             temp.remove(temp.size()-1);
-            
+            sum -= candidates[i];
         }
     }
 }
