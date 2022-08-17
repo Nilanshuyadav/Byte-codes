@@ -24,6 +24,7 @@ class Solution {
             temp.add(candidates[i]);
             function(i+1,candidates,target,n,temp,sum);
             temp.remove(temp.size()-1);
+            if(sum > target) return;
             sum -= candidates[i];
         }
     }
