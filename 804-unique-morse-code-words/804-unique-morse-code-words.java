@@ -5,10 +5,10 @@ class Solution {
         Set<String> set = new HashSet<>();
         
         for(String s : words){
-            String sb = new String();
+            StringBuilder sb = new StringBuilder();
             for(int j=0;j<s.length();j++)
-                sb += (arr[s.charAt(j)-'a']);
-            set.add(sb);
+                sb.append(arr[s.charAt(j)-'a']);
+            set.add(sb.toString());
         }
         
         
