@@ -4,6 +4,15 @@ class Solution {
         int n = nums.length;
         Queue<Integer> q = new LinkedList<>();
         boolean[] vis = new boolean[n];
+        int tep = -1;
+        for(int i=0;i<n;i++)
+            if(nums[i] == 0){
+                tep = 0;
+                break;
+            }
+        
+        if(tep == -1) return true;
+            
         
         q.add(0);
         
