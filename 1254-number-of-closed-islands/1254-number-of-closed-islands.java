@@ -1,47 +1,33 @@
 class Solution {
     public int closedIsland(int[][] grid) {
-        int row = grid.length, col = grid[0].length;
-        int count = 0;
+        int row = grid.length, col = grid[0].length,cnt = 0;
         
-        for(int i=0;i<row;i++){
-            for(int j=0;j<col;j++){
-                if(grid[i][j] == 0 && function(grid,i,j,row,col)){
-                    count++;
+        for(int i=0;i<row;i++){ 
+            if(grid[i][0] == 0) function(grid,i,0); 
+            if(grid[i][col-1] == 0) function(grid,i,col-1);
+        }
+        for(int i=0;i<col;i++){
+            if(grid[0][i] == 0) function(grid,0,i);
+            if(grid[row-1][i] == 0) function(grid,row-1,i);
+        }    
+        
+        for(int i=1;i<row-1;i++){
+            for(int j=1;j<col-1;j++){
+                if(grid[i][j] == 0){
+                    cnt++;
+                    function(grid,i,j);
                 }
             }
         }
-        
-        return count;
+        return cnt;
     }
     
-    public boolean function(int[][] grid, int row, int col, int row_length, int col_length){
-        boolean temp = true;
+    public void function(int[][] grid,int row, int col){
+        if(row<0 || row>=grid.length || col<0 || col>=grid[0].length || grid[row][col]==1) return;
         grid[row][col] = 1;
-        
-        if(row-1 >= 0 && grid[row-1][col] == 0)
-            // if(!function(grid,row-1,col,row_length,col_length))
-            //     temp = false;
-            temp = function(grid,row-1,col,row_length,col_length) && temp;
-        
-        if(row+1 < row_length && grid[row+1][col] == 0)
-            // if(!function(grid,row+1,col,row_length,col_length))
-            //     temp = false;
-            temp = function(grid,row+1,col,row_length,col_length) && temp;
-        
-        if(col-1 >= 0 && grid[row][col-1] == 0)
-            // if(!function(grid,row,col-1,row_length,col_length))
-            //     temp = false;
-            temp = function(grid,row,col-1,row_length,col_length) && temp;
-        
-        if(col+1 < col_length && grid[row][col+1] == 0)
-            // if(!function(grid,row,col+1,row_length,col_length))
-            //     temp = false;
-            temp = function(grid,row,col+1,row_length,col_length) && temp;
-        
-        
-        if(row == 0 || row == row_length-1 || col == 0 || col == col_length-1)
-            return false;
-        
-        return temp;
+        function(grid,row-1,col);
+        function(grid,row+1,col);
+        function(grid,row,col-1);
+        function(grid,row,col+1);
     }
 }
