@@ -1,14 +1,14 @@
 class Solution {
-    Set<List<Integer>> ans;
+    List<List<Integer>> ans;
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         int n = candidates.length;
         Arrays.sort(candidates);
         
-        ans = new HashSet<>();
+        ans = new ArrayList<>();
         
         function(0,candidates,target,n,new ArrayList<Integer>(),0);
         
-        return new ArrayList<>(ans);
+        return ans;
     }
     
     public void function(int ind,int[] candidates,int target,int n, List<Integer> temp,int sum){
@@ -19,7 +19,7 @@ class Solution {
         }
         
         for(int i=ind;i<n;i++){
-            if(i != ind && candidates[i]==candidates[i-1])continue;
+            if(i != ind && candidates[i] == candidates[i-1]) continue;
             sum += candidates[i];
             temp.add(candidates[i]);
             function(i+1,candidates,target,n,temp,sum);
