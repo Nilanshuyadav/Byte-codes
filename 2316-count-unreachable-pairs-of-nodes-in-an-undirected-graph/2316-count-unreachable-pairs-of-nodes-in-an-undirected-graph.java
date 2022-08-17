@@ -1,6 +1,8 @@
 class Solution {
+    boolean[] vis;
     public long countPairs(int n, int[][] edges) {
         List<List<Integer>> adj = new ArrayList<>();
+        vis = new boolean[n];
         
         for(int i=0;i<n;i++)
             adj.add(new ArrayList<>());
@@ -10,30 +12,24 @@ class Solution {
             adj.get(i[1]).add(i[0]);
         }
         
-        boolean[] vis = new boolean[n];
-        long sum = 0,cnt;
-        Queue<Integer> q = new LinkedList<>();
+        long sum = 0;
+        long cnt = 0;
         
         for(int i=0;i<n;i++){
             if(!vis[i]){
-                vis[i] = true;
-                q.add(i);
-                cnt = 0;
-                
-                while(!q.isEmpty()){
-                    int temp = q.remove();
-                    cnt++;
-                    for(int j : adj.get(temp)){
-                        if(!vis[j]){
-                            vis[j] = true;
-                            q.add(j);
-                        }
-                    }
-                }
+                cnt = function(adj,i);
                 sum += cnt*(n-cnt);
-            }
+            }    
         }
-        return (sum/2);
-        
+        return sum/2;
     }
+    
+    public long function(List<List<Integer>> adj, int ind){
+        vis[ind] = true;
+        long sum = 1;
+        for(int i : adj.get(ind)){
+            if(!vis[i]) sum += function(adj,i);
+        }
+        return sum;
+    } 
 }
