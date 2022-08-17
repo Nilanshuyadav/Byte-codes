@@ -21,10 +21,10 @@ class Solution {
         for(int i=ind;i<n;i++){
             if(i != ind && candidates[i] == candidates[i-1]) continue;
             sum += candidates[i];
+            if(sum > target) return;
             temp.add(candidates[i]);
             function(i+1,candidates,target,n,temp,sum);
             temp.remove(temp.size()-1);
-            if(sum > target) return;
             sum -= candidates[i];
         }
     }
