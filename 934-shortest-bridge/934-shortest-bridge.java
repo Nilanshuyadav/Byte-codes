@@ -1,20 +1,20 @@
 class Solution { 
     int[] r = {-1,1,0,0}, c = {0,0,-1,1};
-    Queue<Pair> q;
+    
     public int shortestBridge(int[][] grid) {
         int n = grid.length;
         
         
         boolean[][] vis = new boolean[n][n];
         
-        q = new LinkedList<>();
+        Queue<Pair> q = new LinkedList<>();
         
         
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 if(grid[i][j] == 1){
                     
-                    function(grid,i,j,n,vis);
+                    function(grid,i,j,n,vis,q);
                     i = n; j = n;
                 }
             }
@@ -81,7 +81,7 @@ class Solution {
         return dis;
     }
     
-    public void function(int[][] grid, int row,int col,int n,boolean vis[][]){
+    public void function(int[][] grid, int row,int col,int n,boolean vis[][],Queue<Pair> q){
 
         grid[row][col] = 0;
         q.add(new Pair(row,col));
@@ -92,7 +92,7 @@ class Solution {
             if(tr >= 0 && tc >= 0
               && tr < n && tc < n
               && grid[tr][tc] == 1)
-                function(grid,tr,tc,n,vis);
+                function(grid,tr,tc,n,vis,q);
         }
     }
 }
