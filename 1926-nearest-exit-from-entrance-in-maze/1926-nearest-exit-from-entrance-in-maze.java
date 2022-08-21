@@ -1,111 +1,42 @@
 class Solution {
     public int nearestExit(char[][] maze, int[] entrance) {
-        int row = maze.length, col = maze[0].length;
+        int cnt = 1,row = maze.length,col = maze[0].length;
+        Queue<int[]> q = new LinkedList<>();
+        int[] r = {-1,0,1,0}, c = {0,1,0,-1};
+        boolean[][] vis = new boolean[row][col];
+        vis[entrance[0]][entrance[1]] = true;
         
-        Queue<Pair> q = new LinkedList<>();
-        
-        q.add(new Pair(entrance[0],entrance[1]));
-        
-        int[] r = {-1,1,0,0}, c = {0,0,-1,1};
-        
-        int level = -1;
-        
-        maze[entrance[0]][entrance[1]] = '+';
+        q.add(entrance);
         
         while(!q.isEmpty()){
-            level++;
-            
             int size = q.size();
             
-            while(size-- > 0){
-                Pair temp = q.remove();
-                
-//                maze[temp.row][temp.col] = '+';  ye nii kr skte ...do do baar queue m input kr rha hia values ko;
-                
+            for(int j=0;j<size;j++){
+                int[] temp = q.remove();
+
                 for(int i=0;i<4;i++){
-                    int tr = temp.row + r[i], tc = temp.col + c[i];
+                    int new_row = temp[0]+r[i];
+                    int new_col = temp[1]+c[i];
                     
-                    if((tr < 0 || tc < 0
-                      || tr == row || tc == col) 
-                      && level != 0)return level;
+                    if(new_row<0 || new_col<0 || new_row>=row || new_col>=col){
+                        if(temp[0] == entrance[0] && temp[1]==entrance[1]) continue;
+                        else return cnt-1;
+                    }
+
+                    if(maze[new_row][new_col] == '+') continue;
                     
-                    if(tr >= 0 && tc >= 0
-                      && tr < row && tc < col && maze[tr][tc] == '.')
-                    {
-                        maze[tr][tc] = '+';
-                        q.add(new Pair(tr,tc));
-                    }    
+                    if(new_row>=0 && new_col>=0 && new_row<row && new_col<col && !vis[new_row][new_col]){
+                        vis[new_row][new_col] = true;
+                        q.add(new int[]{new_row,new_col});
+                    }
+                    
+
+
                 }
             }
+            cnt++;
         }
+        
         return -1;
     }
 }
-
-class Pair{
-    int row;
-    int col;
-    
-    public Pair(int row, int col){
-        this.row = row;
-        this.col = col;
-    }
-}
-
-
-
-//**************
-
-
-// class Solution {
-//     int [][] dir={{1,0},{-1,0},{0,1},{0,-1}};
-    
-//     public class Pair{
-//         int x;
-//         int y;
-        
-//         Pair(int x,int y ){
-//             this.x=x;
-//             this.y=y;
-//         }
-//     }
-//     public int nearestExit(char[][] maze, int[] entrance) {
-        
-//         ArrayDeque<Pair> q =new ArrayDeque<>();
-//         q.add(new Pair(entrance[0],entrance[1]));
-//         maze[entrance[0]][entrance[1]]='+';
-//         int level=0;
-        
-//         while(q.size()!=0){
-//             int t =q.size();
-            
-//             while(t-->0){
-//                 Pair rem=q.remove();
-                
-//                 int x =rem.x;
-//                 int y =rem.y;
-                
-//                 if(level>0 && (x==0 || x==maze.length-1 || y==0 || y==maze[x].length-1)){
-//                     return level;
-//                 }
-                
-                
-                
-//                 for(int i =0;i<dir.length;i++){
-//                     int X=x+dir[i][0];
-//                     int Y=y+dir[i][1];
-                    
-//                     if(X>=0 && X<maze.length && Y>=0 && Y<maze[X].length && maze[X][Y]=='.'){
-//                         q.add(new Pair(X,Y));
-//                         maze[X][Y]='+';
-//                         // System.out.println(X+" "+Y);
-//                     }
-//                 }
-//             }
-            
-//             level++;
-//         }
-        
-//         return -1;
-//     }
-// }
