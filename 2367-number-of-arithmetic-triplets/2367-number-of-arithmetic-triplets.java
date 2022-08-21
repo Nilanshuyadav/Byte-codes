@@ -5,7 +5,7 @@ class Solution {
         
         for(int n : nums) freq.put(n,1);
         
-        for(int n : nums) if(freq.containsKey(n-diff) && freq.containsKey(n+diff)) ans++;
+        for(int n : nums) if(freq.containsKey(n+diff) && freq.containsKey(n+diff+diff)) ans++;
         
         return ans;
     }
