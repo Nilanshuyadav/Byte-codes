@@ -1,23 +1,25 @@
 class Solution {
-    boolean[] vis;
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        int V = rooms.size();
-        vis = new boolean[V];
+        Queue<Integer> q = new LinkedList<>();
+        boolean[] vis = new boolean[rooms.size()];
+        vis[0] = true;
+        q.add(0);
         
-        function(rooms,0);
+        while(!q.isEmpty()){
+            int temp = q.remove();
+
+            for(int i : rooms.get(temp))
+                if(!vis[i]){
+                    vis[i] = true;
+                    q.add(i);
+                }
+        }
         
-        for(int i=0;i<V;i++)
-            if(vis[i] != true) return false;
+       
+        for(boolean bool : vis)
+            if(bool != true)
+                return false;  
         
         return true;
-    }
-    
-    public void function(List<List<Integer>> rooms, int ind){
-        vis[ind] = true;
-        
-        for(int i : rooms.get(ind)){
-            if(vis[i] == true) continue;
-            function(rooms,i);
-        }
     }
 }
