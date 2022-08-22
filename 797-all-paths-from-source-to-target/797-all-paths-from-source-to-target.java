@@ -4,26 +4,23 @@ class Solution {
         int n = graph.length;
         ans = new ArrayList<>();
         
-        List<Integer> al = new ArrayList<>();
-        al.add(0);
-        function(graph,0,n,al);
+        function(graph,0,n,new ArrayList<>());
         
         return ans;
     }
     
     public void function(int[][] graph, int ind,int n,List<Integer> al){
-        for(int i : graph[ind]){
-            if(i == n-1){
-                al.add(i);
-                ans.add(new ArrayList<>(al));
-                al.remove(al.size()-1);
-                continue;
-            }
-            else{
-                al.add(i);
-                function(graph,i,n,al);
-                al.remove(al.size()-1);
-            }
+        al.add(ind);
+        
+        if(ind == n-1){
+            ans.add(new ArrayList<>(al));
+            al.remove(al.size()-1);
+            return;
         }
+        
+        for(int i : graph[ind])
+            function(graph,i,n,al);
+        
+        al.remove(al.size()-1);
     }
 }
