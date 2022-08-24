@@ -1,40 +1,33 @@
 class Solution {
-    boolean[] vis;
-    List<Integer> ans;
-    boolean[] sort;
-    public List<Integer> eventualSafeNodes(int[][] adj) {
-        int V = adj.length;
-        vis = new boolean[V];
-        ans = new ArrayList<>();
-        sort = new boolean[V];
+    Boolean[] vis;
+    public List<Integer> eventualSafeNodes(int[][] graph) {
+        int n = graph.length;
+        vis = new Boolean[n];
         
-        for(int i=0;i<V;i++){
-            if(vis[i] != true)
-                function(i,adj);                    
+        List<Integer> ans = new ArrayList<>();
+        List<List<Integer>> adj = new ArrayList<>();
+        
+        for(int i=0;i<n;i++) adj.add(new ArrayList<>());
+        for(int i=0;i<n;i++){
+            for(int j : graph[i])
+                adj.get(i).add(j);
         }
-        // Collections.sort(ans);
-        ans.clear();
         
-        for(int i=0;i<V;i++)
-            if(sort[i])
+        for(int i=0;i<n;i++){
+            if(function(adj,i))
                 ans.add(i);
+        }
         
         return ans;
     }
     
-    public boolean function(int ind, int[][] adj){
-        boolean bool = true;
-        vis[ind] = true;
-        
-        for(int i : adj[ind]){
-            if(vis[i] != false){
-                if(ans.contains(i)) {continue;}
-                else return false;
-            }
-            bool = bool && function(i,adj);
+    public boolean function(List<List<Integer>> adj, int ind){
+        if(vis[ind] != null) return vis[ind];
+        vis[ind] = false;
+        for(int i : adj.get(ind)){
+            if(!function(adj,i))
+                return vis[ind]=false;
         }
-        
-        if(bool == true){sort[ind] = true; ans.add(ind);}
-        return bool;
+        return vis[ind] = true;
     }
 }
