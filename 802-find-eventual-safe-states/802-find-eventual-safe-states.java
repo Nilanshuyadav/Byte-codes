@@ -26,7 +26,7 @@ class Solution {
         vis[ind] = false;
         for(int i : adj.get(ind)){
             if(!function(adj,i))
-                return vis[ind]=false;
+                return false;
         }
         return vis[ind] = true;
     }
