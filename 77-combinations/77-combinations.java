@@ -12,10 +12,10 @@ class Solution {
             return;
         }
         
-        for(int i=ind;i<=n;i++){
-            al.add(i);
-            function(i+1,n,k,al);
-            al.remove(al.size()-1);
-        }
+       for(int i=ind;i<=n;i++){
+           al.add(i);
+           function(i+1,n,k,al);
+           al.remove(al.size()-1);
+       }
     }
 }
