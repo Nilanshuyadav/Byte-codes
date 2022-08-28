@@ -1,40 +1,26 @@
 class Solution {
-    
-    boolean[] vis;
     public boolean canReach(int[] arr, int start) {
-        int n = arr.length;
-        
-        vis = new boolean[n];
-        return function(arr,start,n);
-    }
-    
-    public boolean function(int[] arr, int start, int n){
         if(arr[start] == 0) return true;
+        int n = arr.length;
+        boolean[] vis=  new boolean[n];
         
-        if(vis[start] == true) return false;
+        Queue<Integer> q = new LinkedList<>();
+        q.add(start);
         vis[start] = true;
         
-        boolean temp1 = false,temp2 = false;
+        int[] r = {1,-1};
         
-        if(start+arr[start] < n) temp1 = function(arr,start+arr[start],n);
-        
-        if(start - arr[start] >= 0) temp2 = function(arr,start-arr[start],n);
-        
-        
-        return (temp1||temp2);
-        
-        /********************************************************************/
-        
-//         if(vis[start]) return false;
-//         if(arr[start] == 0) return true;
-//         vis[start] = true;
-//         int prev = start-arr[start],next = start+arr[start];
-        
-//         boolean temp1 = false, temp2 = false;
-        
-//         if(prev >= 0) temp1 = function(arr,prev,n);
-//         if(next < n) temp2 = function(arr,next,n);
-        
-//         return temp1||temp2;
+        while(!q.isEmpty()){
+            int temp = q.remove();
+            
+            for(int i=0;i<2;i++){
+                int new_ind = temp + (r[i]*arr[temp]);
+                if(new_ind<0 || new_ind>=n || vis[new_ind]) continue;
+                if(arr[new_ind] == 0) return true;
+                vis[new_ind] = true;
+                q.add(new_ind);
+            }
+        }
+        return false;
     }
 }
