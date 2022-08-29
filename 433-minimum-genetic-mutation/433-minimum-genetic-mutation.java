@@ -4,10 +4,7 @@ class Solution {
         for(String s : bank) set.add(s);
         
         if(!set.contains(end)) return -1;
-        
-        // Set<String> vis = new HashSet<>();
-        // vis.add(start);
-        
+      
         Queue<String> q = new LinkedList<>();
         q.add(start);
         int cnt = -1;
@@ -25,7 +22,6 @@ class Solution {
                         StringBuilder sb = new StringBuilder(
                             st.substring(0,j)+carr[k]+st.substring(j+1));
                         if(set.contains(sb.toString())){
-                            //vis.add(sb.toString());
                             set.remove(sb.toString());
                             q.add(sb.toString());
                         }
