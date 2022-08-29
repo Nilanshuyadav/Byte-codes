@@ -5,8 +5,8 @@ class Solution {
         
         if(!set.contains(end)) return -1;
         
-        Set<String> vis = new HashSet<>();
-        vis.add(start);
+        // Set<String> vis = new HashSet<>();
+        // vis.add(start);
         
         Queue<String> q = new LinkedList<>();
         q.add(start);
@@ -24,8 +24,9 @@ class Solution {
                     for(int k=0;k<4;k++){
                         StringBuilder sb = new StringBuilder(
                             st.substring(0,j)+carr[k]+st.substring(j+1));
-                        if(!vis.contains(sb.toString()) && set.contains(sb.toString())){
-                            vis.add(sb.toString());
+                        if(set.contains(sb.toString())){
+                            //vis.add(sb.toString());
+                            set.remove(sb.toString());
                             q.add(sb.toString());
                         }
                     }
