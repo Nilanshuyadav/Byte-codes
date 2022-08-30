@@ -1,39 +1,23 @@
 class Solution {
-    public void setZeroes(int[][] m) {
-        Queue<Pair> q = new LinkedList<>();
+    public void setZeroes(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
         
-        int row = m.length;
-        int col = m[0].length;
+        boolean[] r = new boolean[row],c = new boolean[col];
         
-        for(int i=0;i<row;i++){
+        for(int i=0;i<row;i++)
             for(int j=0;j<col;j++)
-                if(m[i][j] == 0) q.add(new Pair(i,j));
-        }
+                if(matrix[i][j] == 0){
+                    r[i] = true;
+                    c[j] = true;
+                }
         
-        while(!q.isEmpty()){
-            Pair temp = q.remove();
-            int r = temp.row,c = temp.col;
-            
-            while(--r>=0)
-                m[r][c] = 0;
-            r = temp.row;
-            while(++r<row)
-                m[r][c] = 0;
-            r=temp.row;
-            while(--c>=0)
-                m[r][c] = 0;
-            c = temp.col;
-            while(++c<col)
-                m[r][c] = 0;
-        }
-    }
-}
-
-class Pair{
-    int row;
-    int col;
-    public Pair(int row,int col){
-        this.row = row;
-        this.col = col;
+        for(int i=0;i<row;i++)
+            if(r[i])
+                for(int j=0;j<col;j++) matrix[i][j] = 0;
+        
+        for(int i=0;i<col;i++)
+            if(c[i])
+                for(int j=0;j<row;j++) matrix[j][i] = 0;
     }
 }
