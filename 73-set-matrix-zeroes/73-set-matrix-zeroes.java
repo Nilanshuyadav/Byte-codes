@@ -1,52 +1,39 @@
 class Solution {
-    public void setZeroes(int[][] matrix) {
-        int r = matrix.length;
-        int c = matrix[0].length;
+    public void setZeroes(int[][] m) {
+        Queue<Pair> q = new LinkedList<>();
         
-        List<Pair> lst = new ArrayList<Pair>();
+        int row = m.length;
+        int col = m[0].length;
         
-        for(int i=0;i<r;i++){
-            for(int j=0;j<c;j++){
-                if(matrix[i][j] == 0){
-                    lst.add(new Pair<Integer,Integer>(i,j));
-                }
-            }
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++)
+                if(m[i][j] == 0) q.add(new Pair(i,j));
         }
         
-        int n = lst.size();
-        
-        for(int i=0;i<n;i++){
-            Pair<Integer,Integer> p = lst.get(i);
-            setzero(p.getKey(),p.getValue(),matrix,r,c);
+        while(!q.isEmpty()){
+            Pair temp = q.remove();
+            int r = temp.row,c = temp.col;
+            
+            while(--r>=0)
+                m[r][c] = 0;
+            r = temp.row;
+            while(++r<row)
+                m[r][c] = 0;
+            r=temp.row;
+            while(--c>=0)
+                m[r][c] = 0;
+            c = temp.col;
+            while(++c<col)
+                m[r][c] = 0;
         }
     }
-    
-    private void setzero(int i,int j,int[][] matri, int r, int c){
-        int curri = i;
-        int currj = j;
-        
-        while(curri >=0){
-            matri[curri][j] = 0;
-            curri--;
-        }
-        
-        curri = i;
-        
-        while(curri<r){
-            matri[curri][j] = 0;
-            curri++;
-        }
-        
-        while(currj>=0){
-            matri[i][currj] = 0;
-            currj--;
-        }
-        
-        currj = j;
-        
-        while(currj<c){
-            matri[i][currj] = 0;
-            currj++;
-        }
+}
+
+class Pair{
+    int row;
+    int col;
+    public Pair(int row,int col){
+        this.row = row;
+        this.col = col;
     }
 }
