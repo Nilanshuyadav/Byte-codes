@@ -1,80 +1,50 @@
 class Solution {
+    int[] r = {-1,0,1,0},c = {0,1,0,-1};
     public List<List<Integer>> pacificAtlantic(int[][] height) {
-        int row = height.length,col = height[0].length;
-        int[][] vis = new int[row][col];
+        int row = height.length,col = height[0].length;      
+        boolean[][] alt = new boolean[row][col];
+        boolean[][] pac = new boolean[row][col];
+        
         List<List<Integer>> ans = new ArrayList<>();
-        int[] r = {-1,0,1,0}, c={0,1,0,-1};
         
-        Queue<Pair> q = new LinkedList<>();
+        for(int i=0;i<row;i++){
+            pac[i][0] = true;
+            dfs(pac,i,0,height);
+            alt[i][col-1] = true;
+            dfs(alt,i,col-1,height);
+        }
+        
         for(int i=0;i<col;i++){
-            vis[0][i] = 1;
-            q.add(new Pair(0,i));
-        }
-        for(int i=1;i<row;i++){
-            vis[i][0] = 1;
-            q.add(new Pair(i,0));
-        }
-        
-        while(!q.isEmpty()){
-            Pair temp = q.remove();
-            for(int i=0;i<4;i++){
-                int new_row = temp.row+r[i];
-                int new_col = temp.col+c[i];
-                
-                if(new_row<0 || new_col<0 || new_row>=row || new_col>=col || 
-                   vis[new_row][new_col]==1 || 
-                   height[new_row][new_col]<height[temp.row][temp.col]) continue;
-                
-                vis[new_row][new_col] = 1;
-                q.add(new Pair(new_row,new_col));
-            }
+            pac[0][i] = true;
+            dfs(pac,0,i,height);
+            alt[row-1][i] = true;
+            dfs(alt,row-1,i,height);
         }
         
         for(int i=0;i<row;i++){
-            if(vis[i][col-1] == 1){
-                List<Integer> al = new ArrayList<>();
-                al.add(i);
-                al.add(col-1);
-                ans.add(al);
-            }
-            vis[i][col-1] = 2;
-            q.add(new Pair(i,col-1));
-        }
-        
-        for(int i=0;i<col;i++){
-            if(vis[row-1][i] == 1){
-                List<Integer> al = new ArrayList<>();
-                al.add(row-1);
-                al.add(i);
-                ans.add(al);
-            }
-            vis[row-1][i] = 2;
-            q.add(new Pair(row-1,i));
-        }
-        
-        while(!q.isEmpty()){
-            Pair temp = q.remove();
-            for(int i=0;i<4;i++){
-                int new_row = temp.row+r[i];
-                int new_col = temp.col+c[i];
-                
-                if(new_row<0 || new_col<0 || new_row>=row || new_col>=col || vis[new_row][new_col]==2 || height[new_row][new_col]<height[temp.row][temp.col]) continue;
-                
-                if(vis[new_row][new_col] == 1) ans.add(new ArrayList<>(){{add(new_row); add(new_col);}});
-                vis[new_row][new_col] = 2;
-                q.add(new Pair(new_row,new_col));
+            for(int j=0;j<col;j++){
+                if(pac[i][j] && alt[i][j]){
+                    List<Integer> al = new ArrayList<>();
+                    al.add(i);
+                    al.add(j);
+                    ans.add(al);
+                }
             }
         }
         
         return ans;
     }
-}
-
-class Pair{
-    int row;
-    int col;
-    public Pair(int row,int col){
-        this.row = row;
-        this.col = col;
+    
+    public void dfs(boolean[][] arr, int row, int col, int[][] height){
+        
+        for(int i=0;i<4;i++){
+            int new_row = row+r[i];
+            int new_col = col+c[i];
+            
+            if(new_row<0 || new_col<0 || new_row>=height.length || new_col>=height[0].length || arr[new_row][new_col] || height[row][col]>height[new_row][new_col ]) continue;
+            arr[new_row][new_col] = true;
+            dfs(arr,new_row,new_col,height);
+        }
     }
 }
+
