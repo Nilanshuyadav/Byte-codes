@@ -24,8 +24,7 @@ class Solution {
         sb.deleteCharAt(sb.length()-1);
     }
     
-    public boolean toCheck(StringBuilder s){
-        StringBuilder sb = new StringBuilder(s);
+    public boolean toCheck(StringBuilder sb){
         Stack<Character> stack = new Stack<>();
         
         for(int i=0;i<sb.length();i++){
