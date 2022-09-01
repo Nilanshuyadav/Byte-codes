@@ -14,14 +14,19 @@ class Solution {
             return;
         }
         
-        sb.append('(');
-        dfs(ind+1,sb,ans,n);
+//         sb.append('(');
+//         dfs(ind+1,sb,ans,n);
         
-        sb.deleteCharAt(sb.length()-1);
-        sb.append(')');
-        dfs(ind+1,sb,ans,n);
+//         sb.deleteCharAt(sb.length()-1);
+//         sb.append(')');
+//         dfs(ind+1,sb,ans,n);
         
-        sb.deleteCharAt(sb.length()-1);
+//         sb.deleteCharAt(sb.length()-1);
+        
+        StringBuilder s = new StringBuilder(sb);
+        
+        dfs(ind+1,s.append('('),ans,n);
+        dfs(ind+1,sb.append(')'),ans,n);
     }
     
     public boolean toCheck(StringBuilder sb){
