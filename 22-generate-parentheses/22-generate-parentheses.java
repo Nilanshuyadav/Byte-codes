@@ -25,8 +25,8 @@ class Solution {
         
         StringBuilder s = new StringBuilder(sb);
         
-        dfs(ind+1,s.append('('),ans,n);
-        dfs(ind+1,sb.append(')'),ans,n);
+        dfs(ind+1,sb.append('('),ans,n);
+        dfs(ind+1,s.append(')'),ans,n);
     }
     
     public boolean toCheck(StringBuilder sb){
