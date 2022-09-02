@@ -10,21 +10,36 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        ArrayList<Integer> al = new ArrayList<>();
+        if(head.next==null) return true;
+        if(head.next.next==null) return head.val==head.next.val;
+        ListNode slow = head, fast = head;
         
-        ListNode curr = head;
-        while(curr!=null){
-            al.add(curr.val);
-            curr = curr.next;
+        do{
+            slow = slow.next;
+            fast = fast.next.next;
+        }while(fast.next!=null && fast.next.next!=null);
+        
+        slow.next = dfs(null,slow.next);
+        
+        fast = slow.next;
+        slow = head;
+        
+        while(fast!=null){
+            if(slow.val!=fast.val) return false;
+            slow = slow.next;
+            fast = fast.next;
         }
         
-        int low = 0, high = al.size()-1;
-        
-        while(low<high){
-            if(al.get(low)!=al.get(high)) return false;
-            low++;
-            high--;
-        }
         return true;
+    }
+    
+    public ListNode dfs(ListNode pre,ListNode curr){
+        if(curr == null) return pre;
+        
+        ListNode next = curr;
+        curr = curr.next;
+        
+        next.next = pre;
+        return dfs(next,curr);
     }
 }
