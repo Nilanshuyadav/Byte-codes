@@ -17,34 +17,34 @@ class Solution {
     int ans;
     public int pseudoPalindromicPaths (TreeNode root) {
         ans = 0;
-        int[] dp = new int[10];
+        boolean[] dp = new boolean[10];
         dfs(root,dp);
         return ans;
     }
     
-    public void dfs(TreeNode root,int[] dp){
+    public void dfs(TreeNode root,boolean[] dp){
         if(root.left==null && root.right==null){
-            if(dp[root.val]!=0) dp[root.val]--;
-            else dp[root.val]++;
+            if(dp[root.val]) dp[root.val] = false;
+            else dp[root.val] = true;
             
-            int sum = 0;
-            for(int i=0;i<10;i++)
-                sum += dp[i];
+            int t=0;
+            for(int i=1;i<10;i++)
+                if(dp[i]) t++;
             
-            if(sum<2) ans++;
+            if(t<2) ans++;
             
-            if(dp[root.val]==0) dp[root.val]++;
-            else dp[root.val]--;
+            if(dp[root.val]) dp[root.val] = false;
+            else dp[root.val] = true;
             return;
         }
         
-        if(dp[root.val]!=0) dp[root.val]--;
-        else dp[root.val]++;
+        if(dp[root.val]) dp[root.val] = false;
+        else dp[root.val] = true;
         
         if(root.left != null) dfs(root.left,dp);
         if(root.right != null) dfs(root.right,dp);
         
-        if(dp[root.val]==0) dp[root.val]++;
-        else dp[root.val]--;
+        if(dp[root.val]) dp[root.val] = false;
+        else dp[root.val] = true;
     }
 }
