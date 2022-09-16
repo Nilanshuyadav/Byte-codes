@@ -41,8 +41,8 @@ class Solution {
 	    if (dp[left][index] != null) return dp[left][index];
 
 	  //  int res = Math.max(
-        int lef = nums[left] * multipliers[index] + helper(nums, multipliers, left+1, index+1, dp); 
-         int righ = nums[right] * multipliers[index] + helper(nums, multipliers, left, index+1, dp);
+        int lef = (nums[left] * multipliers[index]) + helper(nums, multipliers, left+1, index+1, dp); 
+         int righ = (nums[right] * multipliers[index]) + helper(nums, multipliers, left, index+1, dp);
 
         return dp[left][index] = Math.max(lef,righ);
 	    
