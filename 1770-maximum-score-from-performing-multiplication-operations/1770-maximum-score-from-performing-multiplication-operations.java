@@ -4,32 +4,23 @@ class Solution {
         N = nums.length;
         M = m.length;
         
-        int[][] dp = new int[N+1][M+1];
+        int[] dp = new int[M+1];
         
         for(int i=M-1;i>=0;i--){
+            int[] temp = new int[M+1];
             for(int j=i;j>=0;j--){
                 int high = N-1-(i-j);
-                int left = (m[i]*nums[j]) + dp[i+1][j+1];
-                int right = (m[i]*nums[high]) + dp[i+1][j];
+                int left = (m[i]*nums[j]) + dp[j+1];
+                int right = (m[i]*nums[high]) + dp[j];
                 
-                dp[i][j] = Math.max(left,right);
+                temp[j] = Math.max(left,right);
             }
+            dp = temp;
         }
         
-        return dp[0][0];
+        return dp[0];
     }
     
-    private int dfs(int ind,int low, int[] nums, int[] m, Integer[][] dp){
-        int high = N -1-(ind-low);
-        if(ind == M) return 0;
-        
-        if(dp[low][ind] != null) return dp[low][ind];
-        
-        int left = (m[ind]*nums[low]) + dfs(ind+1,low+1,nums,m,dp);
-        int right = (m[ind]*nums[high]) + dfs(ind+1,low,nums,m,dp);
-        
-        return dp[low][ind] = Math.max(left,right);
-    }
 }
 
 
