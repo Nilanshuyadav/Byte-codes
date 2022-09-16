@@ -40,12 +40,12 @@ class Solution {
 
 	    if (dp[left][index] != null) return dp[left][index];
 
-	    return dp[left][index] = Math.max(
-            nums[left] * multipliers[index] + helper(nums, multipliers, left+1, index+1, dp), 
-            nums[right] * multipliers[index] + helper(nums, multipliers, left, index+1, dp));
+	  //  int res = Math.max(
+        int lef = nums[left] * multipliers[index] + helper(nums, multipliers, left+1, index+1, dp); 
+         int righ = nums[right] * multipliers[index] + helper(nums, multipliers, left, index+1, dp);
 
-	    // dp[left][index] = res;
-	    // return res;
+        return dp[left][index] = Math.max(lef,righ);
+	    
     }
 }
 
