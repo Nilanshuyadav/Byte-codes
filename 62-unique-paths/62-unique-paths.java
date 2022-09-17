@@ -1,13 +1,17 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-        int N = m + n -2;
-        int R = m-1;
-        double res = 1;
+        int[][] dp = new int[m][n];
+        for(int i[] : dp) Arrays.fill(i,-1);
         
-        for(int i=1; i<=R; i++){
-            res = res * (N-R+i)/i;
-        }
-        return (int)res;
+        return dfs(m-1,n-1,dp);
+    }
+    
+    public int dfs(int row, int col, int[][] dp){
+        if(row<0 || col<0) return 0;
+        if(row==0 && col==0) return 1;
         
+        if(dp[row][col] != -1) return dp[row][col];
+        
+        return dp[row][col] = dfs(row-1,col,dp)+dfs(row,col-1,dp);
     }
 }
