@@ -1,84 +1,65 @@
 class Solution {
-    
     Integer[] ans;
-    
-    public List<Integer> countSmaller(int[] arr) {
-        int n = arr.length;
+    public List<Integer> countSmaller(int[] nums) {
+        int n = nums.length;
         
-        Pair[] nums = new Pair[n];
+        Pair[] num = new Pair[n];
         
-        for(int i =0;i<n;i++){
-            nums[i] = new Pair(arr[i],i);
-        }
-        
-        
+        for(int i=0;i<n;i++)
+            num[i] = new Pair(nums[i],i);
         
         ans = new Integer[n];
+        
         Arrays.fill(ans,0);
         
-        mergeSort(nums,0,n-1);
+        merge_break(0,n-1,num);
         
-        List<Integer> l = new ArrayList<>(Arrays.asList(ans));
-        
-        return l;
+        return new ArrayList<>(Arrays.asList(ans));
     }
     
-    public void mergeSort(Pair[] nums, int left, int right){
-        if(left < right){
-            int mid = (left + right)/2;
+    public void merge_break(int low, int high, Pair[] num){
+        if(low<high){
+            int mid = (low+high)/2;
             
-            mergeSort(nums,left,mid);
-            mergeSort(nums,mid+1,right);
+            merge_break(low,mid,num);
+            merge_break(mid+1,high,num);
             
-            merge(nums,left,mid,right);
+            merge(low,mid,high,num);
         }
     }
     
-    public void merge(Pair[] nums,int left, int mid, int right){
-        int n = (mid - left + 1) + (right - mid);
+    public void merge(int low, int mid ,int high, Pair[] num){
+        int n = (mid-low+1)+(high-mid);
         
         Pair[] temp = new Pair[n];
         
-        int i = left, j = mid+1, k = 0;
+        int temp_curr = 0,f_curr = low, s_curr = mid+1;
         
-        while(i <= mid && j<=right){
-            if(nums[i].val > nums[j].val){
-                ans[nums[i].ind] += right-j+1;
-                temp[k] = nums[i];
-                i++;
+        while(f_curr<=mid && s_curr<=high){
+            if(num[f_curr].val>num[s_curr].val){
+                ans[num[f_curr].ind] += high-s_curr+1;
+                temp[temp_curr++] = num[f_curr++];
             }
-            
             else{
-                temp[k] = nums[j];
-                j++;
+                temp[temp_curr++] = num[s_curr++];
             }
-           
-            k++;
         }
         
-        while(i <= mid){
-            temp[k] = nums[i];
-            k++;
-            i++;
-        }
+        while(f_curr<=mid)
+            temp[temp_curr++] = num[f_curr++];
         
-        while(j <= right){
-            temp[k] = nums[j];
-            k++;
-            j++;
-        }
+        while(s_curr<=high)
+            temp[temp_curr++] = num[s_curr++];
         
-        for(int a = left;a<=right;a++){
-            nums[a] = temp[a - left];
-        }
-        
+        for(int curr = low;curr<=high;curr++)
+            num[curr] = temp[curr-low];
     }
+    
 }
 
 class Pair{
     int val;
     int ind;
-    
     public Pair(int val, int ind){
         this.val = val;
         this.ind = ind;
