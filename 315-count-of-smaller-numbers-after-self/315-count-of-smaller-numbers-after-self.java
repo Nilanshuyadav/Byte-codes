@@ -52,7 +52,7 @@ class Solution {
                 temp[k] = nums[j];
                 j++;
             }
-            
+           
             k++;
         }
         
