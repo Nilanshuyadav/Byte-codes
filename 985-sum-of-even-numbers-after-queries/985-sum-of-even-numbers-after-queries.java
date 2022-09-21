@@ -10,18 +10,14 @@ class Solution {
         }
         
         for(int[] ind : queries){
-            if((nums[ind[1]]%2==0 && ind[0]%2==0) || (nums[ind[1]]%2!=0 && ind[0]%2!=0)){
-                if(nums[ind[1]]%2==0) sum -= nums[ind[1]];
-                nums[ind[1]] = nums[ind[1]]+ind[0];
-                
-                sum += nums[ind[1]];
-            }
-            else if(nums[ind[1]]%2==0 && ind[0]%2!=0){
+            if(nums[ind[1]]%2==0){
                 sum -= nums[ind[1]];
-                nums[ind[1]] = nums[ind[1]]+ind[0];
             }
-            else{
-                nums[ind[1]] = nums[ind[1]]+ind[0];
+            
+            nums[ind[1]] = nums[ind[1]]+ind[0];
+            
+            if(nums[ind[1]]%2==0){
+                sum += nums[ind[1]];
             }
             
             ans[curr++] = sum;
