@@ -8,11 +8,10 @@ class Solution {
     }
     
     public boolean isEven(int n){
-        StringBuilder sb = new StringBuilder(Integer.toString(n));
-        int sum = 0;
-        
-        for(int ind=0; ind<sb.length(); ind++){
-            sum += sb.charAt(ind)-'0';
+        int sum  =0;
+        while(n>0){
+            sum += n%10;
+            n = n/10;
         }
         
         return sum%2==0;
