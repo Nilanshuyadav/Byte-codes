@@ -1,17 +1,21 @@
 class Solution {
     public int pivotIndex(int[] nums) {
-        int[] pre = new int[nums.length], suff = new int[nums.length];
-        int n = nums.length;
+        int n = nums.length, suff[] = new int[n];
+        int total = 0;
         
-        if(n==1) return 0;
-        
-        for(int ind=1; ind<nums.length; ind++){
-            suff[ind] = nums[ind-1] + suff[ind-1];
-            pre[n-ind-1] = nums[n-ind]+pre[n-ind];
+        for(int ind=0; ind<n; ind++){
+            if(ind!=0)suff[ind] = suff[ind-1] + nums[ind-1];
+            total += nums[ind];
         }
         
-        for(int ind=0; ind<n; ind++)
-            if(suff[ind] == pre[ind]) return ind;
+        for(int ind=0; ind<n; ind++){
+            if((total-nums[ind])%2!=0) continue;
+            
+            else{
+                int half = (total-nums[ind])/2;
+                if(half == suff[ind]) return ind;
+            }
+        }
         
         return -1;
     }
