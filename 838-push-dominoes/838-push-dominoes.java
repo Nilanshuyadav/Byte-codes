@@ -14,8 +14,11 @@ class Solution {
                 for(ind2=ind; ind2<n; ind2++){
                     if(sb.charAt(ind2)=='L') break;
                     if(sb.charAt(ind2)=='R'){
-                        while(from<ind2)
-                            sb.setCharAt(from++,'R');
+                        int len = ind2-from;
+                        StringBuilder s = new StringBuilder("");
+                        while(len-->0) s.append("R");
+                        sb.replace(from,ind2,s.toString());
+                        from = ind2;
                     }
                 }
                 
