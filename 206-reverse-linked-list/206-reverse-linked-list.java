@@ -11,16 +11,16 @@
 class Solution {
     public ListNode reverseList(ListNode head) {
         if(head==null || head.next==null) return head;
-        ListNode pre=null, curr=head, next=head.next;
-        
-        while(next!=null){
-            curr.next=pre;
-            pre = curr;
-            curr = next;
-            next = curr.next;
+        return dfs(null, head, head.next);
+    }
+    
+    public ListNode dfs(ListNode pre, ListNode curr, ListNode next){
+        if(next==null){
+            curr.next = pre;
+            return curr;
         }
-        
         curr.next = pre;
-        return curr;
+        
+        return dfs(curr,next,next.next);
     }
 }
