@@ -1,8 +1,8 @@
 class MagicDictionary {
 
-    List<String> al;
+    Set<String> al;
     public MagicDictionary() {
-        al = new ArrayList<>();
+        al = new HashSet<>();
     }
     
     public void buildDict(String[] dictionary) {
@@ -11,16 +11,17 @@ class MagicDictionary {
     }
     
     public boolean search(String searchWord) {
+
+        StringBuilder ss = new StringBuilder(searchWord);
+        
         for(String st : al){
             StringBuilder sb = new StringBuilder(st);
-            StringBuilder searchword = new StringBuilder(searchWord);
-            
-            if(sb.length()!=searchword.length()) continue;
             int cnt=0;
             
-            for(int ind=0; ind<sb.length(); ind++){
-                if(sb.charAt(ind)!=searchword.charAt(ind)) cnt++;
-            }
+            if(sb.length() != ss.length()) continue;
+            
+            for(int ind=0; ind<sb.length(); ind++)
+                if(sb.charAt(ind) != ss.charAt(ind)) cnt++;
             
             if(cnt==1) return true;
         }
