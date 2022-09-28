@@ -3,14 +3,14 @@
 
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
-        int low = 1;
+        int l=1;
         
-        while(low<=n){
-            int mid  = low + (n-low)/2;
-            if(isBadVersion(mid))n = mid-1;
-            else low = mid +1;
+        while(l<=n){
+            int m = l + (n-l)/2;
+            
+            if(isBadVersion(m))n=m-1;
+            else l=m+1;
         }
-        
-        return low;
+        return l;
     }
 }
