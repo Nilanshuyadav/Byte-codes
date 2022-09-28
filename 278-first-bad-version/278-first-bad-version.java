@@ -3,18 +3,14 @@
 
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
-        return dfs(1,n);
-    }
-    
-    public int dfs(int low, int high){
-//         if(low==high) if(isBadVersion(low)) return low;
-//                       else return low+1;
+        int low = 1;
         
-        if(low>high) return low;
+        while(low<=n){
+            int mid  = low + (n-low)/2;
+            if(isBadVersion(mid))n = mid-1;
+            else low = mid +1;
+        }
         
-        int mid = (low)+(high-low)/2;
-        
-        if(isBadVersion(mid)) return dfs(low,mid-1);
-        else return dfs(mid+1,high);
+        return low;
     }
 }
