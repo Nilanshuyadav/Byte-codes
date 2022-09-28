@@ -1,34 +1,23 @@
 class Solution {
     public String reverseWords(String s) {
-        int n = s.length();
-        char[] arr = s.toCharArray();
-        int pre = 0;
+        String[] arr = s.split(" ",-1);
+        StringBuilder ans = new StringBuilder("");
         
-        for(int ind=0; ind<n; ind++){
-            if(arr[ind]==' '){
-                int low = pre, high = ind-1;
-                while(low<high){
-                    char temp = arr[low];
-                    arr[low] = arr[high];
-                    arr[high] = temp;
-                    
-                    low++;
-                    high--;
-                }
-                pre = ind+1;
-            }    
+        for(String st : arr){
+            StringBuilder sb = new StringBuilder(st);
+            int low=0, high = sb.length()-1;
+            
+            while(low<high){
+                char temp = sb.charAt(low);
+                sb.setCharAt(low++,sb.charAt(high));
+                sb.setCharAt(high--,temp);
+            }
+            
+            ans.append(sb.toString() + " ");
         }
         
-        int low = pre, high = n-1;
-        while(low<high){
-            char temp = arr[low];
-            arr[low] = arr[high];
-            arr[high] = temp;
-
-            low++;
-            high--;
-        }
+        ans.delete(ans.length()-1,ans.length());
         
-        return new String(arr);
+        return ans.toString();
     }
 }
