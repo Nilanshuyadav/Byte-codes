@@ -1,35 +1,33 @@
 class Solution {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
-        PriorityQueue<Pair> pq = new PriorityQueue<>(new The_Comparator());
+        int min_ind=0, min=Integer.MAX_VALUE, n = arr.length;
+        int[] ar = new int[n];
         
-        for(int ind=0; ind<arr.length; ind++){
-            pq.add(new Pair(ind,Math.abs(arr[ind]-x)));
+        for(int ind=0; ind<n; ind++){
+            int temp = Math.abs(arr[ind]-x);
+            if(temp<min){
+                min = temp;
+                min_ind = ind;
+            }
+            
+            ar[ind] = temp;
+        }    
+        
+        Integer[] ans = new Integer[k];
+        int curr=0;
+        
+        ans[curr++] = arr[min_ind];
+        int low = min_ind-1, high = min_ind+1;
+        
+        while(low>=0 && high<n && curr<k){
+            if(ar[low]>ar[high]) ans[curr++] = arr[high++];
+            else ans[curr++] = arr[low--];
         }
         
-        List<Integer> ans = new ArrayList<>();
+        while(low>=0 && curr<k) ans[curr++] = arr[low--];
+        while(high<n && curr<k) ans[curr++] = arr[high++];
+        Arrays.sort(ans);
         
-        while(k-->0){
-            Pair temp = pq.remove();
-            ans.add(arr[temp.ind]);
-        }
-        
-        Collections.sort(ans);
-        return ans;
-    }
-}
-                                                     
-class The_Comparator implements Comparator<Pair>{
-    public int compare(Pair p1, Pair p2){
-        if(p1.val != p2.val) return p1.val-p2.val;
-        else return p1.ind-p2.ind;
-    }
-}
-
-class Pair{
-    int ind;
-    int val;
-    public Pair(int ind, int val){
-        this.ind = ind;
-        this.val = val;
+        return new ArrayList<>(Arrays.asList(ans));
     }
 }
