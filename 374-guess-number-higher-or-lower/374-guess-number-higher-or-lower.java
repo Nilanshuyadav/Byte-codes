@@ -9,18 +9,16 @@
 
 public class Solution extends GuessGame {
     public int guessNumber(int n) {
-        int l = 1;
+       return dfs(1,n);
+    }
+    
+    public int dfs(int l, int h){
+        int m = l + (h-l)/2;
         
-        while(l<=n){
-            int mid = l + (n-l)/2;
-            
-            int temp = guess(mid);
-            
-            if(temp==0) return mid;
-            else if(temp==-1)n=mid-1;
-            else l=mid+1;
-        }
+        int temp = guess(m);
         
-        return -1;
+        if(temp==0) return m;
+        else if(temp==-1) return dfs(l,m-1);
+        else return dfs(m+1,h);
     }
 }
