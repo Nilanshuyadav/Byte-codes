@@ -1,33 +1,33 @@
 class Solution {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
         int min_ind=0, min=Integer.MAX_VALUE, n = arr.length;
-        int[] ar = new int[n];
         
         for(int ind=0; ind<n; ind++){
-            int temp = Math.abs(arr[ind]-x);
-            if(temp<min){
-                min = temp;
+            int temp = arr[ind]-x;
+           
+            if(Math.abs(temp)<min){
+                min = Math.abs(temp);
                 min_ind = ind;
             }
             
-            ar[ind] = temp;
+            arr[ind] = temp;
         }    
         
-        Integer[] ans = new Integer[k];
-        int curr=0;
+        List<Integer> ans = new ArrayList<>();
+        ans.add(arr[min_ind]+x);
         
-        ans[curr++] = arr[min_ind];
         int low = min_ind-1, high = min_ind+1;
         
-        while(low>=0 && high<n && curr<k){
-            if(ar[low]>ar[high]) ans[curr++] = arr[high++];
-            else ans[curr++] = arr[low--];
+        while(low>=0 && high<n && --k>0){
+            if(Math.abs(arr[high])<Math.abs(arr[low])) ans.add(arr[high++]+x);
+            else ans.add(arr[low--] + x);
         }
         
-        while(low>=0 && curr<k) ans[curr++] = arr[low--];
-        while(high<n && curr<k) ans[curr++] = arr[high++];
-        Arrays.sort(ans);
+        while(low>=0 && --k>0) ans.add(arr[low--]+x);
+        while(high<n && --k>0) ans.add(arr[high++]+x);
         
-        return new ArrayList<>(Arrays.asList(ans));
+        Collections.sort(ans);
+        
+        return ans;
     }
 }
