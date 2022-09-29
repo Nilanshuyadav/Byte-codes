@@ -14,19 +14,19 @@ class Solution {
         }    
         
         List<Integer> ans = new ArrayList<>();
-        ans.add(arr[min_ind]+x);
         
         int low = min_ind-1, high = min_ind+1;
         
         while(low>=0 && high<n && --k>0){
-            if(Math.abs(arr[high])<Math.abs(arr[low])) ans.add(arr[high++]+x);
-            else ans.add(arr[low--] + x);
+            if(Math.abs(arr[high])<Math.abs(arr[low])) high++;
+            else low--;
         }
         
-        while(low>=0 && --k>0) ans.add(arr[low--]+x);
-        while(high<n && --k>0) ans.add(arr[high++]+x);
+        while(low>=0 && --k>0) low--;
+        while(high<n && --k>0) high++;
         
-        Collections.sort(ans);
+        for(int ind=low+1; ind<high; ind++)
+            ans.add(arr[ind]+x);
         
         return ans;
     }
