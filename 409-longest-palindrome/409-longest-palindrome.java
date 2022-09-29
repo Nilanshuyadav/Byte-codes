@@ -1,16 +1,10 @@
 class Solution {
     public int longestPalindrome(String s) {
         int n = s.length();
-        int[] arr = new int[52];
+        int[] arr = new int[58];
         
-        for(int ind=0; ind<n; ind++){
-            char ch = s.charAt(ind);
-            if(ch<91) arr[s.charAt(ind)-'A']++;
-            else arr[26+s.charAt(ind)-'a']++;
-        }
-        
-        for(int ind=0; ind<52; ind++)
-            System.out.println(ind + "->" + arr[ind]);
+        for(int ind=0; ind<n; ind++)
+            arr[s.charAt(ind)-'A']++;
         
         int sum=0;
         
