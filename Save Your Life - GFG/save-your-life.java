@@ -31,14 +31,16 @@ class Solution{
             ch = sb.charAt(ind);
             temp = map.containsKey(ch)?map.get(ch):ch;
             
-            if(sum + temp<0) {new_l=ind+1; sum=0;}
+            if(sum + temp<0) {new_l=ind+1; sum=Integer.MIN_VALUE;}
             else sum += temp;
             
-            if(sum!=0 && sum>max){
+            if(sum>max){
                 l=new_l;
                 h=ind+1;
                 max=sum;
             }
+            
+            if(sum==Integer.MIN_VALUE) sum=0;
         }
         //System.out.println(max_temp + " " + max);
         if(max_temp>max) ans = new StringBuilder(ch_temp+"");
