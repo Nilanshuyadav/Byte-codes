@@ -55,38 +55,27 @@ class Complete{
    
     // Function for finding maximum and value pair
     public static int maximizeSum (int arr[], int n) {
-        Set<Integer> set = new HashSet<>();
-    //    PriorityQueue<Integer> pq = new PriorityQueue<>();
-        Map<Integer, Integer> map = new HashMap<>();
+        TreeMap<Integer,Integer> map = new TreeMap<>(Collections.reverseOrder());
         
         for(int ind : arr){
-            set.add(ind);
             map.put(ind, map.getOrDefault(ind,0)+1);
         }
         
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-        
-        for(int ind : set) pq.add(ind);
-        
-        int ans=0;
-        
-        while(!pq.isEmpty()){
-            int temp = pq.remove();
-            
-            ans += (map.get(temp)*temp);
+        int ans =0;
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            int temp = entry.getKey();
+            ans += (temp * entry.getValue());
             
             if(map.containsKey(temp-1)){
-                int pre = map.get(temp-1);
-                pre = Math.max(0,pre-map.get(temp));
+                int a = map.get(temp-1);
                 
-                map.put(temp-1, pre);
+                a = Math.max(0, a-entry.getValue());
+                map.put(temp-1, a);
             }
         }
         
         return ans;
     }
-    
-    
 }
 
 
