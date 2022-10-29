@@ -53,24 +53,23 @@ class Solution
     //Function to find sum of weights of edges of the Minimum Spanning Tree.
     static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
     {
-        boolean[] vis = new boolean[V];
-        
+        int ans=0;
+        Set<Integer> set = new HashSet<>();
         PriorityQueue<ArrayList<Integer>> pq = new PriorityQueue<>(new my_comparator());
-        vis[0] = true;
+        
+        set.add(0);
         for(ArrayList<Integer> al : adj.get(0))
             pq.add(al);
             
-        int ans=0;
-        
         while(!pq.isEmpty()){
-            ArrayList<Integer> al = pq.remove();
-            
-            if(!vis[al.get(0)]){
-                ans += al.get(1);
+            ArrayList<Integer> temp = pq.remove();
+            if(set.add(temp.get(0))){
+                ans += temp.get(1);
                 
-                vis[al.get(0)] = true;
-                for(ArrayList<Integer> a : adj.get(al.get(0)))
-                    pq.add(a);
+                for(ArrayList<Integer> al : adj.get(temp.get(0))){
+                    if(set.contains(al.get(0))) continue;
+                    pq.add(al);
+                }
             }
         }
         
@@ -78,9 +77,8 @@ class Solution
     }
 }
 
-
 class my_comparator implements Comparator<ArrayList<Integer>>{
-    public int compare(ArrayList<Integer> a1, ArrayList<Integer> a2){
-        return a1.get(1)-a2.get(1);
+    public int compare(ArrayList<Integer> al1, ArrayList<Integer> al2){
+        return al1.get(1) - al2.get(1);
     }
 }
