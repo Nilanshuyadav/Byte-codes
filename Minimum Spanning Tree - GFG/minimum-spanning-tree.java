@@ -54,20 +54,22 @@ class Solution
     static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
     {
         int ans=0;
-        Set<Integer> set = new HashSet<>();
+        boolean[] vis = new boolean[V];
+
         PriorityQueue<ArrayList<Integer>> pq = new PriorityQueue<>(new my_comparator());
         
-        set.add(0);
+        vis[0] = true;
         for(ArrayList<Integer> al : adj.get(0))
             pq.add(al);
             
         while(!pq.isEmpty()){
             ArrayList<Integer> temp = pq.remove();
-            if(set.add(temp.get(0))){
+            if(!vis[temp.get(0)]){
                 ans += temp.get(1);
+                vis[temp.get(0)] = true;
                 
                 for(ArrayList<Integer> al : adj.get(temp.get(0))){
-                    if(set.contains(al.get(0))) continue;
+                    if(vis[al.get(0)]) continue;
                     pq.add(al);
                 }
             }
