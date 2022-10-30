@@ -64,6 +64,7 @@ class Solution
                         int temp_par = findPar(temp);
                         int inx_par = findPar(inx);
                         
+                        parent[inx] = temp;
                         if(temp_par == inx_par) return 1;
                         union(temp, inx, temp_par, inx_par);
                     }
