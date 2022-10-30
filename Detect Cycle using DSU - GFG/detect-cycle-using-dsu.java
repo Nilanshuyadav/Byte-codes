@@ -37,31 +37,23 @@ class Solution
     //Function to detect cycle using DSU in an undirected graph.
     public int detectCycle(int V, ArrayList<ArrayList<Integer>> adj)
     {
-        int[]  parent = new int[V];
-        Arrays.fill(parent,-1);
+        boolean[] vis = new boolean[V];
         
-        Queue<Integer> q = new LinkedList<>();
+        for(int ind=0; ind<V; ind++)
+            if(isCycle(ind, adj, -1, vis)) return 1;
         
-        
-        for(int ind=0; ind<V; ind++){
-            if(parent[ind] == -1){
-                q.add(ind);
-                parent[ind] = ind;
-                
-                while(!q.isEmpty()){
-                    int temp = q.remove();
-                    
-                    for(int inx : adj.get(temp)){
-                        if(inx == parent[temp]) continue;
-                        if(parent[inx] != -1) return 1;
-                        
-                        parent[inx] = temp;
-                        q.add(inx);
-                    }
-                }    
-            }
+        return 0;    
+    }
+    
+    public boolean isCycle(int ind, ArrayList<ArrayList<Integer>> adj, int parent, boolean[] vis){
+        for(int inx : adj.get(ind)){
+            if(inx == parent) continue;
+            if(vis[inx]) return true;
+            
+            vis[inx] = true;
+            if(isCycle(inx, adj, ind, vis)) return true;
         }
         
-        return 0;
+        return false;
     }
 }
