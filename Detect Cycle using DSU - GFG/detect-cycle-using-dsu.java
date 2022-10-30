@@ -60,13 +60,14 @@ class Solution
                     int temp = q.remove();
                     
                     for(int inx : adj.get(temp)){
-                        if(parent[temp] == inx) continue;
+                        if(parent2[temp] == inx) continue;
                         int temp_par = findPar(temp);
                         int inx_par = findPar(inx);
                         
-                        parent[inx] = temp;
                         if(temp_par == inx_par) return 1;
                         union(temp, inx, temp_par, inx_par);
+                        q.add(inx);
+                        parent2[inx] = temp;
                     }
                 }
             }    
