@@ -34,26 +34,80 @@ class GFG
 
 class Solution
 {
+    int[] parent, rank;
     //Function to detect cycle using DSU in an undirected graph.
     public int detectCycle(int V, ArrayList<ArrayList<Integer>> adj)
     {
-        boolean[] vis = new boolean[V];
+        parent = new int[V];
+        rank = new int[V];
         
-        for(int ind=0; ind<V; ind++)
-            if(isCycle(ind, adj, -1, vis)) return 1;
-        
-        return 0;    
-    }
-    
-    public boolean isCycle(int ind, ArrayList<ArrayList<Integer>> adj, int parent, boolean[] vis){
-        for(int inx : adj.get(ind)){
-            if(inx == parent) continue;
-            if(vis[inx]) return true;
-            
-            vis[inx] = true;
-            if(isCycle(inx, adj, ind, vis)) return true;
+        for(int ind=0; ind<V; ind++){
+            parent[ind] = ind;
+            rank[ind] = 0;
         }
         
-        return false;
+        int[] parent2 = new int[V];
+        Arrays.fill(parent2, -1);
+        
+        Queue<Integer> q = new LinkedList<>();
+        
+        for(int ind=0; ind<V; ind++){
+            if(parent2[ind] == -1){
+                parent2[ind] = ind;
+                q.add(ind);
+                
+                while(!q.isEmpty()){
+                    int temp = q.remove();
+                    
+                    for(int inx : adj.get(temp)){
+                        if(parent[temp] == inx) continue;
+                        int temp_par = findPar(temp);
+                        int inx_par = findPar(inx);
+                        
+                        if(temp_par == inx_par) return 1;
+                        union(temp, inx, temp_par, inx_par);
+                    }
+                }
+            }    
+        }
+        
+        return 0;
+    }
+    
+    public void union(int a, int b, int a_p, int b_p){
+        if(rank[a_p] < rank[b_p]){
+            parent[a_p] = b_p;
+        }
+        else if(rank[b_p] < rank[a_p]){
+            parent[b_p] = a_p;
+        }
+        else{
+            parent[b_p] = a_p;
+            rank[a_p]++;
+        }
+    }
+    
+    public int findPar(int node){
+        if(node == parent[node])
+            return node;
+            
+        return parent[node] = findPar(parent[node]);    
+    }
+}
+
+class Pair{
+    int w;
+    int s;
+    int d;
+    public Pair(int w, int s, int d){
+        this.w = w;
+        this.s = s;
+        this.d = d;
+    }
+}
+
+class my_comparator implements Comparator<Pair>{
+    public int compare(Pair p1, Pair p2){
+        return p1.w - p2.w;
     }
 }
