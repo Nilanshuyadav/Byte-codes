@@ -40,13 +40,16 @@ class Solution
         int col = grid[0].length;
         
         boolean one = false, bool;
+        int o=0;
         
         for(int r=0; r<row; r++){
             for(int c=0; c<col; c++){
                 if(grid[r][c] == 2)
                     q.add(new Pair(r,c));
-                else if(grid[r][c] == 1)
+                else if(grid[r][c] == 1){
                     one = true;
+                    o++;
+                }
             }
         }
         
@@ -73,6 +76,7 @@ class Solution
                         
                     grid[new_row][new_col] = 2;
                     q.add(new Pair(new_row, new_col));
+                    o--;
                 }
             }
             
@@ -84,12 +88,8 @@ class Solution
                 break;
         }
         
-        for(int ro=0; ro<row; ro++){
-            for(int co=0; co<col; co++){
-                if(grid[ro][co] == 1)
-                    return -1;
-            }
-        }
+        if(o != 0)
+            return -1;
         
         return ans;
     
