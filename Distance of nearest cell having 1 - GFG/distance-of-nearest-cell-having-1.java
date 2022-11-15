@@ -43,16 +43,12 @@ class Solution
         
         int[][] ans = new int[row][col];
         
-        for(int ind[] : ans)
-            Arrays.fill(ind , -1);
-        
         Queue<Pair> q = new LinkedList<>();
         
         for(int r=0; r<row; r++){
             for(int c=0; c<col; c++){
                 if(grid[r][c] == 1){
                     q.add(new Pair(r,c));
-                    ans[r][c] = 0;
                 }
             }
         }
@@ -68,7 +64,7 @@ class Solution
                     int new_row = temp.row+r_arr[ind];
                     int new_col = temp.col+c_arr[ind];
                     
-                    if(new_row<0 || new_col<0 || new_row>=row || new_col>=col || grid[new_row][new_col]==1 || ans[new_row][new_col]!=-1)
+                    if(new_row<0 || new_col<0 || new_row>=row || new_col>=col || grid[new_row][new_col]==1 || ans[new_row][new_col]!=0)
                         continue;
                     
                     ans[new_row][new_col] = ans[temp.row][temp.col]+1;
