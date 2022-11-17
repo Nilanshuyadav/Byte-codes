@@ -43,48 +43,28 @@ class Solution
         
         for(int ind=0; ind<V; ind++){
             
-            if(vis[ind] == null && !dfs(ind, adj, vis))
+            if(vis[ind] == null && !dfs(ind, adj, vis, true))
                 return false;
         }
         
         return true;
     }
     
-    public boolean dfs(int ind, ArrayList<ArrayList<Integer>> adj, Boolean[] vis){
-        vis[ind] = true;
+    public boolean dfs(int ind, ArrayList<ArrayList<Integer>> adj, Boolean[] vis, boolean type){
+        vis[ind] = type;
         
-        Queue<Pair> q = new LinkedList<>();
-        
-        q.add(new Pair(ind, true));
-        
-        while(!q.isEmpty()){
-            int size = q.size();
-            
-            while(size-->0){
-                Pair temp = q.remove();
-                
-                for(int inx : adj.get(temp.ind)){
-                    if(vis[inx] != null){
-                        if(vis[inx] == temp.type)
-                            return false;
-                        else
-                            continue;
-                    }
-                    vis[inx] = !temp.type;
-                    q.add(new Pair(inx, vis[inx]));
-                }
+        for(int inx : adj.get(ind)){
+            if(vis[inx] != null){
+                if(vis[inx] == type)
+                    return false;
+                else
+                    continue;
             }
+            
+            if(!dfs(inx, adj, vis, !type))
+                return false;
         }
         
         return true;
-    }
-}
-
-class Pair{
-    int ind;
-    boolean type;
-    public Pair(int ind, boolean type){
-        this.ind = ind;
-        this.type = type;
     }
 }
