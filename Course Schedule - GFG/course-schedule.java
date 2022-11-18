@@ -102,7 +102,6 @@ class Solution
         if(i==n)
             return ans;
         
-        int[] temp={};
-        return temp;    
+        return new int[0];
     }
 }
