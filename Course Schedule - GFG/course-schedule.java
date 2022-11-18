@@ -80,7 +80,8 @@ class Solution
             indegree[al.get(0)]++;
         }
         
-        List<Integer> al = new ArrayList<>();
+        int[] ans = new int[n];
+        int i=0;
         Queue<Integer> q = new LinkedList<>();
         
         for(int ind=0; ind<n; ind++){
@@ -90,7 +91,7 @@ class Solution
         
         while(!q.isEmpty()){
             int temp = q.remove();
-            al.add(temp);
+            ans[i++] = temp;
             for(int inx : adj.get(temp)){
                 indegree[inx]--;
                 if(indegree[inx] == 0)
@@ -98,18 +99,10 @@ class Solution
             }
         }        
         
-        if(al.size()!=n){
-            int[] ans = {};
+        if(i==n)
             return ans;
-        }
         
-        int[] ans = new int[n];
-        int i=0;
-        
-        for(int ind : al){
-            ans[i++] = ind;
-        }
-        
-        return ans;
+        int[] temp={};
+        return temp;    
     }
 }
