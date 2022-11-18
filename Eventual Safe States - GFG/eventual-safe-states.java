@@ -44,39 +44,39 @@ class GFG {
 class Solution {
 
     List<Integer> eventualSafeNodes(int V, List<List<Integer>> adj) {
-        List<Integer> result = new ArrayList<>();
-        
-        boolean[] vis = new boolean[V], ans = new boolean[V];
-        
-        for(int ind=0; ind<V; ind++){
-            if(!vis[ind]){
-                dfs(ind, adj, ans, vis);
-            }
-        }
+
+        List<List<Integer>> temp_adj = new ArrayList<>();
         
         for(int ind=0; ind<V; ind++)
-            if(ans[ind])
-                result.add(ind);
+            temp_adj.add(new ArrayList<>());
         
-        return result;
-    }
-    
-    public boolean dfs(int ind, List<List<Integer>> adj, boolean[] ans, boolean[] vis){
-        vis[ind] = true;
-        ans[ind] = false;
-        
-        for(int inx : adj.get(ind)){
-            if(vis[inx]){
-                if(!ans[inx])
-                    return ans[ind] = ans[inx];
-                else
-                    continue;
+        int[] indegree = new int[V];    
+        for(int ind=0; ind<V; ind++){
+            for(int inx : adj.get(ind)){
+                temp_adj.get(inx).add(ind);
+                indegree[ind]++;
             }
-                
-            if(!dfs(inx, adj, ans, vis))
-                return ans[ind] = false;    
         }
         
-        return ans[ind] = true;
+        Queue<Integer> q = new LinkedList<>();
+        for(int ind=0; ind<V; ind++){
+            if(indegree[ind] == 0)
+                q.add(ind);
+        }
+        
+        List<Integer> ans = new ArrayList<>();
+        while(!q.isEmpty()){
+            int temp = q.remove();
+            ans.add(temp);
+            
+            for(int inx : temp_adj.get(temp)){
+                indegree[inx]--;
+                if(indegree[inx] == 0)
+                    q.add(inx);
+            }
+        }
+        
+        Collections.sort(ans);
+        return ans;
     }
 }
