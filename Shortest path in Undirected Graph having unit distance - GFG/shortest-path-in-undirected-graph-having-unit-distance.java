@@ -52,16 +52,20 @@ class Solution {
         q.add(new int[]{src,0});
         
         while(!q.isEmpty()){
-            int[] temp = q.remove();
+            int size = q.size();
             
-            int ind = temp[0];
-            int wt = temp[1];
+            while(size-->0){
+                int[] temp = q.remove();
             
-            for(int inx : adj.get(ind)){
-                if(wt+1 <  ans[inx]){
-                    ans[inx] = wt+1;
-                    q.add(new int[]{inx, wt+1});
-                }
+                int ind = temp[0];
+                int wt = temp[1];
+                
+                for(int inx : adj.get(ind)){
+                    if(wt+1 <  ans[inx]){
+                        ans[inx] = wt+1;
+                        q.add(new int[]{inx, wt+1});
+                    }
+                }    
             }
         }
         
