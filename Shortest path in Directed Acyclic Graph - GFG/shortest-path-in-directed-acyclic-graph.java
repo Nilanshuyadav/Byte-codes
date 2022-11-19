@@ -33,47 +33,47 @@ class Solution {
 
 	public int[] shortestPath(int N,int M, int[][] edges) {
 		//Code here
-		List<List<List<Integer>>> adj = new ArrayList<>();
-		
-		for(int ind=0; ind<N; ind++)
-		    adj.add(new ArrayList<>());
-		
-		for(int ind[] : edges){
-		    List<Integer> al = new ArrayList<>();
-		    al.add(ind[1]);
-		    al.add(ind[2]);
-		    adj.get(ind[0]).add(al);
-		}
-		
-		int[] ans = new int[N];
-		Arrays.fill(ans, Integer.MAX_VALUE);
-		PriorityQueue<int[]> q = new PriorityQueue<>(new my_comparator());
-		
-		ans[0] = 0;
-		q.add(new int[]{0,0});
-		
-		while(!q.isEmpty()){
-		    int[] temp = q.remove();
-		    
-		    for(List<Integer> inx : adj.get(temp[0])){
-		        if(temp[1]+inx.get(1) < ans[inx.get(0)]){
-		            ans[inx.get(0)] = temp[1]+inx.get(1);
-		            q.add(new int[]{inx.get(0), temp[1]+inx.get(1)});
-		        }
-		    }
-		}
-		
-		for(int ind=0; ind<N; ind++){
-		    if(ans[ind] == Integer.MAX_VALUE)
-		        ans[ind] = -1;
-		}
-		
-		return ans;
+	    List<List<int[]>> adj = new ArrayList<>();
+	    
+	    for(int ind=0; ind<N; ind++)
+	        adj.add(new ArrayList<>());
+	    
+	    for(int ind[] : edges){
+	        adj.get(ind[0]).add(new int[]{ind[1], ind[2]});
+	    }
+	    
+	    int ans[] = new int[N];
+	    Arrays.fill(ans, Integer.MAX_VALUE);
+	    
+	    Stack<Integer> st = new Stack<>();
+	    boolean[] vis = new boolean[N];
+	    findTopo(0, adj, st, vis);
+	    
+	    ans[0] = 0;
+	    
+	    while(!st.isEmpty()){
+	        int temp = st.pop();
+	        
+	        for(int inx[] : adj.get(temp)){
+	            if(ans[temp]+inx[1] < ans[inx[0]])
+	                ans[inx[0]] = ans[temp]+inx[1];
+	        }
+	    }
+	    
+	    for(int ind=0; ind<N; ind++)
+	        if(ans[ind] == Integer.MAX_VALUE)
+	            ans[ind] = -1;
+	            
+	   return ans;         
 	}
-}
-
-class my_comparator implements Comparator<int[]>{
-    public int compare(int[] ind1, int[] ind2){
-        return ind1[1] - ind2[1];
-    }
+	
+	public void findTopo(int ind, List<List<int[]>> adj, Stack<Integer> st, boolean[] vis){
+	    vis[ind] = true;
+	    for(int inx[] : adj.get(ind)){
+	        if(!vis[inx[0]])
+	            findTopo(inx[0], adj, st, vis);
+	    }
+	    
+	    st.push(ind);
+	}
 }
