@@ -44,6 +44,7 @@ class Solution
         Queue<Pair> q = new LinkedList<>();
         
         q.add(new Pair(startWord, 1));
+        set.remove(startWord);
         
         while(!q.isEmpty()){
             Pair temp = q.remove();
