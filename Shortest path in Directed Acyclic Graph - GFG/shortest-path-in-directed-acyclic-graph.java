@@ -47,18 +47,18 @@ class Solution {
 		
 		int[] ans = new int[N];
 		Arrays.fill(ans, Integer.MAX_VALUE);
-		Queue<Integer> q = new LinkedList<>();
+		PriorityQueue<int[]> q = new PriorityQueue<>(new my_comparator());
 		
 		ans[0] = 0;
-		q.add(0);
+		q.add(new int[]{0,0});
 		
 		while(!q.isEmpty()){
-		    int temp = q.remove();
+		    int[] temp = q.remove();
 		    
-		    for(List<Integer> inx : adj.get(temp)){
-		        if(ans[temp]+inx.get(1) < ans[inx.get(0)]){
-		            ans[inx.get(0)] = ans[temp]+inx.get(1);
-		            q.add(inx.get(0));
+		    for(List<Integer> inx : adj.get(temp[0])){
+		        if(temp[1]+inx.get(1) < ans[inx.get(0)]){
+		            ans[inx.get(0)] = temp[1]+inx.get(1);
+		            q.add(new int[]{inx.get(0), temp[1]+inx.get(1)});
 		        }
 		    }
 		}
@@ -70,4 +70,10 @@ class Solution {
 		
 		return ans;
 	}
+}
+
+class my_comparator implements Comparator<int[]>{
+    public int compare(int[] ind1, int[] ind2){
+        return ind1[1] - ind2[1];
+    }
 }
