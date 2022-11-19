@@ -47,23 +47,20 @@ class Solution {
         Arrays.fill(ans, Integer.MAX_VALUE);
         
         ans[src] = 0;
-        Queue<int[]> q = new LinkedList<>();
+        Queue<Integer> q = new LinkedList<>();
         
-        q.add(new int[]{src,0});
+        q.add(src);
         
         while(!q.isEmpty()){
             int size = q.size();
             
             while(size-->0){
-                int[] temp = q.remove();
+                int temp = q.remove();
             
-                int ind = temp[0];
-                int wt = temp[1];
-                
-                for(int inx : adj.get(ind)){
-                    if(wt+1 <  ans[inx]){
-                        ans[inx] = wt+1;
-                        q.add(new int[]{inx, wt+1});
+                for(int inx : adj.get(temp)){
+                    if(ans[temp]+1 <  ans[inx]){
+                        ans[inx] = ans[temp]+1;
+                        q.add(inx);
                     }
                 }    
             }
