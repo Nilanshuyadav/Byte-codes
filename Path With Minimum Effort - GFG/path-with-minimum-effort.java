@@ -45,6 +45,8 @@ class Solution {
             int r = temp[1];
             int c = temp[2];
             
+            if(r==0 && c==0) return d;
+            
             for(int ind=0; ind<4; ind++){
                 int new_row = r+r_arr[ind];
                 int new_col = c+c_arr[ind];
@@ -58,7 +60,6 @@ class Solution {
                     pq.add(new int[]{max, new_row, new_col});
                     dist[new_row][new_col] = max;
                 }
-            
             }
         }
         
