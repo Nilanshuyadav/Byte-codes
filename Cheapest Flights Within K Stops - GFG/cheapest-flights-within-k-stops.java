@@ -33,65 +33,60 @@ class Solution {
     
     public int CheapestFLight(int n,int flights[][],int src,int dst,int k) {
         // Code here
-        List<List<Pair>> adj = new ArrayList<>();
         
-        for(int ind=0; ind<n; ind++){
+        List<List<int[]>> adj = new ArrayList<>();
+        
+        for(int ind=0; ind<n; ind++)
             adj.add(new ArrayList<>());
-        }
         
         for(int ind[] : flights){
-            adj.get(ind[0]).add(new Pair(ind[1], ind[2]));
+            adj.get(ind[0]).add(new int[]{ind[1], ind[2]});
         }
         
-        boolean[] vis = new boolean[n];
-        int[][] dp = new int[n][k+2];
-        for(int ind[] : dp)
-            Arrays.fill(ind, -2);
+        Queue<Pair> pq = new LinkedList<>();
         
-        return dfs(src, dst, k+1, adj, vis, dp);    
-    }
+        int[] arr = new int[n];
     
-    public int dfs(int src, int dst, int k, List<List<Pair>> adj, boolean[] vis, int[][] dp){
+        pq.add(new Pair(0, src, 0));
         
-        if(k<0)
-            return -1;
+        Arrays.fill(arr, Integer.MAX_VALUE);
+        arr[src] = 0;
         
-        if(src == dst)
-            return 0;
+        while(!pq.isEmpty()){
+            Pair temp = pq.remove();
             
-        if(dp[src][k] != -2) return dp[src][k];    
-        
-        vis[src] = true;
-        
-        int ans  =Integer.MAX_VALUE;
-        
-        for(Pair p : adj.get(src)){
-            int to = p.to;
-            int price = p.price;
+            int temp_k = temp.k;
             
-            if(vis[to])
+            if(temp_k>k)
                 continue;
-                
-            int temp = dfs(to, dst, k-1, adj, vis, dp);
             
-            if(temp != -1){
-                ans = Math.min(price+temp, ans);
+            int node = temp.ind;
+            
+            for(int[] ind : adj.get(node)){
+                if(arr[ind[0]] > temp.dis+ind[1] && temp_k<=k){
+                    arr[ind[0]] = temp.dis+ind[1];
+                    pq.add(new Pair(temp_k+1, ind[0], arr[ind[0]]));
+                }
             }
         }
         
-        vis[src] = false;
-        
-        if(ans == Integer.MAX_VALUE)
-            return dp[src][k] = -1;
-        return dp[src][k] = ans;    
+        return arr[dst]==Integer.MAX_VALUE? -1 : arr[dst];
     }
 }
 
 class Pair{
-    int to;
-    int price;
-    public Pair(int to, int price){
-        this.to = to;
-        this.price = price;
+    int k;
+    int ind;
+    int dis;
+    public Pair(int k, int ind, int dis){
+        this.k = k;
+        this.ind = ind;
+        this.dis = dis;
+    }
+}
+
+class my_comparator implements Comparator<Pair>{
+    public int compare(Pair p1, Pair p2){
+        return p1.k - p2.k;
     }
 }
