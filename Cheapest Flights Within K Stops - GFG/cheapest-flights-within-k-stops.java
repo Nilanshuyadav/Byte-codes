@@ -44,17 +44,22 @@ class Solution {
         }
         
         boolean[] vis = new boolean[n];
+        int[][] dp = new int[n][k+2];
+        for(int ind[] : dp)
+            Arrays.fill(ind, -2);
         
-        return dfs(src, dst, k+1, adj, vis);    
+        return dfs(src, dst, k+1, adj, vis, dp);    
     }
     
-    public int dfs(int src, int dst, int k, List<List<Pair>> adj, boolean[] vis){
+    public int dfs(int src, int dst, int k, List<List<Pair>> adj, boolean[] vis, int[][] dp){
         
         if(k<0)
             return -1;
         
         if(src == dst)
             return 0;
+            
+        if(dp[src][k] != -2) return dp[src][k];    
         
         vis[src] = true;
         
@@ -67,7 +72,7 @@ class Solution {
             if(vis[to])
                 continue;
                 
-            int temp = dfs(to, dst, k-1, adj, vis);
+            int temp = dfs(to, dst, k-1, adj, vis, dp);
             
             if(temp != -1){
                 ans = Math.min(price+temp, ans);
@@ -77,8 +82,8 @@ class Solution {
         vis[src] = false;
         
         if(ans == Integer.MAX_VALUE)
-            return -1;
-        return ans;    
+            return dp[src][k] = -1;
+        return dp[src][k] = ans;    
     }
 }
 
