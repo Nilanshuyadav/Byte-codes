@@ -62,8 +62,8 @@ class Solution {
         
         while(i++<V){
             for(ArrayList<Integer> al : edges){
-                if(arr[al.get(0)] == Integer.MAX_VALUE)
-                    continue;
+                // if(arr[al.get(0)] == Integer.MAX_VALUE)
+                //     continue;
                 if(arr[al.get(0)]+al.get(2) < arr[al.get(1)]){
                     arr[al.get(1)] = arr[al.get(0)]+al.get(2);
                 }
