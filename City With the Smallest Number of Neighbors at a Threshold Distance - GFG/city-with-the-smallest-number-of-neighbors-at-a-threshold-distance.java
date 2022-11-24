@@ -37,47 +37,69 @@ class Main {
 // User function Template for Java
 
 class Solution {
-    int findCity(int n, int m, int[][] edges,int distanceThreshold)
-    {
-        //code here
-        int[][] arr = new int[n][n];
-        int max = 100000000;
+      int findCity(int n, int m, int[][] edges,int distanceThreshold)
+      {
+          //code here
+        List<List<int[]>> adj = new ArrayList<>();
         
-        for(int[] ind : arr)
-            Arrays.fill(ind, max);
+        for(int i=0; i<n; i++)
+            adj.add(new ArrayList<>());
         
         for(int[] ind : edges){
-            arr[ind[0]][ind[1]] = ind[2];
-            arr[ind[1]][ind[0]] = ind[2];
+            adj.get(ind[0]).add(new int[]{ind[1], ind[2]});
+            adj.get(ind[1]).add(new int[]{ind[0], ind[2]});
         }
+        int ans=-1, min=n, cnt=0;
         
-        for(int ind=0; ind<n; ind++)
-            arr[ind][ind] = 0;
-        
-        for(int via=0; via<n; via++){
-            for(int r=0; r<n; r++){
-                for(int c=0; c<n; c++){
-                    int temp = Math.min(max, arr[r][via] + arr[via][c]);
-                    arr[r][c] = Math.min(arr[r][c], temp);
-                }
-            }
-        }
-        
-        int result = 0, min = Integer.MAX_VALUE;
+        PriorityQueue<int[]> q = new PriorityQueue<>(new my_comparator());
+        int[] arr = new int[n];
+        int max = (int)1e8;
         
         for(int ind=0; ind<n; ind++){
-            int cnt=0;
-            for(int c=0; c<n; c++){
-                if(arr[ind][c] <= distanceThreshold)
-                    cnt++;
-            }
+            q.add(new int[]{ind, 0});
+    
+            Arrays.fill(arr, max);
+            arr[ind] = 0;
             
+            cnt=0;
+          
+            while(!q.isEmpty()){
+                int size = q.size();
+                
+                while(size-->0){
+                    int[] temp = q.remove();
+                    
+                    if(temp[1] == distanceThreshold)
+                        continue;
+                    
+                    for(int[] inx : adj.get(temp[0])){
+                        int pre = temp[1]+inx[1];
+                        
+                        if(pre<=distanceThreshold && pre<arr[inx[0]]){
+                            q.add(new int[]{inx[0], temp[1]+inx[1]});
+                        
+                            if(arr[inx[0]] == max)
+                                cnt++;
+                            
+                            arr[inx[0]] = pre;    
+                        }    
+                    }
+                }
+            }
+        
             if(cnt <= min){
                 min = cnt;
-                result = ind;
-            } 
+                ans = ind;
+            }
         }
         
-        return result;
+        return ans;
+    }    
+}
+
+
+class my_comparator implements Comparator<int[]>{
+    public int compare(int[] a1, int[] a2){
+        return a1[1] - a2[1];
     }
 }
