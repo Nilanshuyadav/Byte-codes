@@ -46,13 +46,13 @@ class Solution {
         for(int[] ind : arr)
             Arrays.fill(ind, max);
         
-        for(int ind=0; ind<n; ind++)
-            arr[ind][ind] = 0;
-        
         for(int[] ind : edges){
             arr[ind[0]][ind[1]] = ind[2];
             arr[ind[1]][ind[0]] = ind[2];
         }
+        
+        for(int ind=0; ind<n; ind++)
+            arr[ind][ind] = 0;
         
         for(int via=0; via<n; via++){
             for(int r=0; r<n; r++){
@@ -63,26 +63,19 @@ class Solution {
             }
         }
         
-        int[] ans = new int[n];
+        int result = 0, min = Integer.MAX_VALUE;
         
         for(int ind=0; ind<n; ind++){
             int cnt=0;
             for(int c=0; c<n; c++){
-                if(ind == c) continue;
                 if(arr[ind][c] <= distanceThreshold)
                     cnt++;
             }
             
-            ans[ind] = cnt;
-        }
-        
-        int result = 0, min = Integer.MAX_VALUE;
-        
-        for(int ind=0; ind<n; ind++){
-            if(ans[ind] <= min){
-                min = ans[ind];
+            if(cnt <= min){
+                min = cnt;
                 result = ind;
-            }    
+            } 
         }
         
         return result;
