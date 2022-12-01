@@ -1,23 +1,17 @@
 class Solution {
     public boolean halvesAreAlike(String s) {
-        int total_vowel = 0, n = s.length();
+        int first_half_vowel = 0, second_half_vowel = 0, n = s.length();
         
-        for(int ind=n/2; ind<n; ind++){
-            char ch = s.charAt(ind);
+        for(int i=0, j=n/2; j<n; i++, j++){
+            char first_ch = s.charAt(i), second_ch = s.charAt(j);
             
-            if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' || ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U')
-                total_vowel++;
+            if(first_ch=='a' || first_ch=='e' || first_ch=='i' || first_ch=='o' || first_ch=='u' || first_ch=='A' || first_ch=='E' || first_ch=='I' || first_ch=='O' || first_ch=='U')
+                first_half_vowel++;
+            
+            if(second_ch=='a' || second_ch=='e' || second_ch=='i' || second_ch=='o' || second_ch=='u' || second_ch=='A' || second_ch=='E' || second_ch=='I' || second_ch=='O' || second_ch=='U')
+                second_half_vowel++;
         }
         
-        int curr_vowel = 0;
-        
-        for(int ind=0; ind<n/2; ind++){
-            char ch = s.charAt(ind);
-            
-            if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' || ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U')
-                curr_vowel++;
-        }
-        
-        return curr_vowel == total_vowel;
+        return first_half_vowel == second_half_vowel;
     }
 }
