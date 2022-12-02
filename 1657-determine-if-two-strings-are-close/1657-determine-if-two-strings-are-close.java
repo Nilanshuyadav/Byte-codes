@@ -46,9 +46,6 @@ class Solution {
                 return false;
         }
         
-        for(Character ch : set2)
-            if(!set1.contains(ch))
-                return false;
         
         return true;
     }
