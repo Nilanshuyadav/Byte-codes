@@ -76,81 +76,90 @@ class GFG {
 class Solution {
     static int[] parent, rank;
     static List<List<String>> accountsMerge(List<List<String>> accounts) {
-    // code here
+        // code here
+        
         int n = accounts.size();
         
         parent = new int[n];
         rank = new int[n];
+        
         for(int ind=0; ind<n; ind++)
             parent[ind] = ind;
         
         Map<String, Integer> map = new HashMap<>();
         
         for(int ind=0; ind<n; ind++){
-            List<String> al = accounts.get(ind);
-            
-            for(int j=1; j<al.size(); j++){
-                if(map.containsKey(accounts.get(ind).get(j))){
-                    int from_par = findPar(map.get(accounts.get(ind).get(j)));
-                    int to_par = findPar(ind);
-                    
-                    if(from_par != to_par){
-                        union(from_par, to_par);
-                    }
-                }
+            for(int inx=1; inx<accounts.get(ind).size(); inx++){
+                String st = accounts.get(ind).get(inx);
                 
-                map.put(accounts.get(ind).get(j), ind);
+                if(map.containsKey(st)){
+                    union(ind, map.get(st));
+                }
+                else{
+                    map.put(st, ind);
+                }
             }
         }
         
-        Map<Integer, Set<String>> map2 = new HashMap<>();
+        Map<Integer, List<String>> sec_map = new HashMap<>();
         
-        for(int ind=0; ind<n; ind++){
-            if(findPar(ind) == ind)
-                map2.put(ind, new TreeSet<>());
+        for(Map.Entry<String, Integer> entry : map.entrySet()){
+            int ultimate_par = findPar(entry.getValue());
+            
+            List<String> al;
+            if(sec_map.containsKey(ultimate_par)){
+                al = sec_map.get(ultimate_par);
+                
+                al.add(entry.getKey());
+            }
+            
+            else{
+                al = new ArrayList<>();
+                
+                al.add(entry.getKey());
+            }
+            
+            sec_map.put(ultimate_par, al);
         }
         
-        for(int ind=0; ind<n; ind++){
-            int par = parent[ind];
-            
-            Set<String> s = map2.get(par);
-            
-            for(int inx=1; inx<accounts.get(ind).size(); inx++)
-                s.add(accounts.get(ind).get(inx));
+        for(Map.Entry<Integer, List<String>> entry : sec_map.entrySet()){
+            Collections.sort(entry.getValue());
         }
         
         List<List<String>> ans = new ArrayList<>();
         
-        for(Map.Entry<Integer, Set<String>> entry : map2.entrySet()){
-            Set<String> set = entry.getValue();
+        for(Map.Entry<Integer, List<String>> entry : sec_map.entrySet()){
+            List<String> al = entry.getValue();
             
-            List<String> temp = new ArrayList<>();
-            temp.add(accounts.get(entry.getKey()).get(0));
+            al.add(0, accounts.get(entry.getKey()).get(0));
             
-            for(String st : set)
-                temp.add(st);
-            ans.add(temp);    
+            ans.add(al);
         }
         
         return ans;
     }
     
-    static public void union(int from_par, int to_par){
-        if(rank[from_par] < rank[to_par])
-            parent[from_par] = to_par;
-        else if(rank[from_par] > rank[to_par])
-            parent[to_par] = from_par;
+    static void union(int a, int b){
+        int par_a = findPar(a);
+        int par_b = findPar(b);
+        
+        if(rank[par_a] < rank[par_b])
+            parent[par_a] = par_b;
+            
+        else if(rank[par_a] > rank[par_b])
+            parent[par_b] = par_a;
+            
         else{
-            parent[from_par] = to_par;
-            rank[to_par]++;
+            parent[par_a] = par_b;
+            rank[par_b]++;
         }    
     }
     
-    public static int findPar(int ind){
+    static public int findPar(int ind){
         if(parent[ind] == ind)
             return ind;
-            
-        return parent[ind] = findPar(parent[ind]);
+        
+        return parent[ind] = findPar(parent[ind]);    
     }
 }
      
