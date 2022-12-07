@@ -14,63 +14,55 @@
  * }
  */
 class Solution {
+    TreeNode start_node;
     public int amountOfTime(TreeNode root, int start) {
-        List<List<Integer>> adj = new ArrayList<>();
+        Map<TreeNode, TreeNode> parent = new HashMap<>();
         
-        for(int ind=0; ind<100001; ind++)
-            adj.add(new ArrayList<>());
-        
-        convert_to_graph(root, adj);
-        
-        int[] dist = new int[100001];
-        
-        Queue<Integer> q = new LinkedList<>();
-        
-        q.add(start);
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[start] = 0;
-        
-        while(!q.isEmpty()){
-            int temp = q.remove();
-            
-            for(int ind : adj.get(temp)){
-                if(dist[temp]+1 < dist[ind]){
-                    dist[ind] = dist[temp]+1;
-                    q.add(ind);
-                }
-            }
-        }
-        
-        int max = 0;
-        
-        for(int ind : dist){
-            if(ind != Integer.MAX_VALUE)
-                max = Math.max(max, ind);
-        }
-        
-        return max;
-    }
-    
-    public void convert_to_graph(TreeNode root, List<List<Integer>> adj){
+        get_parent(root, null, parent, start);
         
         Queue<TreeNode> q = new LinkedList<>();
+        q.add(start_node);
         
-        q.add(root);
+        Set<Integer> set = new HashSet<>();
+        set.add(start);
         
+        int ans = 0;
         while(!q.isEmpty()){
-            TreeNode temp = q.remove();
+            int size = q.size();
             
-            if(temp.left != null){
-                adj.get(temp.val).add(temp.left.val);
-                adj.get(temp.left.val).add(temp.val);
-                q.add(temp.left);
+            while(size-->0){
+                TreeNode temp =  q.remove();
+                
+                if(temp.left!=null && !set.contains(temp.left.val)){
+                    set.add(temp.left.val);
+                    q.add(temp.left);
+                }
+                
+                if(temp.right!=null && !set.contains(temp.right.val)){
+                    set.add(temp.right.val);
+                    q.add(temp.right);
+                }
+                
+                if(temp!=root && !set.contains(parent.get(temp).val)){
+                    set.add(parent.get(temp).val);
+                    q.add(parent.get(temp));
+                }
             }
             
-            if(temp.right != null){
-                adj.get(temp.val).add(temp.right.val);
-                adj.get(temp.right.val).add(temp.val);
-                q.add(temp.right);
-            }
+            ans++;
+        }
+        
+        return ans-1;
+    }
+    
+    public void get_parent(TreeNode child, TreeNode par, Map<TreeNode, TreeNode> parent, int start){
+        if(child != null){
+            if(child.val == start)
+                start_node = child;
+            
+            parent.put(child, par);
+            get_parent(child.left, child, parent, start);
+            get_parent(child.right, child, parent, start);
         }
     }
 }
