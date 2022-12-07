@@ -9,18 +9,15 @@
  */
 class Solution {
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        List<List<Integer>> adj = new ArrayList<>();
+        Map<TreeNode, TreeNode> map = new HashMap<>();
         
-        for(int ind=0; ind<100001; ind++)
-            adj.add(new ArrayList<>());
+        get_parent(root, null, map);
         
-        convert_to_graph(root, adj);
+        Queue<TreeNode> q = new LinkedList<>();
+        Set<Integer> set = new HashSet<>();
         
-        Queue<Integer> q = new LinkedList<>();
-        boolean[] vis = new boolean[100001];
-        
-        q.add(target.val);
-        vis[target.val] = true;
+        q.add(target);
+        set.add(target.val);
         
         while(!q.isEmpty()){
             if(k == 0)
@@ -29,13 +26,22 @@ class Solution {
             int size = q.size();
             
             while(size-->0){
-                int temp = q.remove();
+                TreeNode temp = q.remove();
                 
-                for(int ind : adj.get(temp))
-                    if(!vis[ind]){
-                        vis[ind] = true;
-                        q.add(ind);
-                    }
+                if(temp.left != null && !set.contains(temp.left.val)){
+                    set.add(temp.left.val);
+                    q.add(temp.left);
+                }
+                
+                if(temp.right != null && !set.contains(temp.right.val)){
+                    set.add(temp.right.val);
+                    q.add(temp.right);
+                }
+                
+                if(temp!=root && !set.contains(map.get(temp).val)){
+                    set.add(map.get(temp).val);
+                    q.add(map.get(temp));
+                }
             }
             
             k--;
@@ -44,30 +50,16 @@ class Solution {
         List<Integer> ans = new ArrayList<>();
         
         while(!q.isEmpty())
-            ans.add(q.remove());
+            ans.add(q.remove().val);
         
         return ans;
     }
     
-    public void convert_to_graph(TreeNode root, List<List<Integer>> adj){
-        Queue<TreeNode> q = new LinkedList<>();
-        
-        q.add(root);
-        
-        while(!q.isEmpty()){
-            TreeNode temp = q.remove();
-            
-            if(temp.left != null){
-                adj.get(temp.val).add(temp.left.val);
-                adj.get(temp.left.val).add(temp.val);
-                q.add(temp.left);
-            }
-            
-            if(temp.right != null){
-                adj.get(temp.val).add(temp.right.val);
-                adj.get(temp.right.val).add(temp.val);
-                q.add(temp.right);
-            }
+    public void get_parent(TreeNode child, TreeNode parent, Map<TreeNode, TreeNode> map){
+        if(child != null){
+            map.put(child, parent);
+            get_parent(child.left, child, map);
+            get_parent(child.right, child, map);
         }
     }
 }
