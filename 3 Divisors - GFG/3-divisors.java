@@ -39,11 +39,7 @@ class Solution{
             int cnt=0;
             for(int ind=2; ind<=Math.sqrt(q); ind++){
                 if(isPrime(ind)){
-                    temp = ind*ind;
-                    
-                    if(temp <= q){
-                        cnt++;
-                    }
+                    cnt++;
                 }
             }    
             
