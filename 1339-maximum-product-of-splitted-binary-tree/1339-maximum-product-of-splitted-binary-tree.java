@@ -19,20 +19,17 @@ class Solution {
         
         int total = dfs(root, set);
         
-        int half = total/2;
+        long max = 0, curr = 0;
         
-        while(half>=0){
-            if(set.contains(half) || set.contains(total-half)){
-                long one = half;
-                long sec = total-half;
-                
-                return (int)((one*sec)%1000000007);
-            }
+        for(long ind : set){
+            long one = ind;
+            long sec = total-ind;
             
-            half--;
+            curr = (one*sec);
+            max = Math.max(max, curr);
         }
         
-        return -1;
+        return (int)(max%1000000007);
     }
     
     public int dfs(TreeNode root, Set<Integer> set){
