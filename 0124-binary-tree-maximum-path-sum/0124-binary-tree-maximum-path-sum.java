@@ -14,26 +14,22 @@
  * }
  */
 class Solution {
+    int temp_max;
     public int maxPathSum(TreeNode root) {
-        Set<Integer> set = new HashSet<>();
-        int max = dfs(root, set);
-        int temp_max = root.val;
+        temp_max = root.val;
+        int max = dfs(root);
         
-        for(int ind : set)
-            temp_max = Math.max(temp_max, ind);
-        
-        return max==0?temp_max:Math.max(temp_max, max);
+        return temp_max;
     }
     
-    public int dfs(TreeNode root, Set<Integer> set){
+    public int dfs(TreeNode root){
         if(root == null)
             return 0;
         
-        int left = dfs(root.left, set);
-        int right = dfs(root.right, set);
+        int left = dfs(root.left);
+        int right = dfs(root.right);
         
-        set.add(left+right+root.val);
-        set.add(root.val);
+        temp_max = Math.max(temp_max,left+right+root.val);
         
         return Math.max(0,Math.max(left, right)+root.val);
     }
