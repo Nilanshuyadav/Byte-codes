@@ -22,18 +22,15 @@ class Solution {
         List<Integer> res = new ArrayList<>();
         
         int[] r_arr={-1,0,1,0}, c_arr={0,1,0,-1};
-        int islands=0;
         
         for(int ind[] : operators){
             int temp_row = ind[0];
             int temp_col = ind[1];
             
             if(matrix[temp_row][temp_col] == 1){
-                res.add(islands);
+                res.add(countPar());
                 continue;
             }
-            
-            islands++;
             
             matrix[temp_row][temp_col] = 1;
             parent[((temp_row)*cols)+temp_col] = ((temp_row)*cols)+temp_col;
@@ -51,13 +48,12 @@ class Solution {
                     int parent_new = findPar((new_r*cols)+new_c);
                     
                     if(parent_main != parent_new){
-                        islands--;
                         union(parent_main, parent_new);
                     }
                 }
             }
             
-            res.add(islands);
+            res.add(countPar());
         }
         
         return res;
