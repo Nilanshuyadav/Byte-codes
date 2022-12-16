@@ -27,7 +27,7 @@ class GFG {
 
 
 class Solution {
-    int[] parent, rank;
+    int[] parent, size;
     public int MaxConnection(int grid[][]) {
         int row = grid.length, col = grid[0].length;
         int n = row*col;
@@ -35,10 +35,12 @@ class Solution {
         int[] r_arr={-1,0,1,0}, c_arr={0,1,0,-1};
         
         parent = new int[n];
-        rank = new int[n];
+        size = new int[n];
         
-        for(int ind=0; ind<n; ind++)
+        for(int ind=0; ind<n; ind++){
             parent[ind] = ind;
+            size[ind] = 1;
+        }
             
         for(int r=0; r<row; r++){
             for(int c=0; c<col; c++){
@@ -61,21 +63,12 @@ class Solution {
             }
         }
         
-        Map<Integer, Integer> map = new HashMap<>();
+        int sum=0, max=0;
         
         for(int ind=0; ind<n; ind++){
-            if(findPar(ind) == ind)
-                map.put(ind,0);
+            max = Math.max(max, size[ind]);
         }
         
-        int max=0;
-                
-        for(int ind=0; ind<n; ind++){
-            max = Math.max(max, map.get(parent[ind])+1);
-            map.put(parent[ind], map.get(parent[ind])+1);
-        }
-        
-        int sum=0;
         Set<Integer> set = new HashSet<>();
         
         for(int r=0; r<row; r++){
@@ -94,7 +87,7 @@ class Solution {
                             int parent_temp = findPar((new_r*col)+new_c);
                             
                             if(set.add(parent_temp)){
-                                sum += map.get(parent_temp);
+                                sum += size[parent_temp];
                             }
                         }                    
                     }
@@ -116,14 +109,14 @@ class Solution {
     }
     
     public void union(int a_par, int b_par){
-        if(rank[a_par]<rank[b_par])
+        if(size[a_par]<=size[b_par]){
             parent[a_par] = b_par;
-        else if(rank[b_par]<rank[a_par])
-            parent[b_par] = a_par;
+            size[b_par] += size[a_par];
+        }
         else{
-            parent[a_par] = b_par;
-            rank[b_par]++;
-        }    
+            parent[b_par] = a_par;
+            size[a_par] += size[b_par];
+        }
     }
     
 }
