@@ -1,18 +1,20 @@
 class Solution {
     public int combinationSum4(int[] nums, int target) {
         int n = nums.length;
-        int[][] dp = new int[n][target+1];
+        int[] dp = new int[target+1];
         
-        for(int ind[] : dp)
-            Arrays.fill(ind, -1);
+        Arrays.fill(dp, -1);
         
         return dfs(n-1, nums, n, target, dp);
     }
     
-    public int dfs(int ind, int[] nums, int n, int target, int[][] dp){
+    public int dfs(int ind, int[] nums, int n, int target, int[] dp){
         
-        if(dp[ind][target] != -1)
-            return dp[ind][target];
+        if(target==0)
+            return 1;
+        
+        if(dp[target] != -1)
+            return dp[target];
         
         int temp = 0;
         
@@ -21,6 +23,6 @@ class Solution {
                 temp += dfs(inx, nums, n, target-nums[inx], dp);
         }
         
-        return dp[ind][target]=target==0?1:temp;
+        return dp[target]=temp;
     }
 }
