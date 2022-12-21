@@ -14,33 +14,29 @@
  * }
  */
 class Solution {
-    int sum, distance;
     public int countPairs(TreeNode root, int dis) {
-        sum = 0;
-        distance = dis;
         
-        dfs(root, new HashMap<>());
-        
-        return sum;
+        return dfs(root, new HashMap<>(), dis);
     }
     
-    public void dfs(TreeNode node, Map<Integer, Integer> map){
+    public int dfs(TreeNode node, Map<Integer, Integer> map, int dis){
         if(node.left==null && node.right==null){
             map.put(1, 1);
-            return;
+            return 0;
         }
         
+        int sum = 0;
         Map<Integer, Integer> l_map = new HashMap<>(), r_map = new HashMap<>();
         
         if(node.left != null)
-            dfs(node.left, l_map);
+            sum += dfs(node.left, l_map, dis);
         
         if(node.right != null)
-            dfs(node.right, r_map);
+            sum += dfs(node.right, r_map, dis);
     
         for(Map.Entry<Integer, Integer> entry1 : l_map.entrySet()){
             for(Map.Entry<Integer, Integer> entry2 : r_map.entrySet()){
-                if(entry1.getKey()+entry2.getKey() <= distance){
+                if(entry1.getKey()+entry2.getKey() <= dis){
                     sum += (entry1.getValue()*entry2.getValue());
                 }
             }
@@ -55,7 +51,7 @@ class Solution {
             map.put(entry.getKey()+1, map.getOrDefault(entry.getKey()+1,0) + entry.getValue());
         }
         
-        return;
+        return sum;
         
     }
 }
