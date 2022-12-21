@@ -24,44 +24,38 @@ class Solution {
         return sum;
     }
     
-    public Map<Integer, Integer> dfs(TreeNode node, Map<Integer, Integer> map){
+    public void dfs(TreeNode node, Map<Integer, Integer> map){
         if(node.left==null && node.right==null){
             map.put(1, 1);
-            return map;
+            return;
         }
         
         Map<Integer, Integer> l_map = new HashMap<>(), r_map = new HashMap<>();
         
         if(node.left != null)
-            l_map = dfs(node.left, new HashMap<>());
+            dfs(node.left, l_map);
         
         if(node.right != null)
-            r_map = dfs(node.right, new HashMap<>());
-        
-        Map<Integer, Integer> map_res = new HashMap<>();
-        
-        if(l_map != null && r_map!=null){
-            for(Map.Entry<Integer, Integer> entry1 : l_map.entrySet()){
-                for(Map.Entry<Integer, Integer> entry2 : r_map.entrySet()){
-                    if(entry1.getKey()+entry2.getKey() <= distance){
-                        sum += (entry1.getValue()*entry2.getValue());
-                    }
+            dfs(node.right, r_map);
+    
+        for(Map.Entry<Integer, Integer> entry1 : l_map.entrySet()){
+            for(Map.Entry<Integer, Integer> entry2 : r_map.entrySet()){
+                if(entry1.getKey()+entry2.getKey() <= distance){
+                    sum += (entry1.getValue()*entry2.getValue());
                 }
             }
+        }
 
+
+        for(Map.Entry<Integer, Integer> entry : l_map.entrySet()){
+            map.put(entry.getKey()+1, entry.getValue());
+        }
+
+        for(Map.Entry<Integer, Integer> entry : r_map.entrySet()){
+            map.put(entry.getKey()+1, map.getOrDefault(entry.getKey()+1,0) + entry.getValue());
         }
         
-        if(l_map != null)
-            for(Map.Entry<Integer, Integer> entry : l_map.entrySet()){
-                map_res.put(entry.getKey()+1, entry.getValue());
-            }
-        
-        if(r_map != null)
-            for(Map.Entry<Integer, Integer> entry : r_map.entrySet()){
-                map_res.put(entry.getKey()+1, map_res.getOrDefault(entry.getKey()+1,0) + entry.getValue());
-            }
-        
-        return map_res;
+        return;
         
     }
 }
