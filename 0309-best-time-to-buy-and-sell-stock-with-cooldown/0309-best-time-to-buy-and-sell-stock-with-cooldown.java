@@ -1,7 +1,6 @@
 class Solution {
     public int maxProfit(int[] prices) {
         int n = prices.length;
-        
         int[][] dp = new int[n][2];
         
         for(int ind[] : dp)
@@ -17,15 +16,15 @@ class Solution {
         if(dp[ind][buy] != -1)
             return dp[ind][buy];
         
-        int profit_max;
+        int temp = 0;
         
         if(buy == 1){
-            profit_max = Math.max(dfs(ind+1, prices, n, 0, dp) - prices[ind], dfs(ind+1, prices, n, 1, dp));
+            temp = Math.max(dfs(ind+1, prices, n, 0, dp) - prices[ind], dfs(ind+1, prices, n, 1, dp));
         }
         else{
-            profit_max = Math.max(dfs(ind+2, prices, n, 1, dp) + prices[ind], dfs(ind+1, prices, n, 0, dp));
+            temp = Math.max(dfs(ind+2, prices, n, 1, dp) + prices[ind], dfs(ind+1, prices, n, 0, dp));
         }
         
-        return dp[ind][buy] = profit_max;
+        return dp[ind][buy] = temp;
     }
 }
