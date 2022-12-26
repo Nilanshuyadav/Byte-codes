@@ -17,16 +17,21 @@ class Solution
         int temp;
         
         for(int i=0; i<n; i++){
-            for(int j=0; j<n-i-1; j++){
-                if(arr[j] > arr[j+1]){
-                    temp = arr[j+1];
-                    arr[j+1] = arr[j];
-                    arr[j] = temp;
-                }
-            }
+            dfs(arr, 0);
+        }
+    }
+    
+    public static void dfs(int[] arr, int i){
+        if(i>=arr.length-1)
+            return;
+            
+        if(arr[i] > arr[i+1]){
+            int temp = arr[i+1];
+            arr[i+1] = arr[i];
+            arr[i] = temp;
         }
         
-        return;
+        dfs(arr, i+1);
     }
 }
 
