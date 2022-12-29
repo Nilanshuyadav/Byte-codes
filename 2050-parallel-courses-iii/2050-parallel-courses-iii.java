@@ -1,39 +1,40 @@
 class Solution {
     public int minimumTime(int n, int[][] relations, int[] time) {
+        Queue<Integer> q = new LinkedList<>();
+        
+        int[] indegree = new int[n+1], max_time = new int[n+1];
+        
         List<List<Integer>> adj = new ArrayList<>();
-        int[] indegree = new int[n+1];
-        int[] dp = new int[n+1];
         
-        Arrays.fill(dp, -1);
-        
-        for(int ind=0; ind<=n; ind++)
-            adj.add(new ArrayList<>());
-        
-        for(int ind[] : relations){
-            indegree[ind[0]]++;
-            adj.get(ind[1]).add(ind[0]);
+        for(int ind=0; ind<=n; ind++){
+            adj.add(new ArrayList<>());    
         }
         
-        int max = 0;
+        for(int ind[] : relations){
+            indegree[ind[1]]++;
+            adj.get(ind[0]).add(ind[1]);
+        }
         
-        for(int ind=1; ind<=n; ind++){
-            if(indegree[ind] == 0){
-                max = Math.max(max,solve(ind, adj, time, dp));
+        for(int ind=1; ind<=n; ind++)
+            if(indegree[ind] == 0)
+                q.add(ind);
+        
+        while(!q.isEmpty()){
+            int temp = q.remove();
+            
+            for(int ind : adj.get(temp)){
+                max_time[ind] = Math.max(max_time[ind], max_time[temp]+time[temp-1]);
+                
+                indegree[ind]--;
+                if(indegree[ind] == 0)
+                    q.add(ind);
             }
         }
         
+        int max=0;
+        for(int ind=1; ind<=n; ind++)
+            max = Math.max(max, time[ind-1]+max_time[ind]);
+        
         return max;
-    }
-    
-    public int solve(int ind, List<List<Integer>> adj, int[] time, int[] dp){
-        int max = 0;
-        
-        if(dp[ind] != -1)
-            return dp[ind];
-        
-        for(int inx : adj.get(ind))
-            max = Math.max(max, solve(inx, adj, time, dp));
-        
-        return dp[ind] = max+time[ind-1];
     }
 }
