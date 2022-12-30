@@ -1,38 +1,26 @@
 class Solution {
+    List<List<Integer>> ans;
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        List<List<Integer>> adj = new ArrayList<>();
-        
         int n = graph.length;
+        ans = new ArrayList<>();
         
-        for(int ind=0; ind<n; ind++)
-            adj.add(new ArrayList<>());
-        
-        for(int ind=0; ind<n; ind++){
-            for(int inx : graph[ind])
-                adj.get(ind).add(inx);
-        }
-        
-        List<List<Integer>> ans = new ArrayList<>();
-        
-        List<Integer> path = new ArrayList<>();
-        path.add(0);
-        
-        solve(0, n, path, adj, ans);
+        function(graph,0,n,new ArrayList<>());
         
         return ans;
     }
     
-    public void solve(int ind, int n, List<Integer> path, List<List<Integer>> adj, List<List<Integer>> ans){
+    public void function(int[][] graph, int ind,int n,List<Integer> al){
+        al.add(ind);
+        
         if(ind == n-1){
-            ans.add(new ArrayList<>(path));
+            ans.add(new ArrayList<>(al));
+            al.remove(al.size()-1);
             return;
         }
         
-        for(int inx : adj.get(ind)){
-            path.add(inx);
-            
-            solve(inx, n, path, adj, ans);
-            path.remove(path.size()-1);
-        }
+        for(int i : graph[ind])
+            function(graph,i,n,al);
+        
+        al.remove(al.size()-1);
     }
 }
