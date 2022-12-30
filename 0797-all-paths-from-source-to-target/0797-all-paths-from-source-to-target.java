@@ -2,52 +2,37 @@ class Solution {
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> adj = new ArrayList<>();
         
-        List<List<Integer>> ans = new ArrayList<>();
-        
         int n = graph.length;
         
         for(int ind=0; ind<n; ind++)
             adj.add(new ArrayList<>());
-        
-        Queue<Pair> q = new LinkedList<>();
         
         for(int ind=0; ind<n; ind++){
             for(int inx : graph[ind])
                 adj.get(ind).add(inx);
         }
         
-        List<Integer> al = new ArrayList<>();
-        al.add(0);
-        q.add(new Pair(0, al));
+        List<List<Integer>> ans = new ArrayList<>();
         
-        while(!q.isEmpty()){
-            Pair temp = q.remove();
-            
-            int ind = temp.ind;
-            List<Integer> path = temp.al;
-            
-            if(ind == n-1){
-                ans.add(path);
-                continue;
-            }
-            
-            for(int inx : adj.get(ind)){
-                path.add(inx);
-                
-                q.add(new Pair(inx, new ArrayList<>(path)));
-                path.remove(path.size()-1);
-            }
-        }
+        List<Integer> path = new ArrayList<>();
+        path.add(0);
+        
+        solve(0, n, path, adj, ans);
         
         return ans;
     }
-}
-
-class Pair{
-    int ind;
-    List<Integer> al;
-    public Pair(int ind, List<Integer> al){
-        this.ind = ind;
-        this.al = al;
+    
+    public void solve(int ind, int n, List<Integer> path, List<List<Integer>> adj, List<List<Integer>> ans){
+        if(ind == n-1){
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+        
+        for(int inx : adj.get(ind)){
+            path.add(inx);
+            
+            solve(inx, n, path, adj, ans);
+            path.remove(path.size()-1);
+        }
     }
 }
