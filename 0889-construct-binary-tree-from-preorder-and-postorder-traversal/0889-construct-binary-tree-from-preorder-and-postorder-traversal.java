@@ -14,17 +14,9 @@
  * }
  */
 class Solution {
-    int pre_ind, post_ind;
+    int pre_ind=0, post_ind=0;
     
     public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
-        int n = preorder.length;
-        pre_ind = 0;
-        post_ind = 0;
-        
-        return dfs(preorder, postorder);
-    }
-    
-    public TreeNode dfs(int[] preorder, int[] postorder){
         TreeNode temp = new TreeNode(preorder[pre_ind]);
         
         if(preorder[pre_ind] == postorder[post_ind]){
@@ -35,7 +27,7 @@ class Solution {
         int node = preorder[pre_ind];
         
         pre_ind++;
-        temp.left = dfs(preorder, postorder);
+        temp.left = constructFromPrePost(preorder, postorder);
         
         if(node == postorder[post_ind]){
             post_ind++;
@@ -43,7 +35,7 @@ class Solution {
         }
         
         pre_ind++;
-        temp.right = dfs(preorder, postorder);
+        temp.right = constructFromPrePost(preorder, postorder);
         
         post_ind++;
         return temp;
