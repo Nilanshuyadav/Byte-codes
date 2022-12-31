@@ -53,7 +53,7 @@ class Solution {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
         pq.add(Integer.MAX_VALUE);
         
-        int start_time=0, cnt=0;
+        int start_time=0;
         
         for(int ind=0; ind<n; ind++){
             start_time = arr[ind][0];
@@ -67,10 +67,9 @@ class Solution {
             
             else{
                 pq.add(arr[ind][1]);
-                cnt++;
             }
         }
         
-        return cnt;
+        return pq.size()-1;
     }
 }
