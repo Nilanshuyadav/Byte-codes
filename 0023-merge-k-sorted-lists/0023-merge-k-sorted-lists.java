@@ -11,10 +11,7 @@
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         int n = lists.length;
-        
-        if(n<=1)
-            return n==0?null:lists[0];
-        
+       
         ListNode dummy = new ListNode();
         
         solve(dummy, lists, n-1);
@@ -23,6 +20,9 @@ class Solution {
     }
     
     public void solve(ListNode dummy, ListNode[] lists, int ind){
+        if(ind == -1)
+            return;
+        
         if(ind==0){
             dummy.next = lists[ind];
             return;
