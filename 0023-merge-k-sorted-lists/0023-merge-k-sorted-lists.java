@@ -10,47 +10,51 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode dummy = new ListNode(), curr = dummy;
-        
         int n = lists.length;
         
-        if(n <= 1)
+        if(n<=1)
             return n==0?null:lists[0];
         
-        ListNode currA=lists[0], currB;
+        ListNode dummy = new ListNode();
         
-        for(int ind=1; ind<n; ind++){
-            currB = lists[ind];
-            
-            while(currA!=null && currB!=null){
-                if(currA.val < currB.val){
-                    curr.next = currA;
-                    curr = currA;
-                    currA = currA.next;
-                }
-                else{
-                    curr.next = currB;
-                    curr = currB;
-                    currB = currB.next;
-                }
-            }
-            
-            while(currA!=null){
+        solve(dummy, lists, n-1);
+        
+        return dummy.next;
+    }
+    
+    public void solve(ListNode dummy, ListNode[] lists, int ind){
+        if(ind==0){
+            dummy.next = lists[ind];
+            return;
+        }
+        
+        solve(dummy, lists, ind-1);
+        
+        ListNode curr = dummy, currA = dummy.next, currB = lists[ind];
+        
+        while(currA!=null && currB!=null){
+            if(currA.val<currB.val){
                 curr.next = currA;
-                curr = currA;
                 currA = currA.next;
             }
-            
-            while(currB!=null){
+            else{
                 curr.next = currB;
-                curr = currB;
                 currB = currB.next;
             }
             
-            curr = dummy;
-            currA = dummy.next;
+            curr = curr.next;
         }
         
-        return dummy.next;
+        while(currA!=null){
+            curr.next = currA;
+            currA = currA.next;
+            curr = curr.next;
+        }
+        
+        while(currB!=null){
+            curr.next = currB;
+            currB = currB.next;
+            curr = curr.next;
+        }
     }
 }
