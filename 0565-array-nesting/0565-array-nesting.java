@@ -3,12 +3,21 @@ class Solution {
         int n = nums.length;
         
         boolean[] vis = new boolean[n];
-        int max = 0;
+        int max = 0, start=0, cnt=0;
         
         for(int ind=0; ind<n; ind++){
             if(!vis[ind]){
                 vis[ind] = true;
-                max = Math.max(max, 1+solve(ind, nums, vis));
+                start = nums[ind];
+                cnt=1;
+                
+                while(!vis[start]){
+                    cnt++;
+                    vis[start] = true;
+                    start = nums[start];
+                }
+                
+                max = Math.max(max, cnt);
             }
         }
         
