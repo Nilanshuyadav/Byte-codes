@@ -7,7 +7,6 @@ class Solution {
                 low = temp;
                 break;
             }
-            
             temp++;
         }
         
@@ -22,7 +21,6 @@ class Solution {
                 high = temp;
                 break;
             }
-            
             temp--;
         }
         
@@ -36,6 +34,10 @@ class Solution {
         
         return solve(s, low, high);
     }
+    
+    
+    
+    
     
     public int solve(String s, int low, int high){
         int n = high-low+1;
