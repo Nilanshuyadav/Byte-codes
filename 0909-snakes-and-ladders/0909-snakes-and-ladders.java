@@ -2,12 +2,6 @@ class Solution {
     public int snakesAndLadders(int[][] board) {
         int n = board.length, end = n*n;
         
-        for(int ind=0; ind<n; ind++){
-            for(int inx=0; inx<n; inx++)
-                System.out.print(board[ind][inx]+" ");
-            System.out.println();
-        }
-        
         boolean[][] vis = new boolean[n][n];
         
         PriorityQueue<Pair> pq = new PriorityQueue<>((a,b) -> a.steps - b.steps);
