@@ -25,10 +25,6 @@ class Solution {
                 
                 index = findIndex(n, new_ind);
                 
-//                 System.out.println(new_ind+" "+index[0]+" "+index[1]);
-                // if(vis[index[0]][index[1]])
-                //     continue;
-                
                 if(board[index[0]][index[1]] != -1){
                     new_ind = board[index[0]][index[1]];
                     
