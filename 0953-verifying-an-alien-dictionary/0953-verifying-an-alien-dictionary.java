@@ -23,27 +23,18 @@ class Solution {
     public boolean pre_greater(StringBuilder pre, StringBuilder curr, Map<Character, Integer> map){
         int pre_len = pre.length(), curr_len = curr.length();
         
-        if(pre_len<curr_len){
-            int temp = curr_len-pre_len;
-            while(temp-->0)
-                pre.append(' ');
-        }
-        
-        if(pre_len>curr_len){
-            int temp = pre_len-curr_len;
-            while(temp-->0)
-                curr.append(' ');
-        }
-        
-        for(int ind=0; ind<pre_len; ind++){
+        for(int ind=0; ind<Math.min(pre_len, curr_len); ind++){
             if(pre.charAt(ind)!=curr.charAt(ind)){
                 if(map.get(pre.charAt(ind)) > map.get(curr.charAt(ind)))
                     return true;
                 else
-                    break;
+                    return false;
             }
         }
         
-        return false;
+        if(pre_len<=curr_len)
+            return false;
+        else
+            return true;
     }
 }
