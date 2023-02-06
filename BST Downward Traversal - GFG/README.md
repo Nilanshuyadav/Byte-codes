@@ -1,7 +1,7 @@
 # BST Downward Traversal
 ## Easy
-<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a Binary Search Tree and a target value. You have to find the node whose data is equal to target and return the sum of all descendant node's data which are vertically below the target node. Initially you are at the <strong>root </strong>node.<br>
-<strong>Note: </strong>If target node is not present in bst then return -1.</span></p>
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a Binary Search Tree with <strong>unique</strong> node values and a <strong>target</strong> value. You have to find the node whose data is equal to target and return the sum of all <strong>descendant node's</strong> data which are <strong>vertically below</strong> the target node. Initially, you are at the <strong>root </strong>node.<br>
+<strong>Note: </strong>If <strong>target</strong> node is not present in bst then return <strong>-1.</strong></span></p>
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
 
