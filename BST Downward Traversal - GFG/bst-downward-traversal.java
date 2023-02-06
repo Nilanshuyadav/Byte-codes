@@ -116,33 +116,32 @@ class GfG {
 
 class Solution
 {
-    boolean found_tar;
+    boolean found;
     long verticallyDownBST(Node root,int target)
     {
-        
-        found_tar = false;
+        found = false;
         long temp = solve(root, 0, target, (int)1e8);
         
-        return found_tar?temp:-1;
+        return found?temp:-1;
     }
     
-    long solve(Node node, int col, int target, int found){
+    long solve(Node node, int col, int target, int tar_col){
         if(node == null)
             return 0;
             
-        long left = 0, right=0;
+        long left=0, right=0;
         long sum=0;
         
-        if(found == col)
+        if(col == tar_col)
             sum += node.data;
         
-        if(node.data == target && !found_tar){
-            found = col;
-            found_tar = true;
+        if( !found && node.data == target){
+            found = true;
+            tar_col = col;
         }
         
-        left = solve(node.left, col-1, target, found);
-        right = solve(node.right, col+1, target, found);
+        left = solve(node.left, col-1, target, tar_col);
+        right = solve(node.right, col+1, target, tar_col);
         
         return left+right+sum;
     }
