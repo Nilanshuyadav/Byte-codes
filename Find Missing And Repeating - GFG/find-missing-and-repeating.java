@@ -38,15 +38,7 @@ class Solve {
             xor ^= (ind+1);
         }
         
-        int temp = 1, mask = 0;
-        
-        while(true){
-            if((xor&temp)>0){
-                mask = xor&temp;
-                break;
-            }    
-            temp = temp<<1;    
-        }
+        int mask = xor&(-xor);
         
         int same=0, not_same=0;
         for(int ind=0; ind<n; ind++){
