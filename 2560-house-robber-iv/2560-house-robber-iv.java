@@ -26,9 +26,11 @@ class Solution {
             if(last_picked==ind-1) continue;
             
             cnt++;
+            if(cnt>=k)
+                return true;
             last_picked = ind;
         }
         
-        return cnt>=k;
+        return false;
     }
 }
