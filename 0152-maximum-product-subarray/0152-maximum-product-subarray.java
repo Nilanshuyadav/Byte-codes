@@ -1,12 +1,12 @@
 class Solution {
     public int maxProduct(int[] nums) {
-        int first_negative=Integer.MIN_VALUE, count_negative=0;
+        int first_negative=-5, count_negative=0;
         int product=1, max=Integer.MIN_VALUE, neg_index=-1;
         
         for(int ind=0; ind<nums.length; ind++){
             if(nums[ind]==0){
                 product = 1;
-                first_negative=Integer.MIN_VALUE;
+                first_negative=-5;
                 count_negative=0;
                 max = Math.max(max, 0);
                 continue;
@@ -14,7 +14,7 @@ class Solution {
             
             if(nums[ind]<0){
                 count_negative++;
-                if(first_negative==Integer.MIN_VALUE){
+                if(first_negative==-5){
                     first_negative = product*nums[ind];
                     neg_index = ind;
                 }
