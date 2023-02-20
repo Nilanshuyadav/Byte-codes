@@ -52,6 +52,8 @@ class Solution
             
             map.get(ch).add(ind);
             
+            if(min!=-1 && ch!=s.charAt(min)) continue;
+            
             min = Integer.MAX_VALUE;
             
             for(Map.Entry<Character, List<Integer>> entry : map.entrySet()){
