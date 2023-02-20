@@ -24,31 +24,30 @@ class GFG
 
 class Solution
 {
-    int mod;
+    int mod = 1000000007;
     long countPS(String str)
     {
-        mod = 1000000007;
         int n = str.length();
         
         long[][] dp = new long[n][n];
         
-        for(long[] ind : dp)
+        for(long ind[] : dp)
             Arrays.fill(ind, -1);
-        
+            
         return solve(0, n-1, str, dp);
     }
     
-    long solve(int s, int e, String str, long[][] dp){
-        if(s==e)
+    long solve(int i, int j, String st, long[][] dp){
+        if(i==j)
             return 1;
-        else if(e<s)
+        if(j<i)
             return 0;
             
-        if(dp[s][e] != -1)
-            return dp[s][e];
+        if(dp[i][j] != - 1)
+            return dp[i][j];
             
-        return dp[s][e] = str.charAt(s)==str.charAt(e) ?
-                            (solve(s+1, e, str, dp) + solve(s, e-1, str, dp) + 1)%mod :
-                            (mod + solve(s+1, e, str, dp) + solve(s, e-1, str, dp) - solve(s+1, e-1, str, dp))%mod;
+        return dp[i][j] = st.charAt(i)==st.charAt(j)?
+                            (solve(i+1, j, st, dp) + solve(i, j-1, st, dp) + 1)%mod :
+                            (mod + solve(i+1, j, st, dp) + solve(i, j-1, st, dp) - solve(i+1, j-1, st, dp))%mod;
     }
 }
