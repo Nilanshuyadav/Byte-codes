@@ -25,24 +25,20 @@ class GFG {
 class Solution {
     int lps(String s) {
         int n = s.length();
-        if(n==1) return 1;
-        
         int[] arr = new int[n];
-        int j=0,i=1;
         
-        for(i=1; i<n; i++){
-            if(s.charAt(i) == s.charAt(j)){
-                arr[i] = j+1;
-                j++;
+        int j=0;
+        for(int i=1; i<n; i++){
+            if(s.charAt(j) == s.charAt(i)){
+                arr[i] = ++j;
             }
             else{
                 while(j!=0 && s.charAt(j)!=s.charAt(i)){
                     j = arr[j-1];
                 }
                 
-                if(s.charAt(j)==s.charAt(i)){
-                    arr[i] = j+1;
-                    j++;
+                if(s.charAt(j) == s.charAt(i)){
+                    arr[i] = ++j;
                 }
             }
         }
