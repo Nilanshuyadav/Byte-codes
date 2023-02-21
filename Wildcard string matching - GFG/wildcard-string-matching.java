@@ -45,7 +45,7 @@ class Solution{
                 if(wild.charAt(i)!='*') return false;
                 wild.deleteCharAt(i);
                 if(solve(i, j, wild, pattern, w_len-1, p_len, dp)) return true;
-                // wild.insert(i, "*");
+                wild.insert(i, "*");
                 return false;
             }
         }
