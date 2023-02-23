@@ -35,32 +35,31 @@ class GFG {
 
 class Solution {
     static int uniquePaths(int n, int m, int[][] grid) {
-        int[] dp = new int[m], pre = new int[m];
+        int[] dp = new int[m];
         
-        int temp=1;
+        int temp=1, pre=1;
         
         for(int r=0; r<n; r++){
             for(int c=0; c<m; c++){
                 
-                if(grid[r][c] == 0) {pre[c] = 0; continue;}
+                if(grid[r][c] == 0) {dp[c] = 0; pre = 0; continue;}
                 
                 if(r==0){
                     if(c>0)
-                        temp = pre[c-1];
+                        temp = pre;
                 }
                 else{
                     if(c>0){
-                        temp = (pre[c-1] + dp[c])%1000000007;
+                        temp = (pre + dp[c])%1000000007;
                     }
                     else{
                         temp = dp[c];
                     }
                 }
                 
-                pre[c] = temp;
+                dp[c] = temp;
+                pre = temp;
             }
-            
-            dp = pre;
         }
         
         return dp[m-1];
