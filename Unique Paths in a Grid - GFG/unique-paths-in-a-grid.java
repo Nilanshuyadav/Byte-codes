@@ -37,19 +37,30 @@ class Solution {
     static int uniquePaths(int n, int m, int[][] grid) {
         int[][] dp = new int[n][m];
         
-        for(int ind[] : dp)
-            Arrays.fill(ind, -1);
-            
-        return solve(n-1, m-1, grid, n, m, dp);    
-    }
-    
-    static int solve(int r, int c, int[][] grid, int row, int col, int[][] dp){
-        if(r<0 || c<0 || r>=row || c>=col || grid[r][c]==0) return 0;
+        int temp=1;
         
-        if(r==0 && c==0) return 1;
+        for(int r=0; r<n; r++){
+            for(int c=0; c<m; c++){
+                
+                if(grid[r][c] == 0) {dp[r][c] = 0; continue;}
+                
+                if(r==0){
+                    if(c>0)
+                        temp = dp[r][c-1];
+                }
+                else{
+                    if(c>0){
+                        temp = (dp[r][c-1] + dp[r-1][c])%1000000007;
+                    }
+                    else{
+                        temp = dp[r-1][c];
+                    }
+                }
+                
+                dp[r][c] = temp;
+            }
+        }
         
-        if(dp[r][c] != -1)  return dp[r][c];
-        
-        return dp[r][c] = (solve(r-1, c, grid, row, col, dp) + solve(r, c-1, grid, row, col, dp))%1000000007;
+        return dp[n-1][m-1];
     }
 };
