@@ -135,17 +135,17 @@ class Solution {
             adj.get(y).add(new int[]{x, w1});
         }    
         
-        int[] diag_a = new int[n+1], diag_b = new int[n+1];
+        long[] diag_a = new long[n+1], diag_b = new long[n+1];
         
-        Arrays.fill(diag_a, (int)1e9);
-        Arrays.fill(diag_b, (int)1e9);
+        Arrays.fill(diag_a, Integer.MAX_VALUE);
+        Arrays.fill(diag_b, Integer.MAX_VALUE);
         
         diag(a, diag_a, adj);
         diag(b, diag_b, adj);
         
         if(diag_a[b] == Integer.MAX_VALUE) return -1;
         
-        int min = diag_a[b];
+        long min = diag_a[b];
         
         for(ArrayList<Integer> edge : edges){
             x = edge.get(0);
@@ -156,10 +156,10 @@ class Solution {
             min = Math.min(min, diag_a[y]+w2+diag_b[x]);
         }
         
-        return min>=(int)1e9 ? -1 : min;
+        return min>=(int)1e9 ? -1 : (int)min;
     }
     
-    static void diag(int s, int[] arr, List<List<int[]>> adj){
+    static void diag(int s, long[] arr, List<List<int[]>> adj){
         PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> a[1] - b[1]);
         
         pq.add(new int[]{s, 0});
@@ -179,7 +179,7 @@ class Solution {
                 
                 if(dis+weight < arr[next]){
                     arr[next] = dis+weight;
-                    pq.add(new int[]{next, arr[next]});
+                    pq.add(new int[]{next, (int)arr[next]});
                 }
             }
         }
