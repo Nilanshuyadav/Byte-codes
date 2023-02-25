@@ -14,7 +14,7 @@ class Solution {
         }
         
         int min, ans=Integer.MAX_VALUE, al_size;
-        String st = "";
+        int[] st = new int[]{-1, -1};
         List<Integer> al;
         
         for(int ind=0; ind<s.length(); ind++){
@@ -43,10 +43,11 @@ class Solution {
             
             if(min!=-1 && (ind-min+1)<ans){
                 ans = (ind - min + 1);
-                st = s.substring(min, ind+1);
+                st[0] = min;
+                st[1] = ind+1;
             }
         }
         
-        return st;
+        return st[0]==-1 ? "" : s.substring(st[0], st[1]);
     }
 }
