@@ -10,8 +10,6 @@ class Solution {
     
     public int solve(int i, int j, String s1, String s2, int[][] dp){
         if(i==-1 || j==-1){
-            if(i==-1 && j==-1)
-                return 0;
             if(i==-1)
                 return j+1;
             else
