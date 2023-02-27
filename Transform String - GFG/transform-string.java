@@ -28,29 +28,39 @@ class Solution
 {
     int transform (String A, String B)
     {
-        int i=A.length()-1, j=B.length()-1;
+        int i=A.length()-1, j=B.length()-1, cnt=0;
         
-        int[] arr = new int[58];
-        for(int ind=0; ind<=i; ind++)
-            arr[A.charAt(ind)-'A']++;
-        for(int ind=0; ind<=j; ind++)
-            arr[B.charAt(ind)-'A']--;
-            
-        for(int ind=0; ind<58; ind++)
-            if(arr[ind]!=0)
-                return -1;
-           
-        int cnt=0;   
-        while(i>=0 && j>=0){
+        if(notPossible(i, j, A, B))
+            return -1;
+        
+        while(i>=0){
             if(A.charAt(i) == B.charAt(j)){
                 j--;
             }
             else{
                 cnt++;
             }
+            
             i--;
         }
         
         return cnt;
+    }
+    
+    public boolean notPossible(int i, int j, String A, String B){
+        if(i != j)  return true;
+        
+        int[] fre = new int[58];
+        
+        for(int ind=0; ind<=i; ind++){
+            fre[A.charAt(ind) - 'A']++;
+            fre[B.charAt(ind) - 'A']--;
+        }
+        
+        for(int ind=0; ind<58; ind++)
+            if(fre[ind] != 0)
+                return true;
+                
+        return false;        
     }
 }
