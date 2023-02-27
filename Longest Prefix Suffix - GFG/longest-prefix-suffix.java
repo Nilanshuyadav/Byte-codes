@@ -24,21 +24,18 @@ class GFG {
 
 class Solution {
     int lps(String s) {
-        int n = s.length();
-        int[] arr = new int[n];
+        int j=0, i=1, n=s.length(), arr[] = new int[n];
         
-        int j=0;
-        for(int i=1; i<n; i++){
+        while(i<n){
             if(s.charAt(j) == s.charAt(i)){
-                arr[i] = ++j;
+                arr[i++] = ++j;
             }
             else{
-                while(j!=0 && s.charAt(j)!=s.charAt(i)){
-                    j = arr[j-1];
+                if(j==0){
+                    arr[i++] = 0;
                 }
-                
-                if(s.charAt(j) == s.charAt(i)){
-                    arr[i] = ++j;
+                else{
+                    j = arr[j-1];    
                 }
             }
         }
