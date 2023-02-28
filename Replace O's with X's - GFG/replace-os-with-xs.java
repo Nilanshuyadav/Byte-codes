@@ -42,67 +42,59 @@ class GFG{
 class Solution{
     static char[][] fill(int n, int m, char a[][])
     {
-        int row = a.length;
-        int col = a[0].length;
+        Queue<int[]> q = new LinkedList<>();
         
-        for(int ind=0; ind<row; ind++){
-            if(a[ind][0] == 'O')
-                dfs(ind, 0, a);
-            if(a[ind][col-1] == 'O')
-                dfs(ind, col-1, a);
-        }
+        char[][] ans = new char[n][m];
         
-        for(int ind=0; ind<col; ind++){
-            if(a[0][ind] == 'O')
-                dfs(0, ind, a);
-            if(a[row-1][ind] == 'O')
-                dfs(row-1, ind, a);
-        }
-        
-        for(int r=0; r<row; r++){
-            for(int c=0; c<col; c++){
-                if(a[r][c] == 'O')
-                    a[r][c] = 'X';
-                else if(a[r][c] == '*')
-                    a[r][c] = 'O';
+        for(int r=0; r<n; r++){
+            if(a[r][0] == 'O'){
+                q.add(new int[]{r,0});
+                ans[r][0] = 'O';
+            }
+            
+            if(a[r][m-1] == 'O'){
+                q.add(new int[]{r, m-1});
+                ans[r][m-1] = 'O';
             }
         }
         
-        return a;
-    }
-    
-    public static void dfs(int r, int c, char[][] a){
-        int row = a.length;
-        int col = a[0].length;
+        for(int c=1; c<m-1; c++){
+            if(a[0][c] == 'O'){
+                q.add(new int[]{0, c});
+                ans[0][c] = 'O';
+            }
+            
+            if(a[n-1][c] == 'O'){
+                q.add(new int[]{n-1, c});
+                ans[n-1][c] = 'O';
+            }
+        }
         
-        Queue<Pair> q = new LinkedList<>();
-        int[] r_arr={-1,0,1,0}, c_arr={0,1,0,-1};
-        
-        q.add(new Pair(r,c));
-        a[r][c] = '*';
+        int temp[], new_r, new_c, r_arr[]={-1,0,1,0}, c_arr[]={0,1,0,-1};
         
         while(!q.isEmpty()){
-            Pair temp = q.remove();
+            temp = q.remove();
+            
+            ans[temp[0]][temp[1]] = 'O';
             
             for(int ind=0; ind<4; ind++){
-                int new_row = temp.row+r_arr[ind];
-                int new_col = temp.col+c_arr[ind];
+                new_r = temp[0] + r_arr[ind];
+                new_c = temp[1] + c_arr[ind];
                 
-                if(new_row<0 || new_col<0 || new_row>=row || new_col>=col || a[new_row][new_col]!='O')
-                    continue;
-                    
-                a[new_row][new_col] = '*';
-                q.add(new Pair(new_row, new_col));
+                if(new_r<0 || new_c<0 || new_r>=n || new_c>=m || a[new_r][new_c]!='O' || ans[new_r][new_c]=='O')  continue;
+                
+                ans[new_r][new_c] = 'O';
+                q.add(new int[]{new_r, new_c});
             }
         }
-    }
-}
-
-class Pair{
-    int row; 
-    int col;
-    public Pair(int row, int col){
-        this.row =  row;
-        this.col = col;
+        
+        for(int r=0; r<n; r++){
+            for(int c=0; c<m; c++){
+                if(ans[r][c] != 'O')
+                    ans[r][c] = 'X';
+            }
+        }
+        
+        return ans;
     }
 }
