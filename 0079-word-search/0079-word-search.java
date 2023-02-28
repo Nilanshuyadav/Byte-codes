@@ -3,9 +3,11 @@ class Solution {
     public boolean exist(char[][] board, String word) {
         int row = board.length, col = board[0].length, n=word.length();
         
+        Map<String, Boolean> dp = new HashMap<>();
+        
         for(int i=0; i<row; i++){
             for(int j=0; j<col; j++){
-                if(board[i][j] == word.charAt(0) && find(i, j, 1, word, n, row, col, board)){
+                if(board[i][j] == word.charAt(0) && find(i, j, 1, word, n, row, col, board, dp)){
                     return true;
                 }
             }
@@ -14,7 +16,7 @@ class Solution {
         return false;
     }
     
-    public boolean find(int r, int c, int ind, String word, int n, int row, int col, char[][] board){
+    public boolean find(int r, int c, int ind, String word, int n, int row, int col, char[][] board, Map<String, Boolean> dp){
         if(ind == n)    return true;
         
         char ch = word.charAt(ind);
@@ -28,7 +30,7 @@ class Solution {
             
             if(new_r<0 || new_c<0 || new_r>=row || new_c>=col || board[new_r][new_c]!=ch) continue;
             
-            if(find(new_r, new_c, ind+1, word, n, row, col, board))
+            if(find(new_r, new_c, ind+1, word, n, row, col, board, dp))
                 return true;
         }
         
