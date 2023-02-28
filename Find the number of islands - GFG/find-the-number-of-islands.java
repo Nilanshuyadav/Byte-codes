@@ -30,54 +30,45 @@ class GFG {
 class Solution {
     // Function to find the number of islands.
     public int numIslands(char[][] grid) {
-        int row = grid.length;
-        int col = grid[0].length;
-        
-        int ans=0;
+        int row = grid.length, col = grid[0].length;
+        int cnt=0;
         
         for(int r=0; r<row; r++){
             for(int c=0; c<col; c++){
                 if(grid[r][c] == '1'){
-                    ans++;
-                    dfs(r,c,row,col,grid);
-                }
+                    cnt++;
+                    solve(r, c, grid);
+                }    
             }
         }
         
-        
-        return ans;
+        return cnt;
     }
     
-    public void dfs(int r, int c, int row, int col, char[][] grid){
-        int[] r_arr = {1,1,0,-1,-1,-1,0,1}, c_arr = {0,1,1,1,0,-1,-1,-1};
+    public void solve(int r, int c, char[][] grid){
+        int row = grid.length, col = grid[0].length;
         
-        Queue<Pair> q = new LinkedList<>();
+        int[] r_arr = {-1,-1,0,1,1,1,0,-1}, c_arr = {0,1,1,1,0,-1,-1,-1};
         
-        q.add(new Pair(r,c));
+        Queue<int[]> q = new LinkedList<>();
+        
+        q.add(new int[]{r,c});
         grid[r][c] = '0';
         
+        int new_r, new_c, temp[];
+        
         while(!q.isEmpty()){
-            Pair temp = q.remove();
+            temp = q.remove();
             
             for(int ind=0; ind<8; ind++){
-                int new_row = temp.row+r_arr[ind];
-                int new_col = temp.col+c_arr[ind];
+                new_r = temp[0] + r_arr[ind];
+                new_c = temp[1] + c_arr[ind];
                 
-                if(new_row<0 || new_col<0 || new_row>=row || new_col>=col || grid[new_row][new_col]=='0')
-                    continue;
-                    
-                grid[new_row][new_col] = '0';
-                q.add(new Pair(new_row, new_col));
+                if(new_r<0 || new_c<0 || new_r>=row || new_c>=col || grid[new_r][new_c]!='1')   continue;
+                
+                grid[new_r][new_c] = '0';
+                q.add(new int[]{new_r, new_c});
             }
         }
-    }
-}
-
-class Pair{
-    int row; 
-    int col;
-    public Pair(int row, int col){
-        this.row = row;
-        this.col = col;
     }
 }
