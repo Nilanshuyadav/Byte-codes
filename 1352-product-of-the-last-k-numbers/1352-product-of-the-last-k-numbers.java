@@ -1,23 +1,31 @@
 class ProductOfNumbers {
     List<Long> arr;
-    int size;
+    long pro;
+    int size, last_zero;
 
     public ProductOfNumbers() {
         arr = new ArrayList<>();
-        arr.add((long)1);
-        size=1;
+        pro = 1;
+        size=0;
+        last_zero = -1;
     }
     
     public void add(int num) {
-        if(num == 0)    {arr.clear(); arr.add((long)1); size=0;}
-        else    arr.add(arr.get(size-1)*num);
+        if(num == 0)    {last_zero = size; pro = 1;}
+        else    pro = (pro*num);
+        
+        arr.add(pro);
         size++;
     }
     
     public int getProduct(int k) {
-        if(size<=k)  return 0;
+        int pre = size-k-1;
         
-        return (int)(arr.get(size-1)/arr.get(size-k-1));
+        if(last_zero > pre) return 0;
+        
+//         System.out.println(pro+" "+arr.get(pre));
+        
+        return pre==-1 ? (int)pro : (int)(pro/arr.get(pre));
     }
 }
 
