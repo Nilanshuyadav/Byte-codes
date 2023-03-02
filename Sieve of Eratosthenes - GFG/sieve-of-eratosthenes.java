@@ -29,20 +29,21 @@ class GFG
 //User function Template for Java
 class Solution{
     static ArrayList<Integer> sieveOfEratosthenes(int N){
-        boolean[] not_prime = new boolean[N+1];
+        ArrayList<Integer> ans = new ArrayList<>();
         
-        for(int ind=2; ind*ind<=N; ind++){
-            if(!not_prime[ind]){
-                for(int i=ind*ind; i<=N; i += ind)
-                    not_prime[i] = true;
-            }
+        for(int ind=2; ind<=N; ind++){
+            if(isPrime(ind))
+                ans.add(ind);
         }
         
-        ArrayList<Integer> ans = new ArrayList<>();
-        for(int ind=2; ind<=N; ind++)
-            if(!not_prime[ind])
-                ans.add(ind);
-                
-        return ans;        
+        return ans;
+    }
+    
+    static boolean isPrime(int ind){
+        for(int i=2; i<=(int)Math.sqrt(ind); i++){
+            if(ind%i == 0)  return false;
+        }
+        
+        return true;
     }
 }
