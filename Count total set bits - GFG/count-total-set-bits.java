@@ -15,12 +15,11 @@ class Solution{
     //Function to return sum of count of set bits in the integers from 1 to n.
     public static int countSetBits(int n){
         if(n<2) return n;
+    
+        int largestPower = (int)(Math.log(n)/Math.log(2));
+        int largestNumber = (int)Math.pow(2, largestPower);
         
-        int largestTwoPower = (int)(Math.log(n)/Math.log(2));
-        int largestNumber = (int)Math.pow(2,largestTwoPower);
-        
-        return ((largestNumber/2) * largestTwoPower) + (n-largestNumber+1) +
-                countSetBits(n - largestNumber);
+        return ((largestNumber/2)*largestPower) + (n-largestNumber+1) + countSetBits(n-largestNumber);
     }
 }
 
