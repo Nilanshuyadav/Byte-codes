@@ -32,30 +32,30 @@ class Solution
 {
     public List<String> AllPossibleStrings(String s)
     {
-        PriorityQueue<String> pq = new PriorityQueue<>((a,b) -> a.compareTo(b));
-        
-        solve(0, s, new StringBuilder(""), pq);
-        
         List<String> ans = new ArrayList<>();
+        int n = s.length();
+        int number = (1<<n) - 1, k=n;
         
-        while(!pq.isEmpty()){
-            ans.add(pq.remove());
+        StringBuilder sb = new StringBuilder("");
+        int num=0;
+        
+        for(int ind=1; ind<=number; ind++){
+            while(k-->0){
+                if((ind&(1<<num)) > 0){
+                    sb.insert(0, s.charAt(n-num-1));
+                }
+                
+                num++;
+            }
+            
+            ans.add(sb.toString());
+            num = 0;
+            k = n;
+            sb.setLength(0);
         }
+        
+        Collections.sort(ans);
         
         return ans;
-    }
-    
-    public void solve(int ind, String s, StringBuilder sb, PriorityQueue<String> pq){
-        if(ind == s.length()){
-            if(sb.length()>0)  pq.add(sb.toString());
-            return;
-        }
-        
-        sb.append(s.charAt(ind));
-        solve(ind+1, s, sb, pq);
-        
-        sb.deleteCharAt(sb.length()-1);
-        solve(ind+1, s, sb, pq);
-        
     }
 }
