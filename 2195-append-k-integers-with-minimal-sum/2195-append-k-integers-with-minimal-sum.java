@@ -11,9 +11,16 @@ class Solution {
                 ind++;
             
             if(nums[ind] != temp){
-                cnt += temp++;
+                h = Math.min((temp+temp_k-1), nums[ind]-1);
+                l = temp-1;
+
+                h_sum = (h*(h+1))/2;
+                l_sum = (l*(l+1))/2;
+
+                cnt += (h_sum - l_sum);
                 
-                temp_k--;
+                temp_k -= h-l;
+                temp = nums[ind++]+1;
             }
             else{
                 ind++;
