@@ -31,56 +31,65 @@ class FindMinCost
 class Solution {
     public int maxArea(int M[][], int n, int m) {
         int[] arr = new int[m];
-        int max = 0;
+        int max=0;
         
-        for(int r=0; r<n; r++){
-            for(int c=0; c<m; c++){
-                if(M[r][c] == 0)
-                    arr[c] = 0;
+        for(int ind=0; ind<n; ind++){
+            for(int i=0; i<m; i++){
+                if(M[ind][i] == 0)
+                    arr[i] = 0;
                 else
-                    arr[c] += 1;
+                    arr[i] += M[ind][i];
             }
             
-            max = Math.max(max, findarea(arr, m));
+            max = Math.max(max, solve(arr));
         }
         
         return max;
     }
     
-    public int findarea(int[] arr, int n){
-        int[] pre, suff;
+    public int solve(int[] arr){
+        Stack<int[]> st = new Stack<>();
+        int n = arr.length;
         
-        pre = findNearestSmaller(0, n, 1, arr, n);
-        suff = findNearestSmaller(n-1, -1, -1, arr, n);
+        int[] left = new int[n], right = new int[n];
         
-        int temp, max = -1;
+        st.push(new int[]{-1, -1});
         for(int ind=0; ind<n; ind++){
-            temp = (suff[ind]-pre[ind]-1)*arr[ind];
-            max = Math.max(max, temp);
-        }
-        
-        return max;
-    }
-    
-    public int[] findNearestSmaller(int s, int e, int add, int[] arr, int n){
-        int[] res = new int[n];
-        Stack<Integer> st = new Stack<>();
-        
-        if(add<0){
-            st.add(n);
-        }
-        else{
-            st.add(-1);
-        }
-        
-        for(int ind=s; ind!=e; ind += add){
-            while(st.size()>1 && arr[st.peek()]>=arr[ind])
-                st.pop();
+            if(st.size()==1){
+                left[ind] = st.peek()[0];
+            }
+            else{
+                while(st.size()>1 && st.peek()[1]>=arr[ind])    st.pop();
+                
+                left[ind] = st.peek()[0];
+            }
             
-            res[ind] = st.peek();    
-            st.add(ind);    
+            st.push(new int[]{ind, arr[ind]});
         }
         
-        return res;
+        st.clear();
+        
+        st.push(new int[]{n, -1});
+        for(int ind=n-1; ind>=0; ind--){
+            if(st.size()==1){
+                right[ind] = st.peek()[0];
+            }
+            else{
+                while(st.size()>1 && st.peek()[1]>=arr[ind])    st.pop();
+                
+                right[ind] = st.peek()[0];
+            }
+            
+            st.push(new int[]{ind, arr[ind]});
+        }
+        
+        
+        int cnt=1;
+        
+        for(int ind=0; ind<n; ind++){
+            cnt = Math.max(cnt, (right[ind]-left[ind]-1) * arr[ind]);
+        }
+        
+        return cnt;
     }
 }
