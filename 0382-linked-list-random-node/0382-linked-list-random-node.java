@@ -9,22 +9,29 @@
  * }
  */
 class Solution {
-    List<Integer> al;
     int size;
+    ListNode curr, h;
+    
     public Solution(ListNode head) {
-        al = new ArrayList<>();
+        curr = head;
+        h=head;
         
-        while(head!=null){
-            al.add(head.val);
-            head = head.next;
+        while(curr != null){
+            size++;
+            curr = curr.next;
         }
         
-        size = al.size();
     }
     
     public int getRandom() {
         int temp = (int)(Math.random()*size);
-        return al.get(temp);
+        
+        curr=h;
+        while(temp-->0){
+            curr = curr.next;
+        }
+        
+        return curr.val;
     }
 }
 
