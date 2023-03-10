@@ -52,9 +52,11 @@ class Solution
             
         long[] ans = new long[n];
         
+        if(zero>1)  return ans;
+        
         for(int ind=0; ind<n; ind++){
             if(zero>0){
-                if(nums[ind]!=0 || zero>1)
+                if(nums[ind]!=0)
                     ans[ind] = 0;
                 else 
                     ans[ind] = product;   
