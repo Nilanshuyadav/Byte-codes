@@ -43,7 +43,7 @@ class Solution
         int zero = 0;
         for(int ind : nums){
             if(ind==0){
-                zero++;
+                zero = Math.min(2, ++zero);
             }
             else{
                 product *= ind;
