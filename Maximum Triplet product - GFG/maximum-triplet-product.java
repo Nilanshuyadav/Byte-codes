@@ -13,14 +13,36 @@ import java.util.*;
 class Solution {
     Long maxTripletProduct(Long arr[], int n)
     {
-        Arrays.sort(arr);
+        long lar = Long.MIN_VALUE, slar = Long.MIN_VALUE, tlar = Long.MIN_VALUE;
+        long small = Long.MAX_VALUE, ssmall = Long.MAX_VALUE;
         
-        long pro1=0, pro2=0;
         
-        pro1 = arr[n-1]*arr[n-2]*arr[n-3];
-        pro2 = arr[0]*arr[1]*arr[n-1];
+        for(long ind : arr){
+            if(lar<=ind){
+                tlar = slar;
+                slar = lar;
+                lar = ind;
+            }
+            else if(slar<=ind){
+                tlar = slar;
+                slar = ind;
+            }
+            else if(tlar<=ind){
+                tlar = ind;
+            }
+            
+            
+            if(ind<=small){
+                ssmall = small;
+                small = ind;
+            }
+            else if(ind<=ssmall){
+                ssmall = ind;
+            }
+        }
         
-        return Math.max(pro1, pro2);
+        
+        return Math.max(lar*slar*tlar, lar*small*ssmall);
     }
 }
 
