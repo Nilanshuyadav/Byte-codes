@@ -47,19 +47,18 @@ class Solution
         
         int l=max, h=total+1, ans=-1, m, cnt;
         
-        while(l<=h){
+        while(l<h){
             m = l + (h-l)/2;
             
             cnt = check(A, N, m, M);
             
             if(cnt <= M){
-                ans=m;
-                h=m-1;
+                h=m;
             }
-            if(cnt>M) l=m+1;
+            else l=m+1;
         }
         
-        return ans;
+        return h==total+1 ? -1 : h;
     }
     
     public static int check(int[] A, int N, int m, int M){
