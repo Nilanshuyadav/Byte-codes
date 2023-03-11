@@ -53,7 +53,6 @@ class Solution
             cnt = check(A, N, m, M);
             
             if(cnt <= M){
-                // ans = Math.min(ans, m);
                 ans=m;
                 h=m-1;
             }
