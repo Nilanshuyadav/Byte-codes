@@ -11,50 +11,43 @@
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         int n = lists.length;
-       
+        
+        if(n==0)    return null;
+        
         ListNode dummy = new ListNode();
         
-        solve(dummy, lists, n-1);
-        
-        return dummy.next;
+        return solve(0, lists, n);
     }
     
-    public void solve(ListNode dummy, ListNode[] lists, int ind){
-        if(ind == -1)
-            return;
-        
-        if(ind==0){
-            dummy.next = lists[ind];
-            return;
+    public ListNode solve(int ind, ListNode[] lists, int n){
+        if(ind == n-1){
+            return lists[ind];
         }
         
-        solve(dummy, lists, ind-1);
+        ListNode dummy = new ListNode(), curr1 = lists[ind], curr2 = solve(ind+1, lists, n), curr=dummy;
         
-        ListNode curr = dummy, currA = dummy.next, currB = lists[ind];
-        
-        while(currA!=null && currB!=null){
-            if(currA.val<currB.val){
-                curr.next = currA;
-                currA = currA.next;
+        while(curr1!=null && curr2!=null){
+            if(curr1.val < curr2.val){
+                curr.next = curr1;
+                
+                curr = curr1;
+                curr1 = curr1.next;
             }
             else{
-                curr.next = currB;
-                currB = currB.next;
+                curr.next = curr2;
+                
+                curr = curr2;
+                curr2 = curr2.next;
             }
-            
-            curr = curr.next;
         }
         
-        while(currA!=null){
-            curr.next = currA;
-            currA = currA.next;
-            curr = curr.next;
+        if(curr1 != null){
+            curr.next = curr1;
+        }
+        else{
+            curr.next = curr2;
         }
         
-        while(currB!=null){
-            curr.next = currB;
-            currB = currB.next;
-            curr = curr.next;
-        }
+        return dummy.next;
     }
 }
