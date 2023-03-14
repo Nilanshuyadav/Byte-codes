@@ -17,7 +17,7 @@ class Solution {
     String ans;
     public String smallestFromLeaf(TreeNode root) {
         StringBuilder sb = new StringBuilder("");
-        ans = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
+        ans = "zzzzzzzzzzzzz";
         
         solve(root, sb);
         return ans;
