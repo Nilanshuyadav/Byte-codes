@@ -16,7 +16,6 @@ class Solution {
         
         total = 0;
         int min = Integer.MAX_VALUE;
-        map.put((long)0, -1);
         for(int ind=0; ind<n; ind++){
             total += nums[ind];
             
