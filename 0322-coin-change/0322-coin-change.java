@@ -3,14 +3,14 @@ class Solution {
     public int coinChange(int[] coins, int amount) {
         
         int n = coins.length;
-        int[][] dp = new int[n][amount+1];
-        
-        for(int ind[] : dp)
-            Arrays.fill(ind, max);
+        int[] dp = new int[amount+1], curr = new int[amount+1], temp;
+    
+        Arrays.fill(dp, max);
+        Arrays.fill(curr, max);
         
         for(int ind=0; ind<=amount; ind++){
             if(ind%coins[0] == 0){
-                dp[0][ind] = ind/coins[0];
+                dp[ind] = ind/coins[0];
             }
         }
         
@@ -22,17 +22,23 @@ class Solution {
                 pick = max;
 
                 if(amo>=coins[ind]){
-                    pick = 1 + dp[ind][amo-coins[ind]];
+                    pick = 1 + curr[amo-coins[ind]];
                 }
 
-                not_pick = dp[ind-1][amo];
+                not_pick = dp[amo];
 
 
-                dp[ind][amo] = Math.min(pick, not_pick);
+                curr[amo] = Math.min(pick, not_pick);
             }
+            
+            temp = dp;
+            dp = curr;
+            curr = temp;
+            
+            Arrays.fill(curr, max);
         }
         
-        return dp[n-1][amount]==max? -1 : dp[n-1][amount];
+        return dp[amount]==max? -1 : dp[amount];
     }
     
     public int solve(int ind, int[] coins, int amount, int[][] dp){
