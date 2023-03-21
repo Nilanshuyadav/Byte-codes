@@ -57,12 +57,12 @@ class GFG {
 
 class Solution {
     public static ArrayList<Integer> getDistinctDifference(int N, int[] A) {
-        Set<Integer> set = new HashSet<>();
-        
         ArrayList<Integer> ans = new ArrayList<>();
         
+        Set<Integer> set = new HashSet<>();
+        
         for(int ind=0; ind<N; ind++){
-            ans.add(set.size());
+            ans.add(set.size());    
             
             set.add(A[ind]);
         }
@@ -70,7 +70,6 @@ class Solution {
         set.clear();
         for(int ind=N-1; ind>=0; ind--){
             ans.set(ind, ans.get(ind)-set.size());
-            
             set.add(A[ind]);
         }
         
