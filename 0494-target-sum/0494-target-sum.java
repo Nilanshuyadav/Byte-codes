@@ -1,13 +1,22 @@
 class Solution {
     public int findTargetSumWays(int[] nums, int target) {
-        return solve(0, nums, nums.length, 0, target);
+        Map<String, Integer> dp = new HashMap<>();
+        
+        return solve(0, nums, nums.length, 0, target, dp);
     }
     
-    public int solve(int ind, int nums[], int n, int sum, int target){
+    public int solve(int ind, int nums[], int n, int sum, int target, Map<String, Integer> dp){
         if(ind == n){
             return sum==target? 1 : 0;
         }
         
-        return solve(ind+1, nums, n, sum+nums[ind], target)+solve(ind+1, nums, n, sum-nums[ind], target);
+        String st = ""+ind+","+sum;
+        
+        if(dp.containsKey(st))
+            return dp.get(st);
+        
+        dp.put(st, solve(ind+1, nums, n, sum+nums[ind], target, dp)+solve(ind+1, nums, n, sum-nums[ind], target, dp));
+        
+        return dp.get(st);
     }
 }
