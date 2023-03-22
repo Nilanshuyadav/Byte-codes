@@ -35,7 +35,12 @@ class GFG{
 class Solution 
 { 
     static long solve(int X,int Y, String S)
-	{    
+	{
+        
+        return X>Y ? solve_helper(S, X, Y, 'p', 'r') : solve_helper(S, Y, X, 'r', 'p');
+	}
+	
+	static long solve_helper(String S, int X, int Y, char a, char b){
 	    Stack<Integer> st = new Stack<>();
 	    long cnt=0;
 	    long ans=0;
@@ -45,103 +50,53 @@ class Solution
 	    boolean[] vis = new boolean[n];
 	    char ch;
         
-        if(X>Y){
-            for(int ind=0; ind<n; ind++){
-                ch = S.charAt(ind);
-                
-                if(ch!='p' && ch!='r'){
-                    st.clear();
-                    continue;
-                }
-                else if(ch=='p'){
-                    st.add(ind);
-                }
-                else if(!st.isEmpty()){
-                    cnt++;
-                    vis[st.pop()] = true;
-                    vis[ind] = true;
-                }
-            }    
+        for(int ind=0; ind<n; ind++){
+            ch = S.charAt(ind);
             
-            st.clear();
-            
-            ans += (X*cnt);
-            cnt=0;
-            
-            for(int ind=0; ind<n; ind++){
-                if(!vis[ind]){
-                    sb.append(S.charAt(ind));
-                }
+            if(ch!=a && ch!=b){
+                st.clear();
+                continue;
             }
-            
-            
-            for(int ind=0; ind<sb.length(); ind++){
-                ch = sb.charAt(ind);
-                
-                if(ch!='p' && ch!='r'){
-                    st.clear();
-                    continue;
-                }
-                else if(ch=='r'){
-                    st.add(ind);
-                }
-                else if(!st.isEmpty()){
-                    cnt++;
-                    vis[st.pop()] = true;
-                    vis[ind] = true;
-                }
+            else if(ch==a){
+                st.add(ind);
             }
-            
-            ans += (Y*cnt);
+            else if(!st.isEmpty()){
+                cnt++;
+                vis[st.pop()] = true;
+                vis[ind] = true;
+            }
+        }    
+        
+        st.clear();
+        
+        ans += (X*cnt);
+        cnt=0;
+        
+        for(int ind=0; ind<n; ind++){
+            if(!vis[ind]){
+                sb.append(S.charAt(ind));
+            }
         }
-        else{
-            for(int ind=0; ind<n; ind++){
-                ch = S.charAt(ind);
-                
-                if(ch!='p' && ch!='r'){
-                    st.clear();
-                    continue;
-                }
-                else if(ch=='r'){
-                    st.add(ind);
-                }
-                else if(!st.isEmpty()){
-                    cnt++;
-                    vis[st.pop()] = true;
-                    vis[ind] = true;
-                }
+        
+        
+        for(int ind=0; ind<sb.length(); ind++){
+            ch = sb.charAt(ind);
+            
+            if(ch!=a && ch!=b){
+                st.clear();
+                continue;
             }
-            st.clear();
-            
-            ans += (Y*cnt);
-            cnt=0;
-            
-            for(int ind=0; ind<n; ind++){
-                if(!vis[ind]){
-                    sb.append(S.charAt(ind));
-                }
+            else if(ch==b){
+                st.add(ind);
             }
-            
-            
-            for(int ind=0; ind<sb.length(); ind++){
-                ch = sb.charAt(ind);
-                
-                if(ch!='p' && ch!='r'){
-                    st.clear();
-                    continue;
-                }
-                else if(ch=='p'){
-                    st.add(ind);
-                }
-                else if(!st.isEmpty()){
-                    cnt++;
-                    vis[st.pop()] = true;
-                    vis[ind] = true;
-                }
+            else if(!st.isEmpty()){
+                cnt++;
+                vis[st.pop()] = true;
+                vis[ind] = true;
             }
-            
-            ans += (X*cnt);
         }
+        
+        ans += (Y*cnt);
         
         return ans;
 	}
