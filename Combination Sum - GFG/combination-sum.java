@@ -101,24 +101,11 @@ class Solution
             return;
         }
         
-        // if(arr.get(ind) <= target){
-        //     temp.add(arr.get(ind));
-        //     solve(ind, arr, target-arr.get(ind), temp);
-        //     temp.remove(temp.size()-1);
-        // }
-        
-        int cnt=0;
-        for(int inx=0; inx<target/arr.get(ind); inx++){
+        if(arr.get(ind) <= target){
             temp.add(arr.get(ind));
-            cnt += arr.get(ind);
+            solve(ind, arr, target-arr.get(ind), temp);
+            temp.remove(temp.size()-1);
         }
-        
-        for(int inx=0; inx<target/arr.get(ind); inx++){
-            solve(ind+1, arr, target-cnt, temp);
-            
-            cnt -= temp.remove(temp.size()-1);
-        }
-        
         
         solve(ind+1, arr, target, temp);
     }
