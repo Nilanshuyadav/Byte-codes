@@ -22,6 +22,6 @@ class Solution {
             }
         }
         
-        return cnt + half/2;
+        return cnt;
     }
 }
