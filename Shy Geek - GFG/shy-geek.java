@@ -83,9 +83,9 @@ class Solution{
             while(l<=h){
                 m = l+(h-l)/2;
                 
-                // if(cnt>=50)
-                //     return -1;
-                // cnt++;    
+                if(cnt>=50)
+                    return -1;
+                cnt++;    
                 
                 temp = shop.get(m);
                 
