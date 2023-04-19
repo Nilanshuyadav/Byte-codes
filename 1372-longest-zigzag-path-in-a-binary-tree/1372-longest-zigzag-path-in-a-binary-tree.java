@@ -16,28 +16,24 @@
 class Solution {
     int max;
     public int longestZigZag(TreeNode root) {
-        max = 0;
-        return Math.max(solve(root,-1), max)-1;
+        max = Integer.MIN_VALUE;
+        
+        int left = solve(root.left, 'l') + 1;
+        int right = solve(root.right, 'r') + 1;
+        
+        return Math.max(max, Math.max(left, right)) - 1;
     }
     
-    public int solve(TreeNode root, int left_right){
-        int right=0, left=0;
-        
-        if(root.left != null)
-            left = solve(root.left, 0);
-        
-        if(root.right != null)
-            right = solve(root.right, 1);
-        
-        if(right>left && left_right==1){
-            max = Math.max(max, 1+right);
-            right=0;
-        }
-        else if(left>right && left_right==0){
-            max = Math.max(max, 1+left);
-            left=0;
+    public int solve(TreeNode node, Character left_right){
+        if(node == null){
+            return 0;
         }
         
-        return Math.max(left, right)+1;
+        int left = solve(node.left, 'l') + 1;
+        int right = solve(node.right, 'r') + 1;
+        
+        max = Math.max(max, Math.max(left, right));
+        
+        return left_right=='l' ? Math.max(1, right) : Math.max(1, left);
     }
 }
