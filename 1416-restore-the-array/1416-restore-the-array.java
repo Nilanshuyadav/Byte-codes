@@ -1,9 +1,29 @@
 class Solution {
     public int numberOfArrays(String s, int k) {
-        int[] dp = new int[s.length()];
-        Arrays.fill(dp, -1);
+        int n = s.length();
+        int[] dp = new int[n+1];
         
-        return solve(0, s, k, dp);
+        dp[n] = 1;
+        long sum;
+        StringBuilder sb;
+        for(int ind=n-1; ind>=0; ind--){
+            sum = 0;
+            sb = new StringBuilder("");
+            
+            for(int inx=ind; inx<n; inx++){
+                sb.append(s.charAt(inx));
+                
+                if(!isValid(sb.toString(), k)){
+                    break;
+                }
+                
+                sum = (sum + dp[inx+1])%1000000007;
+            }
+            
+            dp[ind] = (int)sum;
+        }
+        
+        return dp[0];
     }
     
     public int solve(int ind, String s, int k, int[] dp){
