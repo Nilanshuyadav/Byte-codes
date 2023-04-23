@@ -59,17 +59,20 @@ class Solution {
     public static int minimumNumber(int n, int[] arr) {
         // code here
         Set<Integer> set = new HashSet<>();
-        Arrays.sort(arr);
+        int min=Integer.MAX_VALUE;
         
         for(int ind : arr){
-            if(set.size() == 0)
-                set.add(ind);
-            else if(ind%arr[0] != 0){
+            min = Math.min(min, ind);
+        }
+        
+        set.add(min);
+        for(int ind : arr){
+            if(ind%min != 0){
                 set.add(ind);
             }    
         }
         
-        return set.size()==1 ? arr[0] : 1;
+        return set.size()==1 ? min : 1;
     }
 }
         
