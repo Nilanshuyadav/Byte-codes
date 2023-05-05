@@ -12,9 +12,15 @@ class Solution {
                 al.add(ind);
                 temp = ind-k;
                 
-                pos = findPos(al, temp);
+                while(al.get(0) <= temp){
+                    al.remove(0);
+                }
                 
-                max = Math.max(max, al.size()-pos);
+                max = Math.max(max, al.size());
+                
+//                 pos = findPos(al, temp);
+                
+//                 max = Math.max(max, al.size()-pos);
             }
         }
         
