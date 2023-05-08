@@ -12,29 +12,7 @@ class Solution
 {
     public static void sort012(int a[], int n)
     {
-        int ind=0, zero = 0, two = n-1;
-        
-        while(ind<=two){
-            if(a[ind] == 0){
-                swap(a, ind, zero);
-                zero++;
-            }
-            else if(a[ind] == 2){
-                swap(a, ind, two);
-                two--;
-                ind--;
-            }
-            
-            ind++;
-        }
-    }
-    
-    public static void swap(int[] a, int i, int j){
-        int temp;
-        
-        temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
+        Arrays.sort(a);    
     }
 }
 
