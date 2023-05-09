@@ -33,51 +33,54 @@ class GFG{
 
 class Solution{
     static List<Integer> nextPermutation(int N, int arr[]){
-        int index1=-1, index2=-1;
+        int index=N-1;
         
-        for(int ind=N-1; ind>0; ind--){
-            if(arr[ind-1]<arr[ind]){
-                index1 = ind-1;
-                break;
-            }    
+        List<Integer> ans = new ArrayList<>();
+        
+        while(index>0 && arr[index-1] >= arr[index]){
+            index--;
         }
         
-        List<Integer> res = new ArrayList<>();
-        
-        if(index1==-1){
-            for(int ind=N-1; ind>=0; ind--)
-                res.add(arr[ind]);
+        if(index == 0){
+            reverse(0, N-1, arr);
             
-            return res;    
-        }
-        
-        for(int ind=N-1; ind>=0; ind--){
-            if(arr[ind]>arr[index1]){
-                arr[ind] = arr[ind]+arr[index1];
-                arr[index1] = arr[ind]-arr[index1];
-                arr[ind] = arr[ind]-arr[index1];
-                
-                reverse(index1+1, arr);
-                break;
+            for(int ind : arr){
+                ans.add(ind);
             }
+            
+            return ans;
         }
         
-        for(int ind=0; ind<N; ind++)
-            res.add(arr[ind]);
-            
-        return res;    
+        index--;
+        
+        int index2=N-1;
+        
+        while(arr[index] >= arr[index2]){
+            index2--;
+        }
+        
+        int temp = arr[index];
+        arr[index] = arr[index2];
+        arr[index2] = temp;
+        
+        reverse(index+1, N-1, arr);
+        
+        for(int ind : arr){
+            ans.add(ind);
+        }
+        
+        return ans;
     }
     
-    public static void reverse(int from, int[] arr){
-        int l=from, h=arr.length-1;
-        
-        while(l<h){
-            arr[l] = arr[l]+arr[h];
-            arr[h] = arr[l]-arr[h];
-            arr[l] = arr[l]-arr[h];
+    public static void reverse(int s, int e, int[] arr){
+        int temp;
+        while(s<e){
+            temp = arr[s];
+            arr[s] = arr[e];
+            arr[e] = temp;
             
-            l++;
-            h--;
+            s++;
+            e--;
         }
     }
 }
