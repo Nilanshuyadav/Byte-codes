@@ -11,11 +11,21 @@ import java.util.*;
 class Solution{
     static int subsetXOR(int arr[], int N, int K) {
         // code here
-        // int[][] dp = new int[128];
+        int[][] dp = new int[N][128];
         
-        // for(int ind=0; ind<)
+        for(int ind=0; ind<128; ind++){
+            if((ind^arr[0])==K || ind==K){
+                dp[0][ind] = 1;
+            }
+        }
         
-        return solve(N-1, arr, 0, K);
+        for(int i=1; i<N; i++){
+            for(int j=0; j<128; j++){
+                dp[i][j] = dp[i-1][j]+dp[i-1][j^arr[i]];
+            }
+        }
+        
+        return dp[N-1][0];
     }
     
     static int solve(int ind, int[] arr, int xor, int K){
