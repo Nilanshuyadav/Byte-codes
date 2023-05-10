@@ -39,31 +39,35 @@ class Solution
 {
     public int[][] overlappedInterval(int[][] Intervals)
     {
-        Arrays.sort(Intervals, new my_comparator());
-        int start=Intervals[0][0], end=Intervals[0][0];
-        List<int[]> res = new ArrayList<>();
+        // Code here // Code here
         
-        for(int ind=0; ind<Intervals.length; ind++){
-            if(Intervals[ind][0]<=end){
-                end = Math.max(end, Intervals[ind][1]);
-                continue;
+        Arrays.sort(Intervals, (a,b) -> a[0]!=b[0] ? a[0]-b[0] : a[1]-b[1]);
+        
+        int start=Intervals[0][0], end = Intervals[0][1];
+        
+        List<int[]> al = new ArrayList<>();
+        
+        for(int ind[] : Intervals){
+            if(end<ind[0]){
+                al.add(new int[]{start, end});
+                start = ind[0];
+                end = ind[1];
             }
             
-            res.add(new int[]{start, end});
-            start = Intervals[ind][0];
-            end = Intervals[ind][1];
+            end = Math.max(end, ind[1]);
         }
         
-        res.add(new int[]{start, end});
+        al.add(new int[]{start, end});
         
-        return res.toArray(new int[res.size()][]);
-    }
-}
-
-class my_comparator implements Comparator<int[]>{
-    public int compare(int[] a, int[] b){
-        if(a[0] != b[0])
-            return a[0]-b[0];
-        return a[1]-b[1];    
+        int[][] arr = new int[al.size()][2];
+        int k=0;
+        
+        for(int ind[] : al){
+            arr[k][0] = ind[0];
+            arr[k][1] = ind[1];
+            k++;
+        }
+        
+        return arr;
     }
 }
