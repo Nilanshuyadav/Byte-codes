@@ -30,38 +30,44 @@ class GFG {
 // User function Template for Java
 
 class Solve {
-    int[] findTwoElement(int A[], int n) {
-        int xor = 0;
+    int[] findTwoElement(int arr[], int n) {
+        // code here
+        int xor=0;
         
         for(int ind=0; ind<n; ind++){
-            xor ^= A[ind];
+            xor ^= arr[ind];
             xor ^= (ind+1);
         }
         
         int mask = xor&(-xor);
         
-        int same=0, not_same=0;
-        for(int ind=0; ind<n; ind++){
-            if((mask&A[ind])>0)
-                same ^= A[ind];
-            else
-                not_same ^= A[ind];
-                
-            if((mask&(ind+1))>0)
-                same ^= (ind+1);
-            else
-                not_same ^= (ind+1);            
-        }
-        
+        int one=0, zero=0;
         
         for(int ind=0; ind<n; ind++){
-            if(A[ind]==same){
-                return new int[]{same, not_same};
+            if((arr[ind]&mask) != 0){
+                one ^= arr[ind];
             }
-            if(A[ind]==not_same)
-                return new int[]{not_same, same};
+            else{
+                zero ^= arr[ind];
+            }
+            
+            if(((ind+1)&mask) != 0){
+                one ^= (ind+1);
+            }
+            else{
+                zero ^= (ind+1);
+            }
         }
         
-        return new int[]{0,0};
+        for(int ind : arr){
+            if(ind == one){
+                return new int[]{one, zero};
+            }
+            else if(ind == zero){
+                return new int[]{zero, one};
+            }
+        }
+        
+        return new int[2];
     }
 }
