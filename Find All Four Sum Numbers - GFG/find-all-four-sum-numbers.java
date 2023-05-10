@@ -46,49 +46,45 @@ class GFG {
 
 class Solution {
     public ArrayList<ArrayList<Integer>> fourSum(int[] arr, int k) {
+        // code here
         ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
         
         Arrays.sort(arr);
-        int n = arr.length, toCheck;
+        int n = arr.length;
         
-        for(int ind=0; ind<n-3; ind++){
-            
-            for(int i=ind+1; i<n-2; i++){
-                toCheck = k-arr[ind]-arr[i];
+        int i, j, sum, toFind;
+        
+        for(int a=0; a<n-3; a++){
+            for(int b=a+1; b<n-2; b++){
+                toFind = k-arr[a]-arr[b];
                 
-                int l=i+1, h=n-1;
+                i = b+1;
+                j = n-1;
                 
-                while(l<h){
-                    if(arr[l]+arr[h] == toCheck){
-                        ArrayList<Integer> temp = new ArrayList<>();
+                while(i<j){
+                    sum = arr[i]+arr[j];
+                    
+                    if(sum == toFind){
+                        ans.add(new ArrayList<>(Arrays.asList(arr[a], arr[b], arr[i], arr[j])));
                         
-                        temp.add(arr[ind]);
-                        temp.add(arr[i]);
-                        temp.add(arr[l]);
-                        temp.add(arr[h]);
+                        while(i<j && arr[i]==arr[i+1]) i++;
+                        while(i<j && arr[j]==arr[j-1]) j--;
                         
-                        ans.add(temp);
-                        
-                        while(l<h && arr[l]==arr[l+1]) l++;
-                        while(l<h && arr[h]==arr[h-1]) h--;
-                        
-                        l++;
-                        h--;
+                        i++;
+                        j--;
                     }
-                    else if(arr[l]+arr[h] < toCheck){
-                        while(l<h && arr[l]==arr[l+1]) l++;
-                        l++;
+                    else if(sum < toFind){
+                        i++;
                     }
                     else{
-                        while(l<h && arr[h]==arr[h-1]) h--;
-                        h--;
+                        j--;
                     }
                 }
                 
-                while(i<n-2 && arr[i]==arr[i+1]) i++;
+                while(b<n-2 && arr[b]==arr[b+1]) b++;
             }
             
-            while(ind<n-3 && arr[ind]==arr[ind+1]) ind++;
+            while(a<n-3 && arr[a]==arr[a+1]) a++;
         }
         
         return ans;
