@@ -40,8 +40,8 @@ class Solution
             j=N-1;
             
             toFind = X-A[ind];
-            min = Integer.MAX_VALUE;
-            max = Integer.MIN_VALUE;
+            min = (int)1e8;
+            max = (int)(-1e8);
             
             while(i<j){
                 sum = A[i]+A[j];
@@ -58,13 +58,13 @@ class Solution
                 
             }
             
-            if(min_diff > Math.abs(toFind-max)){
-                min_diff = Math.abs(toFind-max);
+            if(min_diff > toFind-max){
+                min_diff = toFind-max;
                 ans = X-(toFind-max);
             }
             
-            if(min_diff > Math.abs(min-toFind)){
-                min_diff = Math.abs(min-toFind);
+            if(min_diff > min-toFind){
+                min_diff = min-toFind;
                 ans = X+(min-toFind);
             }
         }
