@@ -7,7 +7,7 @@
 <pre><span style="font-size:18px"><strong>Input:
 </strong>N = 5, K = 3
 A[] = {0,0,2,1,1}
-<strong>Output: </strong>0 0 1 2 $<strong>
+<strong>Output: </strong>0 0 1 2 <strong>
 Explanation: </strong>Sum of 0, 0, 1, 2 is equal
 to K.</span>
 </pre>
@@ -17,7 +17,9 @@ to K.</span>
 <pre><span style="font-size:18px"><strong>Input:
 </strong>N = 7, K = 23
 A[] = {10,2,3,4,5,7,8}
-<strong>Output: </strong>2 3 8 10 $2 4 7 10 $3 5 7 8 $<strong>
+<strong>Output: </strong>2 3 8 10 
+&nbsp;       2 4 7 10 
+&nbsp;       3 5 7 8 <strong>
 Explanation: </strong>Sum of 2, 3, 8, 10 = 23,
 sum of 2, 4, 7, 10 = 23 and sum of 3,
 5, 7, 8 = 23.</span></pre>
