@@ -28,13 +28,13 @@ class Solution{
         return dp[N-1][0];
     }
     
-    static int solve(int ind, int[] arr, int xor, int K){
-        if(ind == 0){
-            return (xor^arr[0])==K || xor==K ? 1:0;
-        }
+    // static int solve(int ind, int[] arr, int xor, int K){
+    //     if(ind == 0){
+    //         return (xor^arr[0])==K || xor==K ? 1:0;
+    //     }
         
-        return solve(ind-1, arr, xor, K) + solve(ind-1, arr, xor^arr[ind], K);
-    }
+    //     return solve(ind-1, arr, xor, K) + solve(ind-1, arr, xor^arr[ind], K);
+    // }
 }
 
 //{ Driver Code Starts.
