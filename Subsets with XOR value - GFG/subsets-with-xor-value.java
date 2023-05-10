@@ -11,12 +11,16 @@ import java.util.*;
 class Solution{
     static int subsetXOR(int arr[], int N, int K) {
         // code here
+        // int[][] dp = new int[128];
+        
+        // for(int ind=0; ind<)
+        
         return solve(N-1, arr, 0, K);
     }
     
     static int solve(int ind, int[] arr, int xor, int K){
-        if(ind == -1){
-            return xor==K ? 1:0;
+        if(ind == 0){
+            return (xor^arr[0])==K || xor==K ? 1:0;
         }
         
         return solve(ind-1, arr, xor, K) + solve(ind-1, arr, xor^arr[ind], K);
