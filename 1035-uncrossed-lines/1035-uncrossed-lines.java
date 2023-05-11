@@ -12,12 +12,28 @@ class Solution {
             map.get(nums2[ind]).add(ind);
         }
         
-        int[][] dp  = new int[501][501];
-        for(int ind[] : dp){
-            Arrays.fill(ind, -1);
+        int[][] dp  = new int[n+1][m+1];
+        
+        for(int r=n-1; r>=0; r--){
+            for(int c=m; c>=0; c--){
+                int max = 0;
+                
+                if(map.containsKey(nums1[r])){
+                    for(int inx : map.get(nums1[r])){
+                        if(inx > c-1){
+                            max = Math.max(max, dp[r+1][inx+1]+1);
+                            break;
+                        }
+                    }
+                }
+                
+                max = Math.max(max, dp[r+1][c]);
+                
+                dp[r][c] = max;
+            }
         }
         
-        return solve(0, nums1, map, -1, dp);
+        return dp[0][0];
     }
     
     public int solve(int ind, int[] nums, Map<Integer, List<Integer>> map, int pre, int[][] dp){
