@@ -1,9 +1,19 @@
 class Solution {
     public int countGoodStrings(int low, int high, int zero, int one) {
-        long[] dp = new long[high+1];
-        Arrays.fill(dp, -1);
+        long[] dp = new long[high+2];
         
-        return (int)solve(0, low, high, zero, one, dp);
+        dp[high+1] = 0;
+        
+        for(int ind=high; ind>=0; ind--){
+            dp[ind] = low<=ind+zero && ind+zero<=high ? dp[ind+zero]+1 : dp[Math.min(ind+zero, high+1)];
+            dp[ind] += low<=ind+one && ind+one<=high ? dp[ind+one]+1 : dp[Math.min(ind+one, high+1)];
+            
+            dp[ind] = dp[ind]%1000000007;
+        }
+        
+        // return (int)solve(0, low, high, zero, one, dp);
+        
+        return (int)dp[0];
     }
     
     public long solve(int size, int low, int high, int zero, int one, long dp[]){
