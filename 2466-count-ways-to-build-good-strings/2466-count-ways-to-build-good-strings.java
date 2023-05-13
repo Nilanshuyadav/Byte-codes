@@ -1,26 +1,25 @@
 class Solution {
     public int countGoodStrings(int low, int high, int zero, int one) {
-        int[] dp = new int[high+Math.max(zero, one)+1];
+        long[] dp = new long[high+1];
         Arrays.fill(dp, -1);
         
-        return dfs(low, high, zero, one, 0, dp);
+        return (int)solve(0, low, high, zero, one, dp);
     }
     
-    public int dfs(int low, int high, int zero, int one, int size, int[] dp){
-        if(high<size)
+    public long solve(int size, int low, int high, int zero, int one, long dp[]){
+        if(size>high){
             return 0;
+        }
         
-        if(dp[size] != -1)
+        if(dp[size] != -1){
             return dp[size];
+        }
         
-        int temp = 0;
+        long temp1 = low<=size+zero && size+zero<=high ? solve(size+zero, low, high, zero, one, dp)+1 :                       solve(size+zero, low, high, zero, one, dp);
         
-        temp += dfs(low, high, zero, one, size+zero, dp);
-        temp += dfs(low, high, zero, one, size+one, dp);
+        long temp2 = low<=size+one && size+one<=high ? solve(size+one, low, high, zero, one, dp)+1 :
+            solve(size+one, low, high, zero, one, dp);
         
-        if(low<=size && size<=high)
-            temp++;
-        
-        return dp[size] = temp%1000000007;
+        return dp[size] = (temp1+temp2)%1000000007;
     }
 }
