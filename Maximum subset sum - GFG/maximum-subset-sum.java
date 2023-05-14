@@ -59,16 +59,16 @@ class Solution {
 
     public static long findMaxSubsetSum(int N, int[] A) {
         // code here
-        long[] arr = new long[N];
+        long pre1=0, pre2=A[0];
         
-        arr[0] = A[0];
-        arr[1] = A[1]+Math.max(arr[0], 0);
-        
-        for(int ind=2; ind<N; ind++){
-            arr[ind] = A[ind]+Math.max(arr[ind-1], arr[ind-2]);
+        for(int ind=1; ind<N; ind++){
+            long curr = A[ind]+Math.max(pre1, pre2);
+            
+            pre1 = pre2;
+            pre2 = curr;
         }
         
-        return Math.max(arr[N-1], arr[N-2]);
+        return Math.max(pre1, pre2);
     }
 }
         
