@@ -36,44 +36,43 @@ class Solution
     // arr[]: Input Array
     // N : Size of the Array arr[]
     //Function to count inversions in the array.
-    static long cnt;
+    static long ans;
     static long inversionCount(long arr[], long N)
     {
-        cnt=0;
-        mergeBreak(0, (int)N-1, arr);
+        // Your Code Here
+        ans = 0;
         
-        return cnt;
+        mergeSort(0, (int)N-1, arr);
+        
+        return ans;
     }
     
-    static void mergeBreak(int l, int h, long[] arr){
+    static void mergeSort(int l, int h, long[] arr){
         if(l<h){
-            int m = l+(h-l)/2;
+            int mid = l+(h-l)/2;
             
-            mergeBreak(l, m, arr);
-            mergeBreak(m+1, h, arr);
+            mergeSort(l, mid, arr);
+            mergeSort(mid+1, h, arr);
             
-            merge(l, m, h, arr);
+            merge(l, mid, h, arr);
         }
     }
     
-    static void merge(int l, int m, int h, long[] arr){
-        int size = h-l+1;
-        long[] temp_arr = new long[size];
+    static void merge(int l, int mid, int h, long[] arr){
+        int i=l, j=mid+1, k=0, n=h-l+1;
+        long[] temp_arr = new long[n];
         
-        int i=l, j=m+1;
-        int k=0;
-        
-        while(i<=m && j<=h){
+        while(i<=mid && j<=h){
             if(arr[i] <= arr[j]){
                 temp_arr[k++] = arr[i++];
             }
             else{
-                cnt += m-i+1;
+                ans += (mid-i+1);
                 temp_arr[k++] = arr[j++];
             }
-        }    
+        }
         
-        while(i<=m){
+        while(i<=mid){
             temp_arr[k++] = arr[i++];
         }
         
@@ -81,8 +80,8 @@ class Solution
             temp_arr[k++] = arr[j++];
         }
         
-        for(int ind=0; ind<size; ind++){
-            arr[ind+l] = temp_arr[ind];
+        for(int ind=l; ind<=h; ind++){
+            arr[ind] = temp_arr[ind-l];
         }
-    }
+    } 
 }
