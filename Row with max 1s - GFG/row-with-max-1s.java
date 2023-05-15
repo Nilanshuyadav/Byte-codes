@@ -36,40 +36,14 @@ public class Main {
 class Solution {
     int rowWithMax1s(int arr[][], int n, int m) {
         // code here
-        int ans=-1, pos, max=-1;
-        
-        for(int i=0; i<n; i++){
-            pos = findPos(arr[i], m, 1);
-            
-            if(m-pos > max){
-                max = m-pos;
-                ans = i;
-            }
-            
-            if(m == max)  return ans;
-        }
-        
-        return ans;
-    }
-    
-    int findPos(int[] arr, int col, int target){
-        int l=0, h=col-1, m, min = col+1;
-        
-        while(l<=h){
-            m = l+(h-l)/2;
-            
-            if(arr[m] == target){
-                min = Math.min(min, m);
-                h = m-1;
-            }
-            else if(arr[m] < target){
-                l = m+1;
-            }
-            else{
-                h = m-1;
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(arr[j][i] == 1){
+                    return j;
+                }
             }
         }
         
-        return min;
+        return -1;
     }
 }
