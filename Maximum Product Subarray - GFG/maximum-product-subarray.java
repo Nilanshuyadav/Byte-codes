@@ -27,41 +27,38 @@ import java.util.*;
 class Solution {
     // Function to find maximum product subarray
     long maxProduct(int[] arr, int n) {
-        long ans = Long.MIN_VALUE, curr_pro = 1;
-        
-        int odd_count = 0, first_negative=-1;
-        long pro_till_first = 1;
+        long product=1, max_product=Long.MIN_VALUE, first_index=-1, first_index_product=0;
         
         for(int ind=0; ind<n; ind++){
             if(arr[ind] == 0){
-                if(first_negative != -1 && curr_pro!=pro_till_first)
-                    ans = Math.max(ans, curr_pro/pro_till_first);
+                if(first_index!=-1 && product!=(long)arr[(int)first_index]){
+                    max_product = Math.max(max_product, product/first_index_product);
+                }
                 
-                ans = Math.max(ans, 0);
-                curr_pro = 1;
-                first_negative = -1;
-                odd_count = 0;
-                pro_till_first = 1;
+                product = 1;
+                first_index=-1;
+                
+                max_product = Math.max(max_product, 0);
                 
                 continue;
             }
             
             if(arr[ind] < 0){
-                if(first_negative == -1){
-                    first_negative = ind;
-                    pro_till_first = curr_pro*arr[ind];
+                if(first_index==-1){
+                    first_index = ind;
+                    first_index_product = product*arr[ind];
                 }
-                
-                odd_count++;
             }
             
-            curr_pro *= arr[ind];
-            ans = Math.max(ans, curr_pro);
+            product *= arr[ind];
+            
+            max_product = Math.max(max_product, product);
         }
         
-        if(first_negative != -1 && curr_pro!=pro_till_first)
-            ans = Math.max(ans, curr_pro/pro_till_first);
+        if(first_index!=-1 && product!=(long)arr[(int)first_index]){
+            max_product = Math.max(max_product, product/first_index_product);
+        }
         
-        return ans;
+        return max_product;
     }
 }
