@@ -42,12 +42,11 @@ class Solution{
     static int findFloor(long arr[], int n, long x)
     {
         int l=0, h=n-1, m;
-        int max=-1;
         
         while(l<=h){
             m = l+(h-l)/2;
-            
-            else if(arr[m] < x){
+    
+            if(arr[m] <= x){
                 l = m+1;
             }
             else{
