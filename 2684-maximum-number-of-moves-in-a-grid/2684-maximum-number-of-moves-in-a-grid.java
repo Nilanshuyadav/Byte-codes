@@ -13,6 +13,7 @@ class Solution {
 //         }
         
         int new_r, new_c;
+        int[] r_arr = {-1, 0 , 1};
         
         for(int c=col-2; c>=0; c--){
             for(int r=0; r<row; r++){
@@ -40,26 +41,26 @@ class Solution {
         return max;
     }
     
-    int[] r_arr = {-1, 0 , 1};
+//     int[] r_arr = {-1, 0 , 1};
     
-    public int solve(int r, int c, int[][] grid, int row, int col, int[][] dp){
-        int new_r, new_c;
-        int max = 0;
+//     public int solve(int r, int c, int[][] grid, int row, int col, int[][] dp){
+//         int new_r, new_c;
+//         int max = 0;
         
-        if(dp[r][c] != -1){
-            return dp[r][c];
-        }
+//         if(dp[r][c] != -1){
+//             return dp[r][c];
+//         }
         
-        for(int ind=0; ind<3; ind++){
-            new_r = r+r_arr[ind];
-            new_c = c+1;
+//         for(int ind=0; ind<3; ind++){
+//             new_r = r+r_arr[ind];
+//             new_c = c+1;
             
-            if(new_r<0 || new_r>=row || new_c<0 || new_c>=col || grid[new_r][new_c]<=grid[r][c])
-                continue;
+//             if(new_r<0 || new_r>=row || new_c<0 || new_c>=col || grid[new_r][new_c]<=grid[r][c])
+//                 continue;
             
-            max = Math.max(max, solve(new_r, new_c, grid, row, col, dp) + 1);
-        }
+//             max = Math.max(max, solve(new_r, new_c, grid, row, col, dp) + 1);
+//         }
         
-        return dp[r][c] = max;
-    }
+//         return dp[r][c] = max;
+//     }
 }
