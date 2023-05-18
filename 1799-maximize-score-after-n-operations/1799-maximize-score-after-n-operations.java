@@ -1,5 +1,6 @@
 class Solution {
     int total;
+    
     public int maxScore(int[] nums) {
         int n = nums.length;
         
@@ -7,10 +8,10 @@ class Solution {
             total |= (1<<ind);
         }
         
-        return solve(1, nums, n, 0, new HashMap());
+        return solve(1, nums, 0, new HashMap<>());
     }
     
-    public int solve(int op, int[] nums, int n, int mask, Map<Integer, Integer> map){
+    public int solve(int index, int[] nums, int mask, Map<Integer, Integer> map){
         if(mask == total){
             return 0;
         }
@@ -19,27 +20,25 @@ class Solution {
             return map.get(mask);
         }
         
-        int max=0;
+        int max = 0, n=nums.length;
         
-        for(int i=0; i<n; i++){
-            if((mask&(1<<i)) != 0) continue;
+        for(int i=0; i<n-1; i++){
+            if((mask&(1<<i)) != 0)  continue;
             
-            for(int j=0; j<n; j++){
-                if((mask&(1<<j)) != 0 || i==j)  continue;
-                    
-                max = Math.max(solve(op+1, nums, n, mask|(1<<i)|(1<<j), map) + (gcd(nums[i], nums[j])*op), max);    
+            for(int j=i+1; j<n; j++){
+                if((mask&(1<<j)) != 0)  continue;
+                
+                max = Math.max(max, (index * (gcd(nums[i], nums[j]))) + solve(index+1, nums, mask | (1<<i) | (1<<j), map));
             }
         }
         
         map.put(mask, max);
-        
-        return max;
+        return map.get(mask);
     }
     
     public int gcd(int a, int b){
-        if(b==0){
+        if(b == 0)
             return a;
-        }
         
         return gcd(b, a%b);
     }
