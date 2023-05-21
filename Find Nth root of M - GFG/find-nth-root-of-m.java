@@ -35,8 +35,6 @@ class Solution
         double num = Math.log(m)/n ;
         double ans = Math.ceil((float)(Math.pow(Math.exp(1), num)));
         
-        // System.out.println(num + " " + ans);
-        
         return (long)Math.pow(ans, n) == m ? (int)ans : -1;
     }
 }
