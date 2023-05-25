@@ -59,9 +59,6 @@ class Solution
                 ans = Math.min(ans, m);
                 h = m-1;
             }
-            // else if(temp<M){
-            //     h = m-1;
-            // }
             else{
                 l = m+1;
             }
