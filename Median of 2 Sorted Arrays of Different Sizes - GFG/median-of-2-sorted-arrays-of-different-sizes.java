@@ -37,63 +37,97 @@ class GFG
 { 
     static double medianOfArrays(int n, int m, int a[], int b[]) 
     {
-        int m1 = (m+n-1)/2, m2 = (m+n)/2;
+        // Your Code Here
+        int sum = n+m, median, n1, n2, i=0, j=0, ans;
+        double total=0;
         
-        int i=0, j=0, k=-1;
-        int num1=-1, num2=-1;
-        
-        while(i<n && j<m){
-            if(a[i] < b[j]){
-                i++;
-                k++;
+        if((sum&1) != 0){
+            median = sum/2;
+            
+            while(i<n && j<m){
+                if(a[i] < b[j]){
+                    ans = a[i++];
+                }
+                else{
+                    ans = b[j++];
+                }
                 
-                if(k==m1){
-                    num1 = a[i-1];
-                }
-                if(k==m2){
-                    num2 = a[i-1];
+                if(median-- == 0){
+                    return ans;
                 }
             }
-            else{
-                j++;
-                k++;
+            
+            while(i<n){
+                ans = a[i++];
                 
-                if(k==m1){
-                    num1 = b[j-1];
-                }
-                if(k==m2){
-                    num2 = b[j-1];
+                if(median-- == 0){
+                    return ans;
                 }
             }
             
-            if(num1!=-1 && num2!=-1)
-                break;
+            while(j<m){
+                ans = b[j++];
+                
+                if(median-- == 0){
+                    return ans;
+                }
+            }
         }
-        
-        while(i<n){
-            i++;
-            k++;
+        else{
+            n1 = sum/2;
+            n2 = sum/2 - 1;
             
-            if(k==m1){
-                num1 = a[i-1];
+            while(i<n && j<m){
+                if(a[i] < b[j]){
+                    ans = a[i++];
+                }
+                else{
+                    ans = b[j++];
+                }
+                
+                if(n1-- == 0){
+                    total += ans;
+                }
+                if(n2-- == 0){
+                    total += ans;
+                }
+                
+                if(n1<0 && n2<0){
+                    return total/2;
+                }
             }
-            if(k==m2){
-                num2 = a[i-1];
-            }
-        }
-        
-        while(j<m){
-            j++;
-            k++;
             
-            if(k==m1){
-                num1 = b[j-1];
+            while(i<n){
+                ans = a[i++];
+                
+                if(n1-- == 0){
+                    total += ans;
+                }
+                if(n2-- == 0){
+                    total += ans;
+                }
+                
+                if(n1<0 && n2<0){
+                    return total/2;
+                }
             }
-            if(k==m2){
-                num2 = b[j-1];
+            
+            while(j<m){
+                ans = b[j++];
+                
+                if(n1-- == 0){
+                    total += ans;
+                }
+                if(n2-- == 0){
+                    total += ans;
+                }
+                
+                if(n1<0 && n2<0){
+                    return total/2;
+                }
             }
         }
         
-        return ((double)(num1+num2))/2;
+        return -1;
     }
 }
