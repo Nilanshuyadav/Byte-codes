@@ -36,46 +36,52 @@ class Solution
     //Function to find minimum number of pages.
     public static int findPages(int[]A,int N,int M)
     {
-        if(M>N) return -1;
+        //Your code here
+        if(M > N){
+            return -1;
+        }
         
-        int total = 0, max=Integer.MIN_VALUE;
+        int total = 0, max=-1;
+        
         for(int ind : A){
             total += ind;
             max = Math.max(max, ind);
         }
         
+        int l=max, h=total, m, ans=Integer.MAX_VALUE, temp;
         
-        int l=max, h=total+1, ans=-1, m, cnt;
-        
-        while(l<h){
+        while(l<=h){
             m = l + (h-l)/2;
             
-            cnt = check(A, N, m, M);
+            temp = canWe(m, A);
             
-            if(cnt <= M){
-                h=m;
+            if(temp<=M){
+                ans = Math.min(ans, m);
+                h = m-1;
             }
-            else l=m+1;
+            // else if(temp<M){
+            //     h = m-1;
+            // }
+            else{
+                l = m+1;
+            }
         }
         
-        return h==total+1 ? -1 : h;
+        return ans==Integer.MAX_VALUE ? -1 : ans;
     }
     
-    public static int check(int[] A, int N, int m, int M){
-        int cnt=0;
-        long sum=0;
+    public static int canWe(int m, int[] A){
+        int cnt=0, sum = 0;
         
-        for(int ind=0; ind<N; ind++){
+        for(int ind : A){
+            sum += ind;
             
-            if(sum+A[ind] > m){
+            if(m<sum){
                 cnt++;
-                sum=0;
+                sum = ind;
             }
-            
-            sum += A[ind];
         }
-        cnt++;
         
-        return cnt;
+        return cnt+1;
     }
 };
