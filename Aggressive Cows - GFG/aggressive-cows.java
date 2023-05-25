@@ -34,56 +34,43 @@ class GFG {
 // User function Template for Java
 class Solution {
     public static int solve(int n, int k, int[] stalls) {
-        Arrays.sort(stalls);
-        
-        int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-        
+        int min=(int)1e8, max = -1;
         for(int ind : stalls){
-            max = Math.max(max, ind);
             min = Math.min(min, ind);
+            max = Math.max(max, ind);
         }
         
-        int l=0, h=max-min, m, ans=0;
+        Arrays.sort(stalls);
+        
+        int l=1, h=max-min, m, temp, ans=-1;
         
         while(l<=h){
-            m = l+(h-l)/2;
+            m = l + (h-l)/2;
             
-            if(canWe(stalls, n, k, m)) {ans=m; l=m+1;}
-            else h=m-1;
+            temp = canWe(m, stalls);
+            
+            if(k<=temp){
+                ans = Math.max(ans, m);
+                l = m+1;
+            }
+            else{
+                h = m-1;
+            }
         }
         
         return ans;
     }
     
-    public static boolean canWe(int[] stalls, int n, int k, int m){
-        int cnt=1;
-        int i=0, pos;
+    public static int canWe(int m, int[] stalls){
+        int cnt=0, pre=stalls[0];
         
-        while(i<n){
-            pos = findPos(stalls[i]+m, stalls, n);
-            
-            if(pos>=n) break;
-            
-            cnt++;
-            i = pos;
-            
-            if(cnt>=k) return true;
+        for(int ind : stalls){
+            if(m <= ind-pre){
+                cnt++;
+                pre = ind;
+            }
         }
         
-        return cnt>=k;
-    }
-    
-    public static int findPos(int target, int[] stalls, int n){
-        int l=0, h=n-1, m;
-        
-        while(l<=h){
-            m = l+(h-l)/2;
-            
-            if(stalls[m] == target) return m;
-            else if(stalls[m] < target) l=m+1;
-            else h=m-1;
-        }
-        
-        return h+1;
+        return cnt+1;
     }
 }
