@@ -15,7 +15,7 @@ class Main {
             int edg = Integer.parseInt(st[0]);
             int nov = Integer.parseInt(st[1]);
 
-            for (int i = 0; i < nov + 1; i++)
+            for (int i = 0; i < nov; i++)
                 list.add(i, new ArrayList<Integer>());
 
             int p = 0;
@@ -65,28 +65,29 @@ class Solution
     {
         Stack<Integer> st = new Stack<>();
         
-        int[] ans = new int[V];
-        int k=0;
-        
+        int ans[] = new int[V], i=0;
         boolean[] vis = new boolean[V];
         
-        for(int ind=0; ind<V; ind++)
+        for(int ind=0; ind<V; ind++){
             if(!vis[ind]){
-                solve(ind, adj, vis, st);
+                findTopo(0, adj, vis, st);    
             }
+        }
         
-        while(!st.isEmpty())
-            ans[k++] = st.pop();
-            
-        return ans;    
+        while(!st.isEmpty()){
+            ans[i++] = st.pop();
+        }
+        
+        return ans;
     }
     
-    static void solve(int ind, ArrayList<ArrayList<Integer>> adj, boolean[] vis, Stack<Integer> st){
+    static void findTopo(int ind, ArrayList<ArrayList<Integer>> adj, boolean[] vis, Stack<Integer> st){
         vis[ind] = true;
         
-        for(int i : adj.get(ind)){
-            if(!vis[i])
-                solve(i, adj, vis, st);
+        for(int inx : adj.get(ind)){
+            if(!vis[inx]){
+                findTopo(inx, adj, vis, st);
+            }
         }
         
         st.add(ind);
