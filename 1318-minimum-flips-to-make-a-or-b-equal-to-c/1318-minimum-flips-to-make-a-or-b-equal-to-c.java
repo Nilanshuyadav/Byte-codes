@@ -4,7 +4,7 @@ class Solution {
         
         int ind=0, cnt=0;
         
-        while(ind<32){
+        while(ind<30){
             int a_ind = a&(1<<ind);
             int b_ind = b&(1<<ind);
             
