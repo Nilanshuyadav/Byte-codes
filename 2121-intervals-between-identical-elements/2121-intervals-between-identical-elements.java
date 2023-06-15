@@ -3,8 +3,7 @@ class Solution {
         Map<Integer, long[]> map = new HashMap<>();
         
         int n = arr.length;
-        long[] left = new long[n], right = new long[n];
-        long val, pre_ind, total_occ, sum, temp[];
+        long temp[], val, pre_ind, total_occ, sum, ans[] = new long[n];
         
         for(int ind=0; ind<n; ind++){
             if(map.containsKey(arr[ind])){
@@ -28,7 +27,7 @@ class Solution {
                 val = 0;
             }
             
-            left[ind] = val;
+            ans[ind] = val;
         }
         
         map.clear();
@@ -55,13 +54,7 @@ class Solution {
                 val = 0;
             }
             
-            right[ind] = val;
-        }
-        
-        long[] ans = new long[n];
-        
-        for(int ind=0; ind<n; ind++){
-            ans[ind] = left[ind] + right[ind];
+            ans[ind] += val;
         }
         
         return ans;
