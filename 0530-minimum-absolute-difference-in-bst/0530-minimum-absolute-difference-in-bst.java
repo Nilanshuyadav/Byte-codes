@@ -21,10 +21,8 @@ class Solution {
         
         int min = (int)1e8, n=al.size();
         
-        for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
-                min = Math.min(min, Math.abs(al.get(i)-al.get(j)));
-            }
+        for(int i=1; i<n; i++){
+            min = Math.min(min, Math.abs(al.get(i)-al.get(i-1)));
         }
         
         return min;
