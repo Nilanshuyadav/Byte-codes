@@ -49,14 +49,12 @@ class Solution
     static void arrange(long arr[], int n)
     {
         // your code here
-        long[] ans = new long[n];
-        
         for(int ind=0; ind<n; ind++){
-            ans[ind] = arr[(int)arr[ind]];
+            arr[ind] = (arr[(int)arr[ind]]%n)*n + arr[ind];
         }
         
         for(int ind=0; ind<n; ind++){
-            arr[ind] = ans[ind];
+            arr[ind] /= n;
         }
     }
 }
