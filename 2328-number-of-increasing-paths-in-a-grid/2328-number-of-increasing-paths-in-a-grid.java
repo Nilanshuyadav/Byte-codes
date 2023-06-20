@@ -1,38 +1,48 @@
 class Solution {
-    int mod = (int)(1e9+7);
     public int countPaths(int[][] grid) {
-        int n = grid.length;
-        int m = grid[0].length;
+        int row = grid.length, col = grid[0].length;
+        long sum=0;
         
-        int[][] dp = new int[n][m];
-        for(int[] arr: dp){
-            Arrays.fill(arr, -1);
+        int[][] dp = new int[row][col];
+        
+        for(int ind[] : dp){
+            Arrays.fill(ind, -1);
         }
-        int paths = 0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                paths = (paths+solve(grid, i, j, -1, dp))%mod;
+        
+        for(int r=0; r<row; r++){
+            for(int c=0; c<col; c++){
+                if(dp[r][c] != -1){
+                    sum = (sum+dp[r][c])%1000000007;
+                }
+                else{
+                    sum = (sum+solve(r,c,row, col, grid, dp))%1000000007;
+                }        
             }
         }
         
-        return paths;
+        return (int)sum;
     }
     
-     public int solve(int[][] grid, int i, int j, int prev, int[][] dp){
-        if(i<0 || j<0 || i>=grid.length || j>=grid[0].length || grid[i][j]<=prev){
-            return 0;
-        }
-        
-        if(dp[i][j]!=-1){
-            return dp[i][j];
-        }
-        
-        int left = solve(grid, i, j-1, grid[i][j], dp);
-        int right = solve(grid, i, j+1, grid[i][j], dp);
-        int up = solve(grid, i-1, j, grid[i][j], dp);
-        int down = solve(grid, i+1, j, grid[i][j], dp);
-        
-        return dp[i][j] = (1+left+right+up+down)%mod;
-    }
-}    
+    int[] r_arr={-1,0,1,0}, c_arr={0,1,0,-1};
     
+    public long solve(int r, int c, int row, int col, int[][] grid, int[][] dp){
+        long sum=1;
+        
+        if(dp[r][c] != -1){
+            return dp[r][c];
+        }
+        
+        int new_r, new_c;
+        for(int ind=0; ind<4; ind++){
+            new_r = r+r_arr[ind];
+            new_c = c+c_arr[ind];
+            
+            if(new_r<0 || new_c<0 || new_r>=row || new_c>=col || grid[new_r][new_c]<=grid[r][c])
+                continue;
+            
+            sum = (sum+solve(new_r, new_c, row, col, grid, dp))%1000000007;
+        }
+        
+        return dp[r][c] = (int)sum;
+    }
+}
