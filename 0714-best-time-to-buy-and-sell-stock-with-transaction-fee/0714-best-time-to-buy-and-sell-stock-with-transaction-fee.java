@@ -1,31 +1,32 @@
 class Solution {
     public int maxProfit(int[] prices, int fee) {
-        int n = prices.length;
+        int n = prices.length, dp[][] = new int[n][2];
         
-        int[][] dp = new int[n][2];
-        
-        for(int ind[] : dp)
+        for(int ind[] : dp){
             Arrays.fill(ind, -1);
+        }
         
-        return dfs(0, prices, n, 1, dp, fee);
+        return solve(0, prices, fee, 1, n, dp);
     }
     
-    public int dfs(int ind, int[] price, int n, int buy, int[][] dp, int fee){
-        if(n <= ind)
+    public int solve(int ind, int[] prices, int fee, int buy, int n, int[][] dp){
+        if(ind >= n){
             return 0;
+        }
         
-        if(dp[ind][buy] != -1)
+        if(dp[ind][buy] != -1){
             return dp[ind][buy];
+        }
         
-        int profit;
+        int max=0;
         
-        if(buy == 1){
-            profit = Math.max(dfs(ind+1, price, n, 0, dp, fee) - price[ind] - fee, dfs(ind+1, price, n, 1, dp, fee));
+        if(buy==1){
+            max = Math.max(solve(ind+1, prices, fee, 0, n, dp) - prices[ind] - fee, solve(ind+1, prices, fee, 1, n, dp));    
         }
         else{
-            profit = Math.max(dfs(ind+1, price, n, 1, dp, fee) + price[ind], dfs(ind+1, price, n, 0, dp, fee));
+            max = Math.max(prices[ind] + solve(ind+1, prices, fee, 1, n, dp), solve(ind+1, prices, fee, 0, n, dp));
         }
         
-        return dp[ind][buy] = profit;
+        return dp[ind][buy] = max;
     }
 }
