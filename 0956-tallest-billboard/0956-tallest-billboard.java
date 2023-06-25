@@ -1,25 +1,24 @@
 class Solution {
     public int tallestBillboard(int[] rods) {
-        int sum = 0;
-        for (int rod : rods) {
-            sum += rod;
+        int n = rods.length;
+        return solve(0, n, 0, rods, new HashMap<>());
+    }
+    
+    public int solve(int ind, int n, int diff, int[] rods, Map<String, Integer> dp){
+        if(ind == n){
+            return diff==0 ? 0 : -(int)1e8;
         }
-
-        int[] dp = new int[sum + 1];
-        Arrays.fill(dp, -1);
-        dp[0] = 0;
-
-        for (int rod : rods) {
-            int[] dpCopy = dp.clone();
-
-            for (int i = 0; i <= sum - rod; i++) {
-                if (dpCopy[i] < 0) continue;
-
-                dp[i + rod] = Math.max(dp[i + rod], dpCopy[i]);
-                dp[Math.abs(i - rod)] = Math.max(dp[Math.abs(i - rod)], dpCopy[i] + Math.min(i, rod));
-            }
+        
+        String st = ""+ind+","+diff;
+        if(dp.containsKey(st)){
+            return dp.get(st);
         }
-
-        return dp[0];
+        
+        int bucket1 = rods[ind] + solve(ind+1, n, diff-rods[ind], rods, dp);
+        int bucket2 = solve(ind+1, n, diff+rods[ind], rods, dp);
+        int bucket3 = solve(ind+1, n, diff, rods, dp);
+        
+        dp.put(st, Math.max(bucket1, Math.max(bucket2, bucket3)));
+        return dp.get(st);
     }
 }
