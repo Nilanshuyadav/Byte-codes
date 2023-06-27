@@ -1,42 +1,47 @@
 class MedianFinder {
-    List<Double> al;
-    int size;
+    PriorityQueue<Integer> small, large;
+    int small_size, large_size;
     
     public MedianFinder() {
-        al = new ArrayList<>();
-        size = 0;
+        small = new PriorityQueue<>(Collections.reverseOrder());
+        large = new PriorityQueue<>();
+        
+        small_size=0;
+        large_size=0;
     }
     
     public void addNum(int num) {
-        int pos = findPos(al, num);
+        small.add(num);
+        small_size++;
         
-        al.add(pos, (double)num);
-        size++;
+        if(large_size>0 && small.peek()>large.peek()){
+            large.add(small.remove());
+            
+            small_size--;
+            large_size++;
+        }
+        
+        if(small_size-large_size > 1){
+            large.add(small.remove());
+            
+            small_size--;
+            large_size++;
+        }
+        
+        if(large_size-small_size > 1){
+            small.add(large.remove());
+            
+            small_size++;
+            large_size--;
+        }
     }
     
     public double findMedian() {
-        double sum = al.get((size-1)/2) + al.get((size)/2);
-        return sum/2;
-    }
-    
-    public int findPos(List<Double> al, double num){
-        int l=0, h=al.size()-1, m;
-        
-        while(l <= h){
-            m = l + (h-l)/2;
-            
-            if(al.get(m) == num){
-                return m;
-            }
-            else if(al.get(m) < num){
-                l = m+1;
-            }
-            else{
-                h = m-1;
-            }
+        if(small_size == large_size){
+            return ((double)(small.peek() + large.peek()))/2;
         }
         
-        return h+1;
+        return small_size>large_size ? small.peek() : large.peek();
     }
 }
 
