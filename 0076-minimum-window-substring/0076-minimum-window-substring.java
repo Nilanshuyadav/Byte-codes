@@ -1,53 +1,56 @@
 class Solution {
     public String minWindow(String s, String t) {
+        int s_len = s.length(), t_len = t.length();
+        int[] fre = new int[58];
         Map<Character, List<Integer>> map = new HashMap<>();
         
         char ch;
-        int[] fre = new int[58];
-        for(int ind=0; ind<t.length(); ind++){
+        for(int ind=0; ind<t_len; ind++){
             ch = t.charAt(ind);
-            
-            if(!map.containsKey(ch))
-                map.put(ch, new ArrayList<>());
-            
             fre[ch-'A']++;
+            
+            map.putIfAbsent(ch, new ArrayList<>());
         }
         
-        int min, ans=Integer.MAX_VALUE, al_size;
-        int[] st = new int[]{-1, -1};
+        int min, temp, min_len=(int)1e8;
+        String ans="";
         List<Integer> al;
         
-        for(int ind=0; ind<s.length(); ind++){
+        for(int ind=0; ind<s_len; ind++){
             ch = s.charAt(ind);
             
-            if(!map.containsKey(ch))
+            if(!map.containsKey(ch)){
                 continue;
+            }
             
             map.get(ch).add(ind);
             
-            min = Integer.MAX_VALUE;
+            min = ind;
+            
             for(Map.Entry<Character, List<Integer>> entry : map.entrySet()){
                 ch = entry.getKey();
                 al = entry.getValue();
                 
-                al_size = al.size();
-                
-                if(al_size-fre[ch-'A'] < 0){
+                if(al.size()<fre[ch-'A']){
                     min = -1;
                     break;
                 }
-                else{
-                    min = Math.min(min, al.get(al_size - fre[ch-'A']));
-                }
+                
+                min = Math.min(min, al.get(al.size()-fre[ch-'A']));
             }
             
-            if(min!=-1 && (ind-min+1)<ans){
-                ans = (ind - min + 1);
-                st[0] = min;
-                st[1] = ind+1;
+            if(min == -1){
+                continue;
+            }
+            
+            temp = ind-min+1;
+            
+            if(temp < min_len){
+                min_len = temp;
+                ans = s.substring(ind-temp+1, ind+1);
             }
         }
         
-        return st[0]==-1 ? "" : s.substring(st[0], st[1]);
+        return ans;
     }
 }
