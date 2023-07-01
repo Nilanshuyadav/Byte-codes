@@ -26,8 +26,8 @@ class Solution {
         int cnt=0;
         
         while(N>0){
-            N = N&(N-1);
-            cnt++;
+            if((N&1) != 0)  cnt++;
+            N = N>>1;
         }
         
         return cnt;
