@@ -6,10 +6,6 @@ class Solution {
             set.add(ind);
         }
         
-        for(int ind : moveFrom){
-            set.remove(ind);
-        }
-        
         for(int ind=0; ind<moveFrom.length; ind++){
             set.remove(moveFrom[ind]);
             set.add(moveTo[ind]);
