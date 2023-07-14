@@ -1,38 +1,45 @@
 class Solution {
-    boolean[] visited, dfs;
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        visited = new boolean[numCourses]; dfs = new boolean[numCourses];
-        
+    public boolean canFinish(int n, int[][] prerequisites) {
         List<List<Integer>> adj = new ArrayList<>();
         
-        for(int i=0;i<numCourses;i++)
-            adj.add(new ArrayList<Integer>());
+        for(int ind=0; ind<n; ind++){
+            adj.add(new ArrayList<>());
+        }
         
-        for(int i[] : prerequisites)
-            adj.get(i[0]).add(i[1]);
+        for(int ind[] : prerequisites){
+            adj.get(ind[0]).add(ind[1]);
+        }
         
-        for(int i = 0; i<numCourses;i++){
-            if(visited[i] == false){
-                if(checkCycle(i,adj)) return false;
+        Boolean[] vis = new Boolean[n];
+        
+        for(int ind=0; ind<n; ind++){
+            if(vis[ind] == null){
+                solve(ind, adj, vis);
+            }
+        }
+        
+        for(boolean bool : vis){
+            if(!bool){
+                return false;
             }
         }
         
         return true;
     }
     
-    public boolean checkCycle(int ind,List<List<Integer>> adj){
-                
-        visited[ind] = true;
-        dfs[ind] = true;
-        
-        for(int i : adj.get(ind)){
-            if(visited[i] == true && dfs[i] == true) return true;
-            else if(visited[i] == true) continue;
-            else if(checkCycle(i,adj)) return true;
+    public boolean solve(int ind, List<List<Integer>> adj, Boolean[] vis){
+        if(vis[ind]!=null){
+            return vis[ind];
         }
         
-        dfs[ind] = false;
+        vis[ind] = false;
         
-        return false;
+        boolean bool = true;
+        
+        for(int inx : adj.get(ind)){
+            bool = bool && solve(inx, adj, vis);    
+        }
+        
+        return vis[ind] = bool;
     }
 }
