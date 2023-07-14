@@ -1,7 +1,6 @@
 class Solution {
     public int openLock(String[] deadends, String target) {
-        Set<String> set = new HashSet<>(Arrays.asList(deadends)),
-                visited = new HashSet<>();
+        Set<String> set = new HashSet<>(Arrays.asList(deadends));
         
         Queue<String> q = new LinkedList<>();
         
