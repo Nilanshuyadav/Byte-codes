@@ -1,33 +1,29 @@
 class Solution {
     public int numberOfBoomerangs(int[][] points) {
         int n = points.length, val, sum=0;
-        double dis;
+        long dis;
         
-        Map<Double, Integer> map;
+        Map<Long, Integer> map;
         
         for(int i=0; i<n; i++){
             map = new HashMap<>();
             
             for(int j=0; j<n; j++){
-                dis = Math.sqrt(Math.pow(points[i][0]-points[j][0], 2) + Math.pow(points[i][1]-points[j][1], 2));
+                dis = ((points[i][0]-points[j][0])*(points[i][0]-points[j][0])) + ((points[i][1]-points[j][1])*(points[i][1]-points[j][1]));
                 
                 map.put(dis, map.getOrDefault(dis, 0) + 1);
             }
             
-            for(Map.Entry<Double, Integer> entry : map.entrySet()){
+            for(Map.Entry<Long, Integer> entry : map.entrySet()){
                 val = entry.getValue();
                 
                 if(val>=2){
-                    sum += findPer(val);
+                    sum += ((val)*(val-1));
                 }
             }
         
         }
         
         return sum;
-    }
-    
-    public int findPer(int val){
-        return val*(val-1);
     }
 }
