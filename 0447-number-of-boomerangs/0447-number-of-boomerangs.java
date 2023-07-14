@@ -3,10 +3,9 @@ class Solution {
         int n = points.length, val, sum=0;
         long dis;
         
-        Map<Long, Integer> map;
+        Map<Long, Integer> map = new HashMap<>();
         
         for(int i=0; i<n; i++){
-            map = new HashMap<>();
             
             for(int j=0; j<n; j++){
                 dis = ((points[i][0]-points[j][0])*(points[i][0]-points[j][0])) + ((points[i][1]-points[j][1])*(points[i][1]-points[j][1]));
@@ -22,6 +21,7 @@ class Solution {
                 }
             }
         
+            map.clear();
         }
         
         return sum;
