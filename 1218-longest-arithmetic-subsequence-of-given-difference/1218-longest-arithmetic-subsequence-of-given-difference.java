@@ -1,21 +1,21 @@
 class Solution {
-      public int longestSubsequence(int[] arr, int difference) {
-        int n = arr.length;
-        Map<Integer, Integer> dp = new HashMap<>(); // Stores the maximum length at each index
+    public int longestSubsequence(int[] arr, int diff) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int num, max=0;
         
-        int ans = 1; // Initialize with the minimum length of 1
-        
-        for (int i = 0; i < n; i++) {
-            int num = arr[i];
-            if (dp.containsKey(num - difference)) {
-                dp.put(num, dp.get(num - difference) + 1);
-            } else {
-                dp.put(num, 1);
+        for(int ind=0; ind<arr.length; ind++){
+            num = arr[ind];
+            
+            if(map.containsKey(num-diff)){
+                map.put(num, map.get(num-diff)+1);
+            }
+            else{
+                map.put(num, 1);
             }
             
-            ans = Math.max(ans, dp.get(num));
+            max = Math.max(max, map.get(num));
         }
         
-        return ans;
+        return max;
     }
 }
