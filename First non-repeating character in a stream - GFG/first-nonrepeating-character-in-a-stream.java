@@ -25,38 +25,34 @@ class GFG
 
 class Solution
 {
-    public String FirstNonRepeating(String s)
+    public String FirstNonRepeating(String A)
     {
         // code here
-        int[] fre = new int[26];
-        
-        int n = s.length();
-        Queue<Character> q = new LinkedList<>();
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        int n = A.length();
+        char ch;
         
         StringBuilder sb = new StringBuilder("");
-        char temp, ch;
+        boolean bool;
         
         for(int ind=0; ind<n; ind++){
-            ch = s.charAt(ind);
+            ch = A.charAt(ind);
             
-            fre[ch-'a']++;
-            q.add(ch);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            bool = false;
             
-            while(!q.isEmpty()){
-                temp = q.peek();
+            for(Map.Entry<Character, Integer> entry : map.entrySet()){
+                if(entry.getValue() > 1)    continue;
                 
-                if(fre[temp-'a'] == 1){
-                    sb.append(temp);
-                    break;
-                }
-                else{
-                    q.remove();
-                }
+                bool = true;    
+                sb.append(entry.getKey());
+                break;
             }
             
-            if(q.isEmpty()){
+            if(!bool){
                 sb.append('#');
             }
+        
         }
         
         return sb.toString();
