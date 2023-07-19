@@ -1,31 +1,34 @@
 class Solution {
     public List<List<Integer>> findPrimePairs(int n) {
         List<List<Integer>> ans = new ArrayList<>();
-        int x, y;
-        boolean bool=false;
         
-        for(int ind=2; ind<=n/2; ind++){
-            x = ind;
-            y = n-ind;
+        Boolean[] arr = new Boolean[n+1];
+        
+        for(int i=2; i<=n; i++){
+            if(arr[i]!=null && !arr[i]){
+                continue;
+            }
             
-            if(bool && ((x&1)==0 || (y&1)==0))    {continue;}
-            bool = true;
-            
-            if(isPrime(x) && isPrime(y)){
-                ans.add(new ArrayList<>(Arrays.asList(x, y)));
+            arr[i] = true;
+            makeFalse(arr, i);
+        }
+        
+        for(int i=2; i<=n/2; i++){
+            if(arr[i] && arr[n-i]){
+                ans.add(new ArrayList<>(Arrays.asList(i, n-i)));
             }
         }
         
         return ans;
     }
     
-    public boolean isPrime(int x){
-        for(int i=2; i<=(int)Math.sqrt(x); i++){
-            if(x%i == 0){
-                return false;
-            }
+    
+    public void makeFalse(Boolean[] arr, int i){
+        int n = arr.length;
+        int temp = i+i;
+        while(temp<n){
+            arr[temp] = false;
+            temp += i;
         }
-        
-        return true;
     }
 }
