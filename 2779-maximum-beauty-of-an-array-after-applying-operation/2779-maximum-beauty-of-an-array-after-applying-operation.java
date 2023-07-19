@@ -22,12 +22,7 @@ class Solution {
             
             
             b_pos = findPos(u_arr[ind], l_arr);
-//             if(b_pos == n){
-                
-//                 System.out.println(ind);
-//                 return n;
-//             }
-            
+
             if(b_pos<n && l_arr[b_pos] == b){
                 val2 = Math.max(val2, b_pos+1-ind);
             }
@@ -35,20 +30,6 @@ class Solution {
                 val2 = Math.max(val2, b_pos-ind);
             }
         }
-        
-//         if(a_pos==-1 || b_pos==n){
-//             return n;
-//         }
-//         else{
-//             val1 = n-a_pos;
-            
-//             if(l_arr[b_pos] == b){
-//                 val2 = b_pos+1;
-//             }
-//             else{
-//                 val2 = b_pos;
-//             }
-//         }
         
         return Math.max(val1, val2);
     }
