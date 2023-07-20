@@ -2,7 +2,7 @@ class Solution {
     public int eraseOverlapIntervals(int[][] intervals) {
         int n = intervals.length;
         
-        Arrays.sort(intervals, (a,b) -> a[0]!=b[0]? a[0]-b[0] : a[1]-b[1]);
+        Arrays.sort(intervals, (a,b) -> a[0]-b[0]);
         
         int cnt=0, ind=0, end=-(int)1e8;
         
