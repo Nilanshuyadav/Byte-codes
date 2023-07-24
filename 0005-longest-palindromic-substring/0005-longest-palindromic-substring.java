@@ -1,42 +1,31 @@
 class Solution {
     public String longestPalindrome(String s) {
-        int n = s.length();
-        StringBuilder sb = new StringBuilder(s);
+        int n = s.length(), temp1, temp2;
         String ans = "";
-        int max = -1;
         
-        for(int ind=0; ind<n; ind++){
-                int temp = pallindrome(ind, ind, s, n);
+        for(int i=0; i<n; i++){
+            temp1 = findPalindrome(i, i, s);
+            temp2 = findPalindrome(i, i+1, s);
             
-            if(temp > max){
-                max = temp;
-                temp--;
-                
-                ans = sb.substring(ind-temp/2, (ind+temp/2)+1);
+            if(temp1>temp2 && temp1>ans.length()){
+                ans = s.substring(i-(temp1/2), i+(temp1/2)+1);
             }
-            
-            if(ind<n-1){
-                temp = pallindrome(ind, ind+1, s, n);
-
-                if(temp > max){
-                    max = temp;
-                    temp = temp/2;
-
-                    ans = sb.substring(ind-temp+1, ind+1+temp);
-                }
-                    
+            else if(temp2>temp1 && temp2>ans.length()){
+                ans = s.substring(i-(temp2/2)+1, i+(temp2/2)+1);
             }
         }
         
         return ans;
     }
     
-    public int pallindrome(int low, int high, String s, int n){
-        while(0<=low && high<n && s.charAt(low)==s.charAt(high)){
-            low--;
-            high++;
+    public int findPalindrome(int i, int j, String s){
+        int n = s.length();
+        
+        while(0<=i && j<n && s.charAt(i)==s.charAt(j)){
+            i--;
+            j++;
         }
         
-        return high-low-1;
+        return j-i-1;
     }
 }
