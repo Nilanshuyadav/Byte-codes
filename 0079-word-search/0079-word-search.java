@@ -1,14 +1,19 @@
 class Solution {
-    int[] r_arr = {-1,0,1,0}, c_arr = {0,1,0,-1};
+    int[] r_arr={-1,0,1,0}, c_arr={0,1,0,-1};
+    
     public boolean exist(char[][] board, String word) {
-        int row = board.length, col = board[0].length, n=word.length();
+        int row=board.length, col=board[0].length;
         
-        Map<String, Boolean> dp = new HashMap<>();
-        
-        for(int i=0; i<row; i++){
-            for(int j=0; j<col; j++){
-                if(board[i][j] == word.charAt(0) && find(i, j, 1, word, n, row, col, board, dp)){
-                    return true;
+        for(int r=0; r<row; r++){
+            for(int c=0; c<col; c++){
+                if(board[r][c] == word.charAt(0)){
+                    board[r][c] = '*';
+                    
+                    if(solve(r,c,1,board,word)){
+                        return true;
+                    }
+                    
+                    board[r][c] = word.charAt(0);
                 }
             }
         }
@@ -16,25 +21,27 @@ class Solution {
         return false;
     }
     
-    public boolean find(int r, int c, int ind, String word, int n, int row, int col, char[][] board, Map<String, Boolean> dp){
-        if(ind == n)    return true;
-        
-        char ch = word.charAt(ind);
-        int new_r, new_c;
-        
-        board[r][c] = '*';  
-        
-        for(int inx=0; inx<4; inx++){
-            new_r = r + r_arr[inx];
-            new_c = c + c_arr[inx];
-            
-            if(new_r<0 || new_c<0 || new_r>=row || new_c>=col || board[new_r][new_c]!=ch) continue;
-            
-            if(find(new_r, new_c, ind+1, word, n, row, col, board, dp))
-                return true;
+    public boolean solve(int r, int c, int i, char[][] board, String word){
+        if(i==word.length()){
+            return true;
         }
         
-        board[r][c] = word.charAt(ind-1);
-        return false;
+        int new_r, new_c, row=board.length, col=board[0].length;
+        boolean bool=false;
+        
+        for(int ind=0; ind<4; ind++){
+            new_r = r+r_arr[ind];
+            new_c = c+c_arr[ind];
+            
+            if(new_r<0 || new_c<0 || new_r>=row || new_c>=col || board[new_r][new_c]!=word.charAt(i)){
+                continue;
+            }
+            
+            board[new_r][new_c] = '*';
+            bool = bool || solve(new_r, new_c, i+1, board, word);
+            board[new_r][new_c] = word.charAt(i);
+        }
+        
+        return bool;
     }
 }
