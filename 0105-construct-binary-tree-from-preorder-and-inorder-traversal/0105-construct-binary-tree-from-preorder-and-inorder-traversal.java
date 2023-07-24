@@ -46,14 +46,4 @@ class Solution {
         
         return node;
     }
-    
-    public int findIndex(int target, int[] inorder){
-        for(int ind=0; ind<inorder.length; ind++){
-            if(inorder[ind] == target){
-                return ind;
-            }
-        }
-        
-        return -1;
-    }
 }
