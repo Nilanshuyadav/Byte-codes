@@ -1,74 +1,64 @@
 class Solution {
-    public List<String> letterCombinations(String digit) {
-        int n = digit.length();
+    public List<String> letterCombinations(String digits) {
+        int n = digits.length();
         
-        if(n==0)
-            return new ArrayList<>();
+        if(n==0) return new ArrayList<>();
         
-        Map<Character, List<Character>> map = new HashMap<>();
+        Map<Character, List<String>> map = new HashMap<>();
         
-        List<Character> al = new ArrayList<>();
-        int cnt=1;
-        
-        for(char ch='a'; ch<='o'; ch++){
-            al.add(ch);
-            if(cnt%3==0){
-                map.put((char)('0' + ((cnt/3)+1)), new ArrayList<>(al));
-                al.clear();
+        for(char ch='2'; ch<='9'; ch++){
+            List<String> al;
+            
+            switch(ch){
+                case '2':
+                    al = new ArrayList(Arrays.asList("a", "b", "c"));
+                    break;
+                case '3':
+                    al = new ArrayList(Arrays.asList("d", "e", "f"));
+                    break;
+                case '4':
+                    al = new ArrayList(Arrays.asList("g", "h", "i"));
+                    break;
+                case '5':
+                    al = new ArrayList(Arrays.asList("j", "k", "l"));
+                    break;
+                case '6':
+                    al = new ArrayList(Arrays.asList("m", "n", "o"));
+                    break;
+                case '7':
+                    al = new ArrayList(Arrays.asList("p", "q", "r", "s"));
+                    break;
+                case '8':
+                    al = new ArrayList(Arrays.asList("t", "u", "v"));
+                    break;
+                case '9':
+                    al = new ArrayList(Arrays.asList("w", "x", "y", "z"));
+                    break;
+                default:
+                    al = new ArrayList<>();
             }
             
-            cnt++;
+            map.put(ch, al);
         }
         
-        al.clear();
+        if(n==1)   return map.get(digits.charAt(0));
         
-        al.add('p');
-        al.add('q');
-        al.add('r');
-        al.add('s');
-        map.put('7', new ArrayList<>(al));
-        
-        al.clear();
-        
-        al.add('t');
-        al.add('u');
-        al.add('v');
-        map.put('8', new ArrayList<>(al));
-        
-        al.clear();
-        
-        al.add('w');
-        al.add('x');
-        al.add('y');
-        al.add('z');
-        map.put('9', new ArrayList<>(al));
-        
-        if(n==1){
-            List<String> arr = new ArrayList<>();
-            for(char ch : map.get(digit.charAt(0)))
-                arr.add(ch+"");
-            
-            return arr;
-        }
-
-        List<String> pre = new ArrayList<>();
-        
-        for(char ch : map.get(digit.charAt(0)))
-            pre.add(ch+"");
-        
-        List<String> temp = new ArrayList<>();
+        List<String> ans=new ArrayList<>();
+        List<String> al1=map.get(digits.charAt(0)) , al2;
         
         for(int ind=1; ind<n; ind++){
-            List<Character> curr = map.get(digit.charAt(ind));
+            al2 = map.get(digits.charAt(ind));
+            ans = new ArrayList<>();
             
-            for(String st : pre)
-                for(char ch : curr)
-                    temp.add(st+ch);
+            for(String st1 : al1){
+                for(String st2 : al2){
+                    ans.add(st1+st2);
+                }
+            }
             
-            pre = new ArrayList<>(temp);
-            temp.clear();                    
+            al1 = ans;
         }
         
-        return pre;
+        return ans;
     }
 }
