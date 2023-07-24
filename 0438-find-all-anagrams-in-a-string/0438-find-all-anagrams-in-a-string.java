@@ -1,35 +1,46 @@
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> ans = new ArrayList<>();
-        int p_len = p.length();
+        int p_len = p.length(), s_len = s.length();
         
-        int[] p_freq = new int[26];
+        if(s_len<p_len){
+            return new ArrayList<>();
+        }
+        
+        int[] fre_p = new int[26], fre_s = new int[26];
+        
         for(int ind=0; ind<p_len; ind++){
-            p_freq[p.charAt(ind)-'a']++;
+            fre_p[p.charAt(ind)-'a']++;
         }
         
-        int n = s.length();
+        int ind=0;
+        List<Integer> al = new ArrayList<>();
         
-        int[] freq = new int[26];
-        
-        for(int ind=0; ind<n; ind++){
-            freq[s.charAt(ind)-'a']++;
-            
-            if(ind>=p_len-1){
-                if(compare(freq, p_freq))
-                    ans.add(ind-p_len+1);
-                
-                freq[s.charAt(ind-p_len+1)-'a']--;
+        while(ind<s_len){
+            if(ind<p_len-1){
+                fre_s[s.charAt(ind)-'a']++;
             }
+            else{
+                fre_s[s.charAt(ind)-'a']++;
+                
+                if(equal(fre_s, fre_p)){
+                    al.add(ind-p_len+1);
+                }
+                
+                fre_s[s.charAt(ind-p_len+1)-'a']--;
+            }
+            
+            ind++;
         }
         
-        return ans;
+        return al;
     }
     
-    public boolean compare(int[] freq, int[] p_freq){
-        for(int ind=0; ind<26; ind++)
-            if(freq[ind] != p_freq[ind])
+    public boolean equal(int[] arr1, int[] arr2){
+        for(int ind=0; ind<26; ind++){
+            if(arr1[ind] != arr2[ind]){
                 return false;
+            }
+        }
         
         return true;
     }
