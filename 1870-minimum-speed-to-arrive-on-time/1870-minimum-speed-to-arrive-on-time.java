@@ -1,6 +1,6 @@
 class Solution {
     public int minSpeedOnTime(int[] dist, double hour) {
-        int l=1, h=(int)1e8, m, n=dist.length;
+        int l=1, h=(int)1e7, m, n=dist.length;
         
         while(l<=h){
             m = l + (h-l)/2;
@@ -15,7 +15,7 @@ class Solution {
             }
         }
         
-        return h==(int)1e8 ? -1 : h+1;
+        return h==(int)1e7 ? -1 : h+1;
     }
     
     public double canWe(int[] dist, int m, int n){
