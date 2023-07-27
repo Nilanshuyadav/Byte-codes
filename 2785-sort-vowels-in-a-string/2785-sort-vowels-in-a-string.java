@@ -15,6 +15,7 @@ class Solution {
         Collections.sort(al);
         
         StringBuilder sb = new StringBuilder("");
+        
         for(int ind=0; ind<n; ind++){
             ch = s.charAt(ind);
             
