@@ -18,7 +18,6 @@ class Solution {
         StringBuilder sb = new StringBuilder("");
         List<Character> list = new ArrayList<>(map.keySet());
         int i=0;
-        System.out.println(map);
         for(int ind=0; ind<n; ind++){
             ch = s.charAt(ind);
             
