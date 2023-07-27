@@ -1,26 +1,36 @@
 class Solution {
     public String sortVowels(String s) {
         int n = s.length();
-        char ch;
+        Map<Character, Integer> map = new TreeMap<>();
+        Set<Character> set = new HashSet<>(Arrays.asList('a','e','i','o','u','A','E','I','O','U'));
         
-        List<Character> al = new ArrayList<>();
+        char ch, temp_ch;
         for(int ind=0; ind<n; ind++){
             ch = s.charAt(ind);
             
-            if(isVowel(ch)){
-                al.add(ch);    
+            if(set.contains(ch)){
+                map.put(ch, map.getOrDefault(ch, 0) + 1);
             }
         }
         
-        Collections.sort(al);
+        
         
         StringBuilder sb = new StringBuilder("");
-        
+        List<Character> list = new ArrayList<>(map.keySet());
+        int i=0;
+        System.out.println(map);
         for(int ind=0; ind<n; ind++){
             ch = s.charAt(ind);
             
-            if(isVowel(ch)){
-                sb.append(al.remove(0));
+            if(set.contains(ch)){
+                temp_ch = list.get(i);
+                
+                if(map.get(temp_ch)==0){
+                    temp_ch = list.get(++i);
+                }       
+                
+                sb.append(temp_ch);
+                map.put(temp_ch, map.get(temp_ch)-1);
             }
             else{
                 sb.append(ch);
@@ -28,10 +38,5 @@ class Solution {
         }
         
         return sb.toString();
-    }
-    
-    public boolean isVowel(char ch){
-        return ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' ||
-            ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U';
     }
 }
