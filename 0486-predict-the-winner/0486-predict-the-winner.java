@@ -6,7 +6,10 @@ class Solution {
             mask |= (1<<ind);
         }
         
-        int[][] dp = new int[mask][2];
+        int[][] dp = new int[mask+1][2];
+        for(int ind[] : dp){
+            Arrays.fill(ind, -1);
+        }
         
         mask = 0;
         mask |= 1;
@@ -37,6 +40,10 @@ class Solution {
             return nums[pos[0]]*k;    
         }
         
+        if(dp[mask][player] != -1){
+            return dp[mask][player];
+        }
+        
         int left_mask = 0;
         left_mask |= (1<<pos[1]);
         left_mask |= (1<<(pos[0]+1));
@@ -47,6 +54,6 @@ class Solution {
         right_mask |= (1<<(pos[1]-1));
         int right = (k*nums[pos[1]]) + solve((player+1)%2, nums, right_mask, dp);
         
-        return player==1? Math.min(left, right) : Math.max(left, right);
+        return dp[mask][player] = player==1? Math.min(left, right) : Math.max(left, right);
     }
 }
