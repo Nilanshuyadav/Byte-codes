@@ -6,19 +6,21 @@ class Solution {
             return 1.0;
         }
         
-        Map<String, Double> dp = new HashMap<>();
+        Map<List<Integer>, Double> dp = new HashMap<>();
         
         return solve(n, n, dp);
     }
     
-    public double solve(int a, int b, Map<String, Double> map){
+    public double solve(int a, int b, Map<List<Integer>, Double> map){
         double sum = 0;
         
-        String st = a+","+b;
+        List<Integer> arr = new ArrayList<>(Arrays.asList(a, b));
         
-        if(map.containsKey(st)){
-            return map.get(st);
+        if(map.containsKey(arr)){
+            return map.get(arr);
         }
+        
+//         System.out.println(map);
         
         int new_a, new_b;
         for(int ind=0; ind<4; ind++){
@@ -39,8 +41,8 @@ class Solution {
             }
         }
         
-        map.put(st, 0.25*sum);
+        map.put(arr, 0.25*sum);
         
-        return map.get(st);
+        return map.get(arr);
     }
 }
