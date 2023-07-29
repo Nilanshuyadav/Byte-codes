@@ -14,15 +14,11 @@ class Solution {
     public double solve(int a, int b, Map<Pair<Integer, Integer>, Double> map){
         double sum = 0;
         
-        // List<Integer> arr = new ArrayList<>(Arrays.asList(a, b));
-        
         Pair<Integer, Integer> arr = new Pair<>(a, b);
         
         if(map.containsKey(arr)){
             return map.get(arr);
         }
-        
-        // System.out.println(map);
         
         int new_a, new_b;
         for(int ind=0; ind<4; ind++){
