@@ -6,21 +6,23 @@ class Solution {
             return 1.0;
         }
         
-        Map<List<Integer>, Double> dp = new HashMap<>();
+        Map<Pair<Integer, Integer>, Double> dp = new HashMap<>();
         
         return solve(n, n, dp);
     }
     
-    public double solve(int a, int b, Map<List<Integer>, Double> map){
+    public double solve(int a, int b, Map<Pair<Integer, Integer>, Double> map){
         double sum = 0;
         
-        List<Integer> arr = new ArrayList<>(Arrays.asList(a, b));
+        // List<Integer> arr = new ArrayList<>(Arrays.asList(a, b));
+        
+        Pair<Integer, Integer> arr = new Pair<>(a, b);
         
         if(map.containsKey(arr)){
             return map.get(arr);
         }
         
-//         System.out.println(map);
+        // System.out.println(map);
         
         int new_a, new_b;
         for(int ind=0; ind<4; ind++){
