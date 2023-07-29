@@ -2,7 +2,7 @@ class Solution {
     int[] arr_a = {100,75,50,25}, arr_b={0,25,50,75};
     
     public double soupServings(int n) {
-        if(n>=5000){
+        if(n>=4801){
             return 1.0;
         }
         
