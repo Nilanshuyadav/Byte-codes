@@ -1,8 +1,11 @@
 class Solution {
     int[][] dp;
+    int n, m;
     
     public int minimumDeleteSum(String s1, String s2) {
         dp = new int[1001][1001];
+        n=s1.length();
+        m=s2.length();
         
         for(int ind[] : dp){
             Arrays.fill(ind, -1);
@@ -12,7 +15,6 @@ class Solution {
     }
     
     public int solve(String s1, String s2, int i, int j){
-        int n=s1.length(), m=s2.length();
         
         if(i>=n || j>=m){
             int cost = 0;
