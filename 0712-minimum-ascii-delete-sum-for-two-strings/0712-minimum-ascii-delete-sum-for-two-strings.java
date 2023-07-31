@@ -36,7 +36,6 @@ class Solution {
             return dp[i][j] = solve(s1, s2, i+1, j+1);
         }
         
-        return dp[i][j] = Math.min(s1.charAt(i) + solve(s1, s2, i+1, j), 
-                                   Math.min(s2.charAt(j) + solve(s1, s2, i, j+1),                                                              s1.charAt(i)+s2.charAt(j)+solve(s1,s2,i+1,j+1)));
+        return dp[i][j] = Math.min(s1.charAt(i) + solve(s1, s2, i+1, j), s2.charAt(j) + solve(s1, s2, i, j+1));
     }
 }
