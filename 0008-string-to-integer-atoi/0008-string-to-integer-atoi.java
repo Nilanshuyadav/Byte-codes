@@ -1,51 +1,70 @@
 class Solution {
     public int myAtoi(String s) {
+        int n = s.length();
         StringBuilder sb = new StringBuilder("");
         
-        int n = s.length();
-        boolean got_symbol=false, first=true, negative=false, digit_start=false;
+        char ch;
+        boolean first = true;
         
         for(int ind=0; ind<n; ind++){
-            char ch = s.charAt(ind);
+            ch = s.charAt(ind);
             
-            if(ch == ' ' && !got_symbol && first && !digit_start)
-                continue;
+            if(ch==' ' && sb.length()==0) continue;
             
-            if(!got_symbol && first && (ch=='-' || ch=='+') && !digit_start){
-                got_symbol = true;
-                
-                if(ch == '-')
-                    negative = true;
-            }
-            else if(('1'<=ch && ch<='9') || (ch=='0' && !first)){
+            if(('0'<=ch && ch<='9') || ((ch=='+' || ch=='-') && first && sb.length()==0)){
+                if(ch=='+' || ch=='-'){
+                    first = false;
+                }
                 sb.append(ch);
-                first = false;
             }
-            
-            else if(ch!='0') break;
-            else digit_start=true;
+            else{
+                break;
+            }
         }
         
-        String st = sb.toString();
-        System.out.println(st);
-        
-        if(st.equals(""))
+        if(sb.length()==0){
             return 0;
-        
-        long ans=0;
-        if(negative){
-            if(st.length()>10)
-                return Integer.MIN_VALUE;
-            else
-                ans = Math.max(Integer.MIN_VALUE, 0-Long.valueOf(st,10));
-        }
-        else {
-            if(st.length()>10)
-                return Integer.MAX_VALUE;
-            else
-                ans = Math.min(Integer.MAX_VALUE, Long.valueOf(st,10));
         }
         
-        return (int)ans;
+        int inx;
+        
+        if('0'<=sb.charAt(0) && sb.charAt(0)<='9'){
+            inx=0;
+        }
+        else{
+            inx=1;
+        }
+        
+        while(inx<sb.length() && sb.charAt(inx)=='0'){
+            sb.deleteCharAt(inx);
+        }
+        
+        int sign=1;
+        
+        if(inx==1){
+            sign = sb.charAt(0)=='-' ? -1 : 1;
+            sb.deleteCharAt(0);
+        }
+        
+        if(sb.length()==0){
+            return 0;
+        }
+        
+        int size = sb.length();
+        
+        if(size>10){
+            return sign==1?Integer.MAX_VALUE : Integer.MIN_VALUE;
+        }
+        
+        long num = sign*Long.valueOf(sb.toString());
+        
+        if(num>Integer.MAX_VALUE){
+            return Integer.MAX_VALUE;
+        }
+        else if(num<Integer.MIN_VALUE){
+            return Integer.MIN_VALUE;
+        }
+        
+        return (int)num;
     }
 }
