@@ -7,7 +7,7 @@ class Solution {
             sum += ind;
         }
         
-        Boolean[][] dp = new Boolean[n][(sum/2)+2];
+        Boolean[][] dp = new Boolean[n][sum];
         
         if((sum&1)!=0) return false;
         
@@ -21,14 +21,7 @@ class Solution {
         
         if(dp[ind][sum] != null)   return dp[ind][sum];
         
-        boolean temp = false;
-        
-        if(sum+nums[ind]<=target){
-            temp |= solve(ind-1, sum+nums[ind], nums, target, dp);
-        }
-        
-        temp |= solve(ind-1, sum, nums, target, dp);
-        
-        return dp[ind][sum] = temp;
+        return dp[ind][sum] = solve(ind-1, sum+nums[ind], nums, target, dp) 
+                                || solve(ind-1, sum, nums, target, dp);
     }
 }
