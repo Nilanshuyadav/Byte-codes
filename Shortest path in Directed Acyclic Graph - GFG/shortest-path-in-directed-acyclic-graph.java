@@ -33,47 +33,46 @@ class Solution {
 
 	public int[] shortestPath(int N,int M, int[][] edges) {
 		//Code here
-	    List<List<int[]>> adj = new ArrayList<>();
-	    
-	    for(int ind=0; ind<N; ind++)
-	        adj.add(new ArrayList<>());
-	    
-	    for(int ind[] : edges){
-	        adj.get(ind[0]).add(new int[]{ind[1], ind[2]});
-	    }
-	    
-	    int ans[] = new int[N];
-	    Arrays.fill(ans, Integer.MAX_VALUE);
-	    
-	    Stack<Integer> st = new Stack<>();
-	    boolean[] vis = new boolean[N];
-	    findTopo(0, adj, st, vis);
-	    
-	    ans[0] = 0;
-	    
-	    while(!st.isEmpty()){
-	        int temp = st.pop();
-	        
-	        for(int inx[] : adj.get(temp)){
-	            if(ans[temp]+inx[1] < ans[inx[0]])
-	                ans[inx[0]] = ans[temp]+inx[1];
-	        }
-	    }
-	    
-	    for(int ind=0; ind<N; ind++)
-	        if(ans[ind] == Integer.MAX_VALUE)
-	            ans[ind] = -1;
-	            
-	   return ans;         
-	}
-	
-	public void findTopo(int ind, List<List<int[]>> adj, Stack<Integer> st, boolean[] vis){
-	    vis[ind] = true;
-	    for(int inx[] : adj.get(ind)){
-	        if(!vis[inx[0]])
-	            findTopo(inx[0], adj, st, vis);
-	    }
-	    
-	    st.push(ind);
+		List<List<int[]>> adj = new ArrayList<>();
+		
+		for(int ind=0; ind<N; ind++){
+		    adj.add(new ArrayList<>());
+		}
+		
+		for(int ind[] : edges){
+		    adj.get(ind[0]).add(new int[]{ind[1], ind[2]});
+		}
+		
+		int[] ans = new int[N];
+		Arrays.fill(ans, (int)1e8);
+		
+		Queue<Integer> pq = new LinkedList<>();
+		pq.add(0);
+		ans[0] = 0;
+		
+		int temp, next, temp_dist;
+		
+		while(!pq.isEmpty()){
+		    temp = pq.remove();
+		    
+		    
+		    for(int ind[] : adj.get(temp)){
+		        next = ind[0];
+		        temp_dist = ind[1];
+		        
+		        if(ans[temp]+temp_dist < ans[next]){
+		            ans[next] = ans[temp]+temp_dist;
+		            pq.add(next);
+		        }
+		    }
+		}
+		
+		for(int ind=0; ind<N; ind++){
+		    if(ans[ind] == (int)1e8){
+		        ans[ind] = -1;
+		    }
+		}
+		
+		return ans;
 	}
 }
