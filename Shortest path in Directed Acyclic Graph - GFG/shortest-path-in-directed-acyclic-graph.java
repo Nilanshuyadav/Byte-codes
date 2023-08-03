@@ -46,23 +46,25 @@ class Solution {
 		int[] ans = new int[N];
 		Arrays.fill(ans, (int)1e8);
 		
-		Queue<Integer> pq = new LinkedList<>();
-		pq.add(0);
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> a[0]-b[0]);
+		pq.add(new int[]{0,0});
 		ans[0] = 0;
 		
-		int temp, next, temp_dist;
+		int temp[], next, temp_dist, curr, dist;
 		
 		while(!pq.isEmpty()){
 		    temp = pq.remove();
 		    
+		    curr = temp[0];
+		    dist = temp[1];
 		    
-		    for(int ind[] : adj.get(temp)){
+		    for(int ind[] : adj.get(curr)){
 		        next = ind[0];
 		        temp_dist = ind[1];
 		        
-		        if(ans[temp]+temp_dist < ans[next]){
-		            ans[next] = ans[temp]+temp_dist;
-		            pq.add(next);
+		        if(dist+temp_dist < ans[next]){
+		            ans[next] = dist+temp_dist;
+		            pq.add(new int[]{next, ans[next]});
 		        }
 		    }
 		}
