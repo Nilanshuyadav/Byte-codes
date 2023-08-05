@@ -14,43 +14,32 @@
  * }
  */
 class Solution {
+    Map<Pair<Integer, Integer>, List<TreeNode>> dp; 
     public List<TreeNode> generateTrees(int n) {
-        if (n == 0) {
-            return new ArrayList<>();
-        }
-        
-        Map<String, List<TreeNode>> memo = new HashMap<>();
-
-        return generateTreesHelper(1, n, memo);        
+        dp = new HashMap<>();
+        return helper(1, n);
     }
-
-    private List<TreeNode> generateTreesHelper(int start, int end, Map<String, List<TreeNode>> memo) {
-        String key = start + "-" + end;
-        if (memo.containsKey(key)) {
-            return memo.get(key);
-        }
-        
-        List<TreeNode> trees = new ArrayList<>();
+    
+    public List<TreeNode> helper(int start, int end) {
+        List<TreeNode> variations = new ArrayList<>();
         if (start > end) {
-            trees.add(null);
-            return trees;
+            variations.add(null);
+            return variations;
         }
-        
-        for (int rootVal = start; rootVal <= end; rootVal++) {
-            List<TreeNode> leftTrees = generateTreesHelper(start, rootVal - 1, memo);
-            List<TreeNode> rightTrees = generateTreesHelper(rootVal + 1, end, memo);
-            
-            for (TreeNode leftTree : leftTrees) {
-                for (TreeNode rightTree : rightTrees) {
-                    TreeNode root = new TreeNode(rootVal);
-                    root.left = leftTree;
-                    root.right = rightTree;
-                    trees.add(root);
+        if (dp.containsKey(new Pair<>(start, end))) {
+            return dp.get(new Pair<>(start, end));
+        }
+        for (int i = start; i <= end; ++i) {
+            List<TreeNode> leftSubTrees = helper(start, i - 1);
+            List<TreeNode> rightSubTrees = helper(i + 1, end);
+            for (TreeNode left: leftSubTrees) {
+                for (TreeNode right: rightSubTrees) {
+                    TreeNode root = new TreeNode(i, left, right);
+                    variations.add(root);
                 }
             }
         }
-        
-        memo.put(key, trees);
-        return trees;
-    }
+        dp.put(new Pair<>(start, end), variations);
+        return variations;
+    }   
 }
