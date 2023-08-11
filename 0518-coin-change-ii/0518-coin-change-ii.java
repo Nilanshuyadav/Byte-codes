@@ -12,7 +12,7 @@ class Solution {
     
     public int solve(int ind, int[] coins, int amount, int[][] dp){
         if(ind==coins.length){
-            return amount==0?1 : 0;
+            return 0;
         }
         
         if(amount == 0){
