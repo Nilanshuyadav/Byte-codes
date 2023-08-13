@@ -1,11 +1,9 @@
 class Solution {
     public int change(int amount, int[] coins) {
         int n = coins.length;
-        int[][] dp = new int[n][amount+1];
+        int[] dp = new int[amount+1], curr = new int[amount+1];
         
-        for(int i=0; i<n; i++){
-            dp[i][0] = 1;
-        }
+        curr[0] = 1;
         
         int pick, not_pick;
         
@@ -15,18 +13,22 @@ class Solution {
                 not_pick=0;
                 
                 if(coins[r]<=c){
-                    pick = dp[r][c-coins[r]];
+                    pick = curr[c-coins[r]];
                 }
                 
                 if(r>0){
-                    not_pick = dp[r-1][c];
+                    not_pick = dp[c];
                 }    
                 
-                dp[r][c] = pick+not_pick;
+                curr[c] = pick+not_pick;
+            }
+            
+            for(int ind=0; ind<=amount; ind++){
+                dp[ind] = curr[ind];
             }
         }
         
-        return dp[n-1][amount];
+        return curr[amount];
         
 //         for(int ind[] : dp){
 //             Arrays.fill(ind, -1);
