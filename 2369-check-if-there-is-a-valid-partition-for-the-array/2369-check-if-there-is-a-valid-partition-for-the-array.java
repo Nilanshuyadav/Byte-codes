@@ -1,26 +1,39 @@
 class Solution {
     public boolean validPartition(int[] nums) {
         int n = nums.length;
+        Boolean[] vis = new Boolean[n];
         
-        boolean[] dp = new boolean[3];
-        dp[0] = true;  // An empty partition is always valid
-
-        for (int i = 2; i <= n; i++) {
-            boolean ans = false;
-
-            if (nums[i - 1] == nums[i - 2]) {
-                ans = ans || dp[(i - 2) % 3];
-            }
-            if (i >= 3 && nums[i - 1] == nums[i - 2] && nums[i - 1] == nums[i - 3]) {
-                ans = ans || dp[(i - 3) % 3];
-            }
-            if (i >= 3 && nums[i - 1] == nums[i - 2] + 1 && nums[i - 2] + 1 == nums[i - 3] + 2) {
-                ans = ans || dp[(i - 3) % 3];
-            }
-
-            dp[i % 3] = ans;
+        return solve(0, nums, n, vis);
+    }
+    
+    public boolean solve(int ind, int[] nums, int n, Boolean[] vis){
+        if(ind == n){
+            return true;
         }
-
-        return dp[n % 3];
+        
+        if(vis[ind]!=null){
+            return vis[ind];
+        }
+        
+        boolean ans=false;
+        
+        if(ind<n-1){
+            if(nums[ind]==nums[ind+1]){
+                ans |= solve(ind+2, nums, n, vis);    
+            }
+            
+            if(ind<n-2){
+                if(nums[ind]==nums[ind+1] && nums[ind+1]==nums[ind+2]){
+                    ans |= solve(ind+3, nums, n, vis);    
+                }
+                
+                if(nums[ind]==nums[ind+1]-1 && nums[ind]==nums[ind+2]-2){
+                    ans |= solve(ind+3, nums, n, vis);
+                }
+            }    
+        }
+        
+        
+        return vis[ind] = ans;
     }
 }
