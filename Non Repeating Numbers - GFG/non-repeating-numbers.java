@@ -39,21 +39,25 @@ class Solution
 {
     public int[] singleNumber(int[] nums)
     {
+        // Code here
         int xor=0;
-        
-        for(int ind : nums)
-            xor ^= ind;
-            
-        int mask = xor&(-xor);
-        
-        int one=0, zero=0;
         for(int ind : nums){
-            if((ind&mask) > 0)
-                one ^= ind;
-            else
-                zero ^= ind;
+            xor ^= ind;
         }
         
-        return new int[]{Math.min(one, zero), Math.max(one, zero)};
+        int mask = xor&((~xor)+1);
+        
+        int bucket1=0, bucket2=0;
+        
+        for(int ind : nums){
+            if((ind&mask) != 0){
+                bucket1 ^= ind;
+            }
+            else{
+                bucket2 ^= ind;
+            }
+        }
+        
+        return new int[]{Math.min(bucket1, bucket2), Math.max(bucket1, bucket2)};
     }
 }
