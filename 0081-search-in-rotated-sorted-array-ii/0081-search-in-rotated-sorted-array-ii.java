@@ -2,13 +2,11 @@ class Solution {
     public boolean search(int[] nums, int target) {
         int n=nums.length, l=0, h=n-1, m;
         
-        if(target==nums[l] || target==nums[h]) return true;
-        
         while(l<=h){
             while(l<h && nums[l]==nums[l+1]) l++;
             while(l<h && nums[h]==nums[h-1]) h--;
             
-            if(l>h) return false;
+            if(l==h) return nums[l] == target;
             
             m = l+(h-l)/2;
             
