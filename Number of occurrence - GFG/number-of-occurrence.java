@@ -37,26 +37,17 @@ public class Main {
 
 class Solution {
     int count(int[] arr, int n, int x) {
-        int temp = findPos(x, arr, n);
+        // code here
         
-        if(temp==n || arr[temp]!=x ){
-            return 0;
-        }
-        
-        return findPos(x+1, arr, n)-temp;
-    }
-    
-    int findPos(int target, int[] arr, int n){
-        int l=0, h=n-1, m, min=n;
+        int l=0, h=n-1, m=0;
         
         while(l<=h){
             m = l + (h-l)/2;
             
-            if(arr[m] == target){
-                min = Math.min(min, m);
-                h = m-1;
+            if(arr[m] == x){
+                break;
             }
-            else if(arr[m] < target){
+            else if(arr[m] < x){
                 l = m+1;
             }
             else{
@@ -64,6 +55,14 @@ class Solution {
             }
         }
         
-        return h+1;
+        if(l>h) return 0;
+        
+        l=m;
+        h=m;
+        
+        while(l>=0 && arr[l]==x) l--;
+        while(h<n && arr[h]==x) h++;
+        
+        return h-l-1;
     }
 }
