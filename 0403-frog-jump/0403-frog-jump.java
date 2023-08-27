@@ -1,14 +1,19 @@
 class Solution {
     public boolean canCross(int[] stones) {
         int n = stones.length;
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        for(int ind=0; ind<n; ind++){
+            map.put(stones[ind], ind);
+        }
         
         Boolean[][] dp = new Boolean[n][n];
         
-        return solve(0, stones, 0, n, dp);
+        return solve(0, stones, 0, n, dp, map);
     }
     
     
-    public boolean solve(int ind, int[] stones, int k, int n, Boolean[][] dp){
+    public boolean solve(int ind, int[] stones, int k, int n, Boolean[][] dp, Map<Integer, Integer> map){
         if(ind == n-1){
             return true;
         }
@@ -18,27 +23,32 @@ class Solution {
         }
         
         boolean bool = false;
+        int new_k;
         
-        if(k-1>0){
-            int temp = contains(stones, n, stones[ind]+k-1);
+        for(int i=-1; i<=1; i++){
+            new_k = k+i;
             
-            if(temp!=-1)
-                bool |= solve(temp, stones, k-1, n, dp);
+            if(new_k>0 && map.containsKey(stones[ind]+new_k)){
+                bool |= solve(map.get(stones[ind]+new_k), stones, new_k, n, dp, map);
+            }
         }
         
-        if(k>0){
-            int temp = contains(stones, n, stones[ind]+k);
-            
-            if(temp!=-1)
-                bool |= solve(temp, stones, k, n, dp);
-        }
+//         if(k-1>0){            
+//             if(map.containsKey(stones[ind]))
+//                 bool |= solve(map.get(stones[ind]), stones, k-1, n, dp);
+//         }
         
-        if(k+1>0){
-            int temp = contains(stones, n, stones[ind]+k+1);
+//         if(k>0){
+//             if(temp!=-1)
+//                 bool |= solve(temp, stones, k, n, dp);
+//         }
+        
+//         if(k+1>0){
+//             int temp = contains(stones, n, stones[ind]+k+1);
             
-            if(temp!=-1)
-                bool |= solve(temp, stones, k+1, n, dp);
-        }
+//             if(temp!=-1)
+//                 bool |= solve(temp, stones, k+1, n, dp);
+//         }
         
         return dp[ind][k] = bool;
     }
