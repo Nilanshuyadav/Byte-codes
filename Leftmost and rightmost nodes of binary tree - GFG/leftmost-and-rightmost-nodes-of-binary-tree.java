@@ -134,7 +134,6 @@ class Tree
         Queue<Node> q = new LinkedList<>();
         
         q.add(node);
-        List<Integer> ans = new ArrayList<>();
         
         int size, temp_size;
         Node temp;
@@ -147,7 +146,7 @@ class Tree
                 temp = q.remove();
                 
                 if(size==0 || size==temp_size){
-                    ans.add(temp.data);
+                    System.out.print(temp.data + " ");
                 }
                 
                 if(temp.left != null) q.add(temp.left);
@@ -155,9 +154,6 @@ class Tree
             }
         }
         
-        for(int ind : ans){
-            System.out.print(ind+" ");
-        }
     }
     
 }
