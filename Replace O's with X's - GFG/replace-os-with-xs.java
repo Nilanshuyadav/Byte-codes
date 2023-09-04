@@ -40,61 +40,46 @@ class GFG{
 //User function Template for Java
 
 class Solution{
+    static int[] r_arr={-1, 0, 1, 0}, c_arr={0, 1, 0, -1};
+    
     static char[][] fill(int n, int m, char a[][])
     {
-        Queue<int[]> q = new LinkedList<>();
-        
-        char[][] ans = new char[n][m];
-        
+        // code here
         for(int r=0; r<n; r++){
-            if(a[r][0] == 'O'){
-                q.add(new int[]{r,0});
-                ans[r][0] = 'O';
-            }
-            
-            if(a[r][m-1] == 'O'){
-                q.add(new int[]{r, m-1});
-                ans[r][m-1] = 'O';
-            }
+            if(a[r][0] == 'O') solve(r, 0, a, n, m);
+            if(a[r][m-1] == 'O') solve(r, m-1, a, n, m);
         }
         
-        for(int c=1; c<m-1; c++){
-            if(a[0][c] == 'O'){
-                q.add(new int[]{0, c});
-                ans[0][c] = 'O';
-            }
-            
-            if(a[n-1][c] == 'O'){
-                q.add(new int[]{n-1, c});
-                ans[n-1][c] = 'O';
-            }
-        }
-        
-        int temp[], new_r, new_c, r_arr[]={-1,0,1,0}, c_arr[]={0,1,0,-1};
-        
-        while(!q.isEmpty()){
-            temp = q.remove();
-            
-            ans[temp[0]][temp[1]] = 'O';
-            
-            for(int ind=0; ind<4; ind++){
-                new_r = temp[0] + r_arr[ind];
-                new_c = temp[1] + c_arr[ind];
-                
-                if(new_r<0 || new_c<0 || new_r>=n || new_c>=m || a[new_r][new_c]!='O' || ans[new_r][new_c]=='O')  continue;
-                
-                ans[new_r][new_c] = 'O';
-                q.add(new int[]{new_r, new_c});
-            }
+        for(int c=0; c<m; c++){
+            if(a[0][c] == 'O') solve(0, c, a, n, m);
+            if(a[n-1][c] == 'O') solve(n-1, c, a, n, m);
         }
         
         for(int r=0; r<n; r++){
             for(int c=0; c<m; c++){
-                if(ans[r][c] != 'O')
-                    ans[r][c] = 'X';
+                if(a[r][c] == 'O'){
+                    a[r][c] = 'X';
+                }
+                else if(a[r][c] == '*'){
+                    a[r][c] = 'O';
+                }
             }
         }
         
-        return ans;
+        return a;
+    }
+    
+    static void solve(int r, int c, char a[][], int row, int col){
+        a[r][c] = '*';
+        
+        int new_r, new_c;
+        
+        for(int ind=0; ind<4; ind++){
+            new_r = r+r_arr[ind];
+            new_c = c+c_arr[ind];
+            
+            if(new_r<0 || new_c<0 || new_r>=row || new_c>=col || a[new_r][new_c]!='O') continue;
+            solve(new_r, new_c, a, row, col);
+        }
     }
 }
