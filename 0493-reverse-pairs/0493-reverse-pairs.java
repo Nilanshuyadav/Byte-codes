@@ -1,0 +1,55 @@
+class Solution {
+    int ans;
+    public int reversePairs(int[] nums) {
+        int n = nums.length;
+        ans = 0;
+        
+        mergeBreak(nums, 0, n-1);
+        return ans;
+    }
+    
+    public void mergeBreak(int[] arr, int l, int h){
+        if(l<h){
+            int m = l + (h-l)/2;
+            
+            mergeBreak(arr, l, m);
+            mergeBreak(arr, m+1, h);
+            merge(arr, l, m, h);
+        }
+    }
+    
+    public void merge(int[] arr, int l, int m, int h){
+        int len = h-l+1, i=l, j=m+1, k=0, b=m+1, cnt=0;
+        int[] temp = new int[len];
+        
+        for(int a=l; a<=m; a++){
+            while(b<=h && (arr[a]>(2*((long)arr[b])))) b++;
+            
+            cnt += (b-m-1);
+        }
+        
+        ans += cnt;
+        
+        while(i<=m && j<=h){    
+            if(arr[i]>=arr[j]){
+                temp[k++] = arr[j++];
+            }
+            else{
+                temp[k++] = arr[i++];
+            }
+        }
+        
+        while(i<=m){
+            temp[k++] = arr[i++];
+        }
+        
+        while(j<=h){
+            temp[k++] = arr[j++];
+        }
+        
+        for(int ind=0; ind<len; ind++){
+            arr[ind+l] = temp[ind];
+        }
+        
+    }
+}
