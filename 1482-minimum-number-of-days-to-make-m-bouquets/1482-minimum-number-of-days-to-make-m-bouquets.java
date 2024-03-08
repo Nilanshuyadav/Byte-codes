@@ -22,21 +22,19 @@ class Solution {
     }
     
     public boolean canWe(int[] bloomDay, int mid, int m, int k){
-        int cnt=0, temp_k=k;
+        int cnt=0, temp_cnt=0;
         
         for(int i : bloomDay){
             if(i <= mid){
-                temp_k--;
+                temp_cnt++;
             }
             else{
-                temp_k = k;
-            }
-            
-            if(temp_k == 0){
-                cnt++;
-                temp_k = k;
+                cnt += (temp_cnt/k);
+                temp_cnt=0;
             }
         }
+        
+        cnt += (temp_cnt/k);
         
         return cnt>=m;
     }
