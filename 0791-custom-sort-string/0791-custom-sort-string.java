@@ -15,22 +15,16 @@ class Solution {
             ch = order.charAt(i);
             
             if(map.containsKey(ch)){
-                times = map.get(ch);
                 
-                while(times-->0){
-                    sb.append(ch);
-                }
+                sb.append((ch+"").repeat(map.get(ch)));
                 
                 map.remove(ch);
             }
         }
         
         for(Map.Entry<Character, Integer> entry : map.entrySet()){
-            times = entry.getValue();
             
-            while(times-->0){
-                sb.append(entry.getKey());
-            }
+            sb.append((entry.getKey()+"").repeat(entry.getValue()));
         }
         
         return sb.toString();
