@@ -10,34 +10,32 @@
  */
 class Solution {
     public ListNode removeZeroSumSublists(ListNode head) {
-        ListNode dummy = new ListNode(-1001, head), curr=head;
-        
-        int ind=0;
-        List<int[]> al = new ArrayList<>();
-        Map<Integer, Pair> map = new HashMap<>();
+        ListNode dummy = new ListNode(-1, head), curr = head;
         
         int sum = 0;
-        map.put(0, new Pair(0, dummy));
+        Map<Integer, ListNode> map = new HashMap<>();
+        map.put(0, dummy);
         
-        while(curr!=null){
+        while(curr != null){
             sum += curr.val;
-            ind++;
             
             if(map.containsKey(sum)){
-                Pair temp = map.get(sum);
+                ListNode temp = map.get(sum);
+                temp = temp.next;
                 
+                int temp_sum = sum + temp.val;
                 
-                if(isValid(temp.ind, al)){
-                   temp.curr.next = curr.next;
+                while(temp_sum != sum){
+                    map.remove(temp_sum);
+                    temp = temp.next;
                     
-                    al.add(new int[]{temp.ind+1, ind});
+                    temp_sum += temp.val;
                 }
-                else{
-                    map.put(sum, new Pair(ind, curr));
-                }
+                
+                map.get(sum).next = curr.next;
             }
             else{
-                map.put(sum, new Pair(ind, curr));        
+                map.put(sum, curr);
             }
             
             curr = curr.next;
@@ -45,38 +43,4 @@ class Solution {
         
         return dummy.next;
     }
-    
-    public boolean isValid(int tar, List<int[]> al){
-        for(int[] i : al){
-            if(i[0]<=tar && tar<=i[1]) return false;
-        }
-        
-        return true;
-    }
 }
-
-class Pair{
-    int ind;
-    ListNode curr;
-    
-    public Pair(int ind, ListNode curr){
-        this.ind = ind;
-        this.curr = curr;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-// [1,2,-3,3,1]
-// [1,2,3,-3,4]
-// [1,2,3,-3,-2]
-// [1,3,2,-3,-2,5,5,-5,1]
-// [0,0]
-// [6,-5,3,2,-3,-2,5,5,-5,1]
