@@ -4,21 +4,37 @@ class Solution {
         int n = nums.length;
         cnt=0;
         
-        helper(n-1, nums, k, new ArrayList<>());
+        helper(n-1, nums, k, new ArrayList<>(), new HashMap<>());
         return cnt-1;
     }
     
-    public void helper(int ind, int[] nums, int k, List<Integer> al){
+    public void helper(int ind, int[] nums, int k, List<Integer> al, Map<Integer, Integer> map){
         if(ind == -1){
-            cnt += beautiful(al, k);
+            cnt += 1;//beautiful(al, k);
             return; 
         }
         
-        al.add(nums[ind]);
-        helper(ind-1, nums, k, al);
+        if(!map.containsKey(nums[ind])){
+            al.add(nums[ind]);
+            map.put(nums[ind]-k, map.getOrDefault(nums[ind]-k, 0) + 1);
+            map.put(nums[ind]+k, map.getOrDefault(nums[ind]+k, 0) + 1);
+            
+            helper(ind-1, nums, k, al, map);
+            
+            al.remove(al.size()-1);
+            map.put(nums[ind]-k, map.getOrDefault(nums[ind]-k, 1) - 1);
+            map.put(nums[ind]+k, map.getOrDefault(nums[ind]+k, 1) - 1);
+
+            if(map.get(nums[ind]-k)<=0) map.remove(nums[ind]-k);
+            if(map.get(nums[ind]+k)<=0) map.remove(nums[ind]+k);
+
+            helper(ind-1, nums, k, al, map);
+        }
+        else{
+            helper(ind-1, nums, k, al, map);
+        }
         
-        al.remove(al.size()-1);
-        helper(ind-1, nums, k, al);
+        
     }
     
     public int beautiful(List<Integer> al, int k){
