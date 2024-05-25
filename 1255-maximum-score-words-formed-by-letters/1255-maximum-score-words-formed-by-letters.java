@@ -1,53 +1,61 @@
 class Solution {
     public int maxScoreWords(String[] words, char[] letters, int[] score) {
-        // Step 1: Count the available letters
-        Map<Character, Integer> lettersCounter = new HashMap<>();
-        for (char letter : letters) {
-            lettersCounter.put(letter, lettersCounter.getOrDefault(letter, 0) + 1);
+        int[] arr = new int[26];
+        
+        for(char ch : letters){
+            arr[ch-'a']++;
         }
-
-        // Step 2: Initialize the totalScore
-        int[] totalScore = new int[1];
-
-        // Step 3: Define the recursive function to explore all combinations
-        explore(words, lettersCounter, score, 0, 0, totalScore);
-
-        // Step 4: Return the maximum score found
-        return totalScore[0];
+        
+        return helper(words.length-1, words, arr, score);
     }
-
-    private void explore(String[] words, Map<Character, Integer> letterCounter, int[] score, int index, int currScore,
-            int[] totalScore) {
-        // Update the total score with the current score if it's higher
-        totalScore[0] = Math.max(totalScore[0], currScore);
-
-        // Base case: if all words have been considered, return
-        if (index == words.length) {
-            return;
+    
+    public int helper(int ind, String[] words, int[] arr, int[] score){
+        if(ind == -1){
+            return 0;
         }
-
-        // Step 3: Try each word starting from the current index
-        for (int i = index; i < words.length; i++) {
-            Map<Character, Integer> tmpCounter = new HashMap<>(letterCounter);
-            String word = words[i];
-            int wordScore = 0;
-            boolean isValid = true;
-
-            // Check if the word can be formed with the available letters
-            for (char ch : word.toCharArray()) {
-                if (tmpCounter.getOrDefault(ch, 0) > 0) {
-                    tmpCounter.put(ch, tmpCounter.get(ch) - 1);
-                    wordScore += score[ch - 'a'];
-                } else {
-                    isValid = false;
-                    break;
-                }
+        
+        char ch;
+        int sum = 0;
+        int max = 0;
+        
+        if(canTake(words[ind], arr)){
+            for(int i=0; i<words[ind].length(); i++){
+                ch = words[ind].charAt(i);
+                
+                arr[ch-'a']--;
+                sum += score[ch-'a'];
             }
-
-            // If the word can be formed, explore further with the updated state
-            if (isValid) {
-                explore(words, tmpCounter, score, i + 1, currScore + wordScore, totalScore);
+            
+            max = sum + helper(ind-1, words, arr, score);
+            
+            for(int i=0; i<words[ind].length(); i++){
+                ch = words[ind].charAt(i);
+                
+                arr[ch-'a']++;
             }
         }
+        
+        max = Math.max(max, helper(ind-1, words, arr, score));
+        
+        return max;
+    }
+    
+    public boolean canTake(String st, int[] arr){
+        char ch;
+        
+        int[] temp = new int[26];
+        
+        for(int i=0; i<st.length(); i++){
+            ch = st.charAt(i);
+            
+            temp[ch-'a']++;
+        }
+        
+        for(int i=0; i<26; i++){
+            if(arr[i]<temp[i]) return false;
+        }
+        
+        
+        return true;
     }
 }
