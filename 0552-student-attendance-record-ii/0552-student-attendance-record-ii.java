@@ -1,11 +1,10 @@
 class Solution {
     public int checkRecord(int n) {
-        int[][] dp = new int[2][3];
-        int[][] curr = new int[2][3];
+        int[][][] dp = new int[n+1][2][3];
         
         for(int A=0; A<2; A++){
             for(int L=0; L<3; L++){
-                dp[A][L] = 1;
+                dp[0][A][L] = 1;
             }
         }
         
@@ -17,25 +16,19 @@ class Solution {
                     sum = 0;
                     
                     if(A>0){
-                        sum += dp[A-1][2];
+                        sum += dp[ind-1][A-1][2];
                     }   
                     if(L>0){
-                        sum += dp[A][L-1];
+                        sum += dp[ind-1][A][L-1];
                     }
                     
-                    sum += dp[A][2];
+                    sum += dp[ind-1][A][2];
                     
-                    curr[A][L] = (int)(sum%1000000007);
-                }
-            }
-            
-            for(int A=0; A<2; A++){
-                for(int L=0; L<3; L++){
-                    dp[A][L] = curr[A][L];
+                    dp[ind][A][L] = (int)(sum%1000000007);
                 }
             }
         }
         
-        return dp[1][2];
+        return dp[n][1][2];
     }
 }
