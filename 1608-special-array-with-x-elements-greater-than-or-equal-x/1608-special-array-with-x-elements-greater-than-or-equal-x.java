@@ -2,10 +2,7 @@ class Solution {
     public int specialArray(int[] nums) {
         int n=nums.length;
         
-        int l=0, h=-1;
-        for(int i : nums){
-            h = Math.max(h, i);
-        }
+        int l=0, h=n;
         
         int m;
         
