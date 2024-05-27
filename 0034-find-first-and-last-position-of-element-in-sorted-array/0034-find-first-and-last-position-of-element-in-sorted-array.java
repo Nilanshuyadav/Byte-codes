@@ -1,38 +1,44 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int n = nums.length, index1 = firstOcc(nums, target);
+        int n = nums.length;
         
-        if(index1==n || nums[index1]!=target) return new int[]{-1, -1};
+        int l=0, h=n-1, m;
         
+        if(n==0 || nums[h] < target || target < nums[l]){
+            return new int[]{-1, -1};
+        }
         
-        int index2 = lastOcc(nums, target)-1;
-        
-        return new int[]{index1, index2};
-    }
-    
-    public int lastOcc(int[] arr, int target){
-        int l=0, h=arr.length-1, m;
+        int i=-1, j=-1;
         
         while(l<=h){
             m = l + (h-l)/2;
             
-            if(arr[m] <= target) l = m+1;
-            else h = m-1;
+            if(nums[m] < target){
+                l = m+1;
+            }
+            else{
+                h = m-1;
+            }
         }
         
-        return l;
-    }
-    
-    public int firstOcc(int[] arr, int target){
-        int l=0, h=arr.length-1, m;
+        i=h+1;
+        
+        if(nums[i] != target) return new int[]{-1, -1};
+        
+        l=0;
+        h=n-1;
         
         while(l<=h){
             m = l + (h-l)/2;
             
-            if(arr[m] >= target) h = m-1;
-            else l = m+1;
+            if(target < nums[m]){
+                h = m-1;
+            }
+            else{
+                l = m+1;
+            }
         }
         
-        return h+1;
+        return new int[]{i, l-1};
     }
 }
