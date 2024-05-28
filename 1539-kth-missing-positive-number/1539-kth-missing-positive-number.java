@@ -1,14 +1,31 @@
 class Solution {
     public int findKthPositive(int[] arr, int k) {
-        int l=0, h=arr.length-1, m;
+        int n = arr.length;
+        
+        int l=1, h=arr[n-1]+k, m;
+        int pos;
         
         while(l<=h){
             m = l + (h-l)/2;
             
-            if(arr[m]-m-1 >= k)h = m-1;
+            pos = findPos(m, arr);
+            
+            if(pos > k) h = m-1;
             else l = m+1;
         }
         
-        return k+h+1;
+        return l-1;
+    }
+    
+    public int findPos(int m, int[] arr){
+        int cnt=0;
+        
+        for(int i : arr){
+            if(i<m){
+                cnt++;
+            }
+        }
+        
+        return m-cnt;
     }
 }
