@@ -1,22 +1,21 @@
 class Solution {
     public int splitArray(int[] nums, int k) {
-        int max=0, sum=0;
+        int sum = 0;
         
         for(int i : nums){
-            max = Math.max(max, i);
             sum += i;
         }
         
-        int l=max, h=sum, m;
+        int l=0, h=sum, m;
         
         while(l<=h){
             m = l + (h-l)/2;
             
             if(canWe(nums, m, k)){
-                l = m+1;
+                h = m-1;
             }
             else{
-                h = m-1;
+                l = m+1;
             }
         }
         
@@ -24,9 +23,11 @@ class Solution {
     }
     
     public boolean canWe(int[] nums, int m, int k){
-        int sum = 0, cnt=1;
+        int sum=0, cnt=0;
         
         for(int i : nums){
+            if(i>m) return false;
+            
             sum += i;
             
             if(sum > m){
@@ -35,6 +36,8 @@ class Solution {
             }
         }
         
-        return cnt>k;
+        cnt++;
+        
+        return cnt<=k;
     }
 }
