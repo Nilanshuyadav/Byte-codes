@@ -4,18 +4,17 @@ class Solution {
         int n = s.length();
         
         char ch;
-        Stack<Character> st = new Stack<>();
+        int cnt=0;
         
         for(int i=0; i<n; i++){
             ch = s.charAt(i);
             
-            if(st.size()==0 || (st.size()==1 && ch==')')){}
-            else{
+            if(ch=='(') cnt++;
+            else cnt--;
+            
+            if((ch=='(' && cnt!=1) || (ch==')' && cnt!=0)){
                 sb.append(ch);
             }
-            
-            if(ch==')' && st.peek()=='(') st.pop();
-            else st.push(ch);
         }
         
         return sb.toString();
