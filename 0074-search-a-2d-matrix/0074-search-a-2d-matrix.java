@@ -1,13 +1,25 @@
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        int row=matrix.length, col=matrix[0].length, r=0, c=col-1;
+        int row = matrix.length, col = matrix[0].length;
         
-        while(r<row && c>=0){
-            if(target == matrix[r][c]) return true;
-            else if(target<matrix[r][c]) c--;
-            else r++;
+        int l=0, h=(row*col)-1, m, num;
+        
+        while(l<=h){
+            m = l + (h-l)/2;
+            
+            num = findNum(matrix, col, m);
+            
+            if(num == target) return true;
+            else if(num < target) l = m+1;
+            else h = m-1;
         }
         
         return false;
+    }
+    
+    public int findNum(int[][] matrix, int col, int m){
+        int r = m/col, c = m%col;
+        
+        return matrix[r][c];
     }
 }
