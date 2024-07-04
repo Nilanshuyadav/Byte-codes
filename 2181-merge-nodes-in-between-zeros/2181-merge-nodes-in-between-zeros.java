@@ -17,8 +17,9 @@ class Solution {
             sum += curr.val;
             
             if(curr.val == 0){
-                pre.next = new ListNode(sum);
-                pre = pre.next;
+                pre.next = curr;
+                curr.val = sum;
+                pre = curr;
                 sum = 0;
             }
             
