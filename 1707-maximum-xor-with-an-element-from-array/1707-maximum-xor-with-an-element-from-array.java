@@ -22,14 +22,15 @@ class Solution {
             m = q[1];
             inx = q[2];
             
-            ind = findTar(nums, n, m+1);
+            // ind = findTar(nums, n, m+1);
 
-            if(ind == 0){
+            while(j<n && nums[j]<=m){
+                insert(nums[j++], root);
+            }
+            
+            if(j == 0){
                 ans[inx] = -1;
                 continue;
-            }
-            while(j<ind){
-                insert(nums[j++], root);
             }
             
             max = helper(root, x);
