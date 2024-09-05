@@ -16,30 +16,14 @@ class Solution {
         
         res = new int[n];
         
+        int base = remSum/n;
+        int remainder = remSum%n;
+        
         for(int i=0; i<n; i++){
-            if((n-1-i)<=(remSum-6)){
-                res[i] = 6;
-                remSum -= 6;
-            }
-            else if((n-1-i)<=(remSum-5)){
-                res[i] = 5;
-                remSum -= 5;
-            }
-            else if((n-1-i)<=(remSum-4)){
-                res[i] = 4;
-                remSum -= 4;
-            }
-            else if((n-1-i)<=(remSum-3)){
-                res[i] = 3;
-                remSum -= 3;
-            }
-            else if((n-1-i)<=(remSum-2)){
-                res[i] = 2;
-                remSum -= 2;
-            }
-            else{
-                res[i] = 1;
-                remSum -= 1;
+            res[i] = base;
+            
+            if(remainder-->0){
+                res[i] += 1;
             }
         }
         
