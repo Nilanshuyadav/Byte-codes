@@ -25,51 +25,17 @@
  */
 class Solution {
     public boolean isSubPath(ListNode head, TreeNode root) {
-        List<TreeNode> al = new ArrayList<>();
-        
-        Queue<TreeNode> q = new LinkedList<>();
-        
-        Set<String> dp = new HashSet<>();
-        
-        q.add(root);
-        TreeNode temp;
-        
-        while(!q.isEmpty()){
-            temp = q.remove();
-            
-            if(head.val == temp.val){
-                al.add(temp);
-            }
-            
-            if(temp.left != null) q.add(temp.left);
-            if(temp.right != null) q.add(temp.right);
-        }
-        
-        for(TreeNode rt : al){
-            if(helper(rt, head, dp)){
-                return true;
-            }
-        }
-        
-        return false;
+        return dfs(head, head, root);  
     }
-    
-    public boolean helper(TreeNode root, ListNode curr, Set<String> dp){        
-        if(curr == null) return true;
+
+    boolean dfs(ListNode head, ListNode cur, TreeNode root) {
+        if (cur == null) return true;
+        if (root == null) return false;
         
-        if(root==null || root.val != curr.val) return false;
-        
-        String st = root+","+curr;
-        if(dp.contains(st)){
-            return false;
-        }
-        
-        boolean ans = helper(root.left, curr.next, dp) || helper(root.right, curr.next, dp);
-        
-        if(!ans){
-            dp.add(st);
-        }
-        
-        return ans;
+        if (cur.val == root.val) cur = cur.next;
+        else if (head.val == root.val) head = head.next;
+        else cur = head;
+
+        return dfs(head, cur, root.left) || dfs(head, cur, root.right);
     }
 }
