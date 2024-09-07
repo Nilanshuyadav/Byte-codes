@@ -29,6 +29,8 @@ class Solution {
         
         Queue<TreeNode> q = new LinkedList<>();
         
+        Set<String> dp = new HashSet<>();
+        
         q.add(root);
         TreeNode temp;
         
@@ -44,7 +46,7 @@ class Solution {
         }
         
         for(TreeNode rt : al){
-            if(helper(rt, head)){
+            if(helper(rt, head, dp)){
                 return true;
             }
         }
@@ -52,11 +54,22 @@ class Solution {
         return false;
     }
     
-    public boolean helper(TreeNode root, ListNode curr){        
+    public boolean helper(TreeNode root, ListNode curr, Set<String> dp){        
         if(curr == null) return true;
         
         if(root==null || root.val != curr.val) return false;
         
-        return helper(root.left, curr.next) || helper(root.right, curr.next);
+        String st = root+","+curr;
+        if(dp.contains(st)){
+            return false;
+        }
+        
+        boolean ans = helper(root.left, curr.next, dp) || helper(root.right, curr.next, dp);
+        
+        if(!ans){
+            dp.add(st);
+        }
+        
+        return ans;
     }
 }
