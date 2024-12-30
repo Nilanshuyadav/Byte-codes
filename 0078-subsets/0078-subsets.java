@@ -2,22 +2,22 @@ class Solution {
     List<List<Integer>> ans;
     public List<List<Integer>> subsets(int[] nums) {
         ans = new ArrayList<>();
-        
-        solve(0, nums, nums.length, new ArrayList<>());
-        
+        int n = nums.length;
+
+        helper(0, new ArrayList<>(), n, nums);
         return ans;
     }
-    
-    public void solve(int ind, int[] nums, int n, List<Integer> al){
+
+    public void helper(int ind, List<Integer> al, int n, int[] nums){
         if(ind == n){
             ans.add(new ArrayList<>(al));
             return;
         }
-        
+
         al.add(nums[ind]);
-        solve(ind+1, nums, n, al);
-        
+        helper(ind+1, al, n, nums);
+
         al.remove(al.size()-1);
-        solve(ind+1, nums, n, al);
+        helper(ind+1, al, n, nums);
     }
 }
