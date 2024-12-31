@@ -7,6 +7,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 ## Array
 |  |
 | ------- |
+| [0051-n-queens](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0051-n-queens) |
 | [0078-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0078-subsets) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0309-best-time-to-buy-and-sell-stock-with-cooldown](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0309-best-time-to-buy-and-sell-stock-with-cooldown) |
@@ -24,6 +25,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 ## Backtracking
 |  |
 | ------- |
+| [0051-n-queens](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0051-n-queens) |
 | [0078-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0078-subsets) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0131-palindrome-partitioning](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0131-palindrome-partitioning) |
