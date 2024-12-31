@@ -1,52 +1,68 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int n=nums1.length, m=nums2.length, i=0, j=0;
-        int a = (n+m)/2, b = (n+m-1)/2, ind=-1, num;
-        
-        double n1=0, n2=0;
-        
-        while(i<n && j<m && ind<a){
-            ind++;
-            
-            if(nums1[i] < nums2[j]){
-                num = nums1[i++];    
+        int n = nums1.length, m = nums2.length;
+
+        int a = (m+n-1)/2, b = (m+n)/2;
+        double num1=0, num2=0;
+
+        System.out.println(a+" "+b);
+
+        int i=0, j=0;
+        int min;
+
+        while(i<n && j<m){
+            if(nums1[i]<nums2[j]){
+                min = nums1[i];
+                i++;
             }
             else{
-                num = nums2[j++];
+                min = nums2[j];
+                j++;
             }
             
-            if(ind == a){
-                n1 = num;
+            a--;
+            b--;
+
+            System.out.println(a+" "+b+" "+min);
+            if(a==-1){
+                num1 = min;
             }
-            if(ind == b){
-                n2 = num;
-            }
-        }
-        
-        while(i<n && ind<a){
-            ind++;
-            num = nums1[i++];
-            
-            if(ind == a){
-                n1 = num;
-            }
-            if(ind == b){
-                n2 = num;
+
+            if(b==-1){
+                num2 = min;
             }
         }
-        
-        while(j<m && ind<a){
-            ind++;
-            num = nums2[j++];
-            
-            if(ind == a){
-                n1 = num;
+
+        while(i<n){
+            min = nums1[i];
+            i++;
+            a--;
+            b--;
+
+            if(a==-1){
+                num1 = min;
             }
-            if(ind == b){
-                n2 = num;
+
+            if(b==-1){
+                num2 = min;
             }
         }
-        
-        return (n1+n2)/2;
+
+        while(j<m){
+            min = nums2[j];
+            j++;
+            a--;
+            b--;
+
+            if(a==-1){
+                num1 = min;
+            }
+
+            if(b==-1){
+                num2 = min;
+            }
+        }
+
+        return (num1+num2)/2;
     }
 }
