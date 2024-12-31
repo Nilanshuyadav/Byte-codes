@@ -7,6 +7,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 ## Array
 |  |
 | ------- |
+| [0004-median-of-two-sorted-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0004-median-of-two-sorted-arrays) |
 | [0051-n-queens](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0051-n-queens) |
 | [0078-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0078-subsets) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
@@ -42,4 +43,12 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
+## Binary Search
+|  |
+| ------- |
+| [0004-median-of-two-sorted-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0004-median-of-two-sorted-arrays) |
+## Divide and Conquer
+|  |
+| ------- |
+| [0004-median-of-two-sorted-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0004-median-of-two-sorted-arrays) |
 <!---LeetCode Topics End-->
