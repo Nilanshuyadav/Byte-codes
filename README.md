@@ -39,6 +39,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | ------- |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0131-palindrome-partitioning](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0131-palindrome-partitioning) |
+| [1537-maximum-score-after-splitting-a-string](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1537-maximum-score-after-splitting-a-string) |
 ## Matrix
 |  |
 | ------- |
@@ -51,4 +52,8 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0004-median-of-two-sorted-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0004-median-of-two-sorted-arrays) |
+## Prefix Sum
+|  |
+| ------- |
+| [1537-maximum-score-after-splitting-a-string](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1537-maximum-score-after-splitting-a-string) |
 <!---LeetCode Topics End-->
