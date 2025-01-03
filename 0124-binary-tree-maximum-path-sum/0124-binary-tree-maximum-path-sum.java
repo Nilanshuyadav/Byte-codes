@@ -14,23 +14,22 @@
  * }
  */
 class Solution {
-    int temp_max;
+    int ans;
     public int maxPathSum(TreeNode root) {
-        temp_max = root.val;
-        int max = dfs(root);
-        
-        return temp_max;
+        ans = -(int)1e8;
+        helper(root);
+        return ans;
     }
-    
-    public int dfs(TreeNode root){
-        if(root == null)
-            return 0;
-        
-        int left = dfs(root.left);
-        int right = dfs(root.right);
-        
-        temp_max = Math.max(temp_max,left+right+root.val);
-        
-        return Math.max(0,Math.max(left, right)+root.val);
+
+    public int helper(TreeNode root){
+        if(root == null) return 0;
+
+        int left = helper(root.left);
+        int right = helper(root.right);
+
+        ans = Math.max(ans, left+right+root.val);
+        ans = Math.max(ans, root.val);
+        ans = Math.max(ans, Math.max(left, right) + root.val);
+        return Math.max(Math.max(left, right) + root.val, 0);
     }
 }
