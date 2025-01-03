@@ -21,6 +21,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 ## Dynamic Programming
 |  |
 | ------- |
+| [0124-binary-tree-maximum-path-sum](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0124-binary-tree-maximum-path-sum) |
 | [0131-palindrome-partitioning](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0131-palindrome-partitioning) |
 | [0309-best-time-to-buy-and-sell-stock-with-cooldown](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0309-best-time-to-buy-and-sell-stock-with-cooldown) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
@@ -68,4 +69,16 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [1537-maximum-score-after-splitting-a-string](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1537-maximum-score-after-splitting-a-string) |
 | [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
+## Tree
+|  |
+| ------- |
+| [0124-binary-tree-maximum-path-sum](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0124-binary-tree-maximum-path-sum) |
+## Depth-First Search
+|  |
+| ------- |
+| [0124-binary-tree-maximum-path-sum](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0124-binary-tree-maximum-path-sum) |
+## Binary Tree
+|  |
+| ------- |
+| [0124-binary-tree-maximum-path-sum](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0124-binary-tree-maximum-path-sum) |
 <!---LeetCode Topics End-->
