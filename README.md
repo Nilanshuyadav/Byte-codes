@@ -13,6 +13,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0309-best-time-to-buy-and-sell-stock-with-cooldown](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0309-best-time-to-buy-and-sell-stock-with-cooldown) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
+| [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
 ## Dynamic Programming
 |  |
@@ -58,5 +59,6 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [1537-maximum-score-after-splitting-a-string](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1537-maximum-score-after-splitting-a-string) |
+| [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
 <!---LeetCode Topics End-->
