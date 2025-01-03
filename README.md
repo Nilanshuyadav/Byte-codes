@@ -14,6 +14,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0074-search-a-2d-matrix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0074-search-a-2d-matrix) |
 | [0078-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0078-subsets) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
+| [0153-find-minimum-in-rotated-sorted-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0153-find-minimum-in-rotated-sorted-array) |
 | [0309-best-time-to-buy-and-sell-stock-with-cooldown](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0309-best-time-to-buy-and-sell-stock-with-cooldown) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
 | [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
@@ -59,6 +60,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0034-find-first-and-last-position-of-element-in-sorted-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0034-find-first-and-last-position-of-element-in-sorted-array) |
 | [0035-search-insert-position](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0035-search-insert-position) |
 | [0074-search-a-2d-matrix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0074-search-a-2d-matrix) |
+| [0153-find-minimum-in-rotated-sorted-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0153-find-minimum-in-rotated-sorted-array) |
 ## Divide and Conquer
 |  |
 | ------- |
