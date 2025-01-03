@@ -11,6 +11,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0034-find-first-and-last-position-of-element-in-sorted-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0034-find-first-and-last-position-of-element-in-sorted-array) |
 | [0035-search-insert-position](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0035-search-insert-position) |
 | [0051-n-queens](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0051-n-queens) |
+| [0074-search-a-2d-matrix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0074-search-a-2d-matrix) |
 | [0078-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0078-subsets) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0309-best-time-to-buy-and-sell-stock-with-cooldown](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0309-best-time-to-buy-and-sell-stock-with-cooldown) |
@@ -48,6 +49,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 ## Matrix
 |  |
 | ------- |
+| [0074-search-a-2d-matrix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0074-search-a-2d-matrix) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 ## Binary Search
 |  |
@@ -55,6 +57,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0004-median-of-two-sorted-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0004-median-of-two-sorted-arrays) |
 | [0034-find-first-and-last-position-of-element-in-sorted-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0034-find-first-and-last-position-of-element-in-sorted-array) |
 | [0035-search-insert-position](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0035-search-insert-position) |
+| [0074-search-a-2d-matrix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0074-search-a-2d-matrix) |
 ## Divide and Conquer
 |  |
 | ------- |
