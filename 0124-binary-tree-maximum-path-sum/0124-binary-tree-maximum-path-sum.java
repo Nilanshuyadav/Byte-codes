@@ -28,8 +28,6 @@ class Solution {
         int right = helper(root.right);
 
         ans = Math.max(ans, left+right+root.val);
-        ans = Math.max(ans, root.val);
-        ans = Math.max(ans, Math.max(left, right) + root.val);
         return Math.max(Math.max(left, right) + root.val, 0);
     }
 }
