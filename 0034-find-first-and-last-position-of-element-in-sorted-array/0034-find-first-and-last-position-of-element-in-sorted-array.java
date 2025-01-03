@@ -1,44 +1,28 @@
 class Solution {
-    public int[] searchRange(int[] nums, int target) {
+    public int[] searchRange(int[] nums, int tar) {
+        int start, end;
         int n = nums.length;
+
+        if(n==0) return new int[]{-1, -1};
+
+        start = binSearch(nums, tar, n);
+
+        if(start==n || nums[start] != tar) return new int[]{-1, -1};
         
-        int l=0, h=n-1, m;
-        
-        if(n==0 || nums[h] < target || target < nums[l]){
-            return new int[]{-1, -1};
+        end = binSearch(nums, tar+1, n);
+
+        return new int[]{start, end-1};
+    }
+
+    public int binSearch(int[] nums, int tar, int n){
+        int l=0, r=n, m;
+
+        while(l<r){
+            m = l + (r-l)/2;
+            if(nums[m] < tar) l = m+1;
+            else r = m;
         }
-        
-        int i=-1, j=-1;
-        
-        while(l<=h){
-            m = l + (h-l)/2;
-            
-            if(nums[m] < target){
-                l = m+1;
-            }
-            else{
-                h = m-1;
-            }
-        }
-        
-        i=h+1;
-        
-        if(nums[i] != target) return new int[]{-1, -1};
-        
-        l=0;
-        h=n-1;
-        
-        while(l<=h){
-            m = l + (h-l)/2;
-            
-            if(target < nums[m]){
-                h = m-1;
-            }
-            else{
-                l = m+1;
-            }
-        }
-        
-        return new int[]{i, l-1};
+
+        return r;
     }
 }
