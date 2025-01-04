@@ -1,45 +1,37 @@
 class Solution {
     public boolean canFinish(int n, int[][] prerequisites) {
+        int[] degree = new int[n];
         List<List<Integer>> adj = new ArrayList<>();
-        
-        for(int ind=0; ind<n; ind++){
+
+        for(int i=0; i<n; i++){
             adj.add(new ArrayList<>());
         }
-        
-        for(int ind[] : prerequisites){
-            adj.get(ind[0]).add(ind[1]);
+
+        for(int i[] : prerequisites){
+            degree[i[0]]++;
+            adj.get(i[1]).add(i[0]);
         }
-        
-        Boolean[] vis = new Boolean[n];
-        
-        for(int ind=0; ind<n; ind++){
-            if(vis[ind] == null){
-                solve(ind, adj, vis);
+
+        Queue<Integer> q = new LinkedList<>();
+        for(int i=0; i<n; i++){
+            if(degree[i] == 0) q.add(i);
+        }
+
+        int temp;
+        while(!q.isEmpty()){
+            temp = q.remove();
+
+            for(int i : adj.get(temp)){
+                degree[i]--;
+
+                if(degree[i] == 0) q.add(i);
             }
         }
-        
-        for(boolean bool : vis){
-            if(!bool){
-                return false;
-            }
+
+        for(int i : degree){
+            if(i!=0) return false;
         }
-        
+
         return true;
-    }
-    
-    public boolean solve(int ind, List<List<Integer>> adj, Boolean[] vis){
-        if(vis[ind]!=null){
-            return vis[ind];
-        }
-        
-        vis[ind] = false;
-        
-        boolean bool = true;
-        
-        for(int inx : adj.get(ind)){
-            bool = bool && solve(inx, adj, vis);    
-        }
-        
-        return vis[ind] = bool;
     }
 }
