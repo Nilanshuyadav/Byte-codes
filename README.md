@@ -17,6 +17,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0153-find-minimum-in-rotated-sorted-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0153-find-minimum-in-rotated-sorted-array) |
 | [0309-best-time-to-buy-and-sell-stock-with-cooldown](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0309-best-time-to-buy-and-sell-stock-with-cooldown) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
+| [0780-max-chunks-to-make-sorted](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0780-max-chunks-to-make-sorted) |
 | [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
 | [2465-shifting-letters-ii](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2465-shifting-letters-ii) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
@@ -31,6 +32,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
+| [0780-max-chunks-to-make-sorted](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0780-max-chunks-to-make-sorted) |
 ## Backtracking
 |  |
 | ------- |
@@ -101,4 +103,16 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
+## Stack
+|  |
+| ------- |
+| [0780-max-chunks-to-make-sorted](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0780-max-chunks-to-make-sorted) |
+## Sorting
+|  |
+| ------- |
+| [0780-max-chunks-to-make-sorted](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0780-max-chunks-to-make-sorted) |
+## Monotonic Stack
+|  |
+| ------- |
+| [0780-max-chunks-to-make-sorted](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0780-max-chunks-to-make-sorted) |
 <!---LeetCode Topics End-->
