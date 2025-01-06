@@ -17,48 +17,44 @@ class Solution {
     public int widthOfBinaryTree(TreeNode root) {
         Queue<Pair> q = new LinkedList<>();
         
-        int max = 1;
-        q.add(new Pair(root,1));
-        
-        Pair temp;
-        int size, ind, first;
-        TreeNode node;
-        
+        q.add(new Pair(root, 1));
+        long l=0, r=0, size;
+        long col;
+        long max=0;
+        Pair curr;
+        TreeNode temp;
+            
         while(!q.isEmpty()){
             size = q.size();
+            l = Long.MAX_VALUE;
+            r = Long.MIN_VALUE;
             
-            first = -1;
             while(size-->0){
-                temp = q.remove();
+                curr = q.remove();
                 
-                node = temp.node;
-                ind = temp.ind;
-
-                if(first == -1){
-                    first = ind;
-                }
-                else{
-                    max = Math.max(max, ind-first+1);
-                }
-
-                if(node.left != null) q.add(new Pair(node.left, 2*ind));
-                if(node.right != null) q.add(new Pair(node.right, 2*ind + 1));
-            
+                temp = curr.node;
+                col = curr.col;
+                
+                l = Math.min(l, col);
+                r = Math.max(r, col);
+                                
+                max = Math.max(max, r-l);
+                
+                if(temp.left!=null) q.add(new Pair(temp.left, (2*col)-1));
+                if(temp.right!=null) q.add(new Pair(temp.right, (2*col)));
             }
-            
-            // if(first == -1) break;
         }
         
-        return max;
+        return (int)max+1;
     }
 }
 
 class Pair{
     TreeNode node;
-    int ind;
+    long col;
     
-    public Pair(TreeNode node, int ind){
+    public Pair(TreeNode node, long col){
         this.node = node;
-        this.ind = ind;
+        this.col = col;
     }
 }
