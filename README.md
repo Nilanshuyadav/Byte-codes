@@ -83,21 +83,25 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0124-binary-tree-maximum-path-sum](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0124-binary-tree-maximum-path-sum) |
+| [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
 | [3058-maximum-number-of-k-divisible-components](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3058-maximum-number-of-k-divisible-components) |
 ## Depth-First Search
 |  |
 | ------- |
 | [0124-binary-tree-maximum-path-sum](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0124-binary-tree-maximum-path-sum) |
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
+| [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
 | [3058-maximum-number-of-k-divisible-components](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3058-maximum-number-of-k-divisible-components) |
 ## Binary Tree
 |  |
 | ------- |
 | [0124-binary-tree-maximum-path-sum](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0124-binary-tree-maximum-path-sum) |
+| [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
 ## Breadth-First Search
 |  |
 | ------- |
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
+| [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
 ## Graph
 |  |
 | ------- |
