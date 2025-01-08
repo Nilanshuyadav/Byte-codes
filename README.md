@@ -23,6 +23,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
 | [2465-shifting-letters-ii](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2465-shifting-letters-ii) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
+| [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
 ## Dynamic Programming
 |  |
 | ------- |
@@ -56,6 +57,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [1895-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1895-minimum-number-of-operations-to-move-all-balls-to-each-box) |
 | [2465-shifting-letters-ii](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2465-shifting-letters-ii) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
+| [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
 ## Matrix
 |  |
 | ------- |
@@ -128,4 +130,17 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [1524-string-matching-in-an-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1524-string-matching-in-an-array) |
+| [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
+## Trie
+|  |
+| ------- |
+| [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
+## Rolling Hash
+|  |
+| ------- |
+| [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
+## Hash Function
+|  |
+| ------- |
+| [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
 <!---LeetCode Topics End-->
