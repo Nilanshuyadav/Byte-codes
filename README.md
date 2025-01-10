@@ -18,6 +18,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0309-best-time-to-buy-and-sell-stock-with-cooldown](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0309-best-time-to-buy-and-sell-stock-with-cooldown) |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
 | [0780-max-chunks-to-make-sorted](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0780-max-chunks-to-make-sorted) |
+| [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
 | [1524-string-matching-in-an-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1524-string-matching-in-an-array) |
 | [1762-furthest-building-you-can-reach](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1762-furthest-building-you-can-reach) |
 | [1895-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1895-minimum-number-of-operations-to-move-all-balls-to-each-box) |
@@ -55,6 +56,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | ------- |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0131-palindrome-partitioning](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0131-palindrome-partitioning) |
+| [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
 | [1524-string-matching-in-an-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1524-string-matching-in-an-array) |
 | [1537-maximum-score-after-splitting-a-string](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1537-maximum-score-after-splitting-a-string) |
 | [1895-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1895-minimum-number-of-operations-to-move-all-balls-to-each-box) |
@@ -152,4 +154,8 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [1762-furthest-building-you-can-reach](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1762-furthest-building-you-can-reach) |
+## Hash Table
+|  |
+| ------- |
+| [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
 <!---LeetCode Topics End-->
