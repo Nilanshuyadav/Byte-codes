@@ -39,6 +39,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | ------- |
 | [0714-best-time-to-buy-and-sell-stock-with-transaction-fee](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0714-best-time-to-buy-and-sell-stock-with-transaction-fee) |
 | [0780-max-chunks-to-make-sorted](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0780-max-chunks-to-make-sorted) |
+| [1502-construct-k-palindrome-strings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1502-construct-k-palindrome-strings) |
 | [1762-furthest-building-you-can-reach](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1762-furthest-building-you-can-reach) |
 ## Backtracking
 |  |
@@ -57,6 +58,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0131-palindrome-partitioning](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0131-palindrome-partitioning) |
 | [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
+| [1502-construct-k-palindrome-strings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1502-construct-k-palindrome-strings) |
 | [1524-string-matching-in-an-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1524-string-matching-in-an-array) |
 | [1537-maximum-score-after-splitting-a-string](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1537-maximum-score-after-splitting-a-string) |
 | [1895-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1895-minimum-number-of-operations-to-move-all-balls-to-each-box) |
@@ -159,9 +161,11 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
+| [1502-construct-k-palindrome-strings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1502-construct-k-palindrome-strings) |
 | [3455-minimum-length-of-string-after-operations](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3455-minimum-length-of-string-after-operations) |
 ## Counting
 |  |
 | ------- |
+| [1502-construct-k-palindrome-strings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1502-construct-k-palindrome-strings) |
 | [3455-minimum-length-of-string-after-operations](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3455-minimum-length-of-string-after-operations) |
 <!---LeetCode Topics End-->
