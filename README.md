@@ -64,6 +64,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [2465-shifting-letters-ii](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2465-shifting-letters-ii) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
 | [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
+| [3455-minimum-length-of-string-after-operations](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3455-minimum-length-of-string-after-operations) |
 ## Matrix
 |  |
 | ------- |
@@ -158,4 +159,9 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
+| [3455-minimum-length-of-string-after-operations](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3455-minimum-length-of-string-after-operations) |
+## Counting
+|  |
+| ------- |
+| [3455-minimum-length-of-string-after-operations](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3455-minimum-length-of-string-after-operations) |
 <!---LeetCode Topics End-->
