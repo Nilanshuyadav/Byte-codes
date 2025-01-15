@@ -42,6 +42,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0780-max-chunks-to-make-sorted](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0780-max-chunks-to-make-sorted) |
 | [1502-construct-k-palindrome-strings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1502-construct-k-palindrome-strings) |
 | [1762-furthest-building-you-can-reach](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1762-furthest-building-you-can-reach) |
+| [2509-minimize-xor](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2509-minimize-xor) |
 ## Backtracking
 |  |
 | ------- |
@@ -53,6 +54,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0078-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0078-subsets) |
+| [2509-minimize-xor](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2509-minimize-xor) |
 | [2766-find-the-prefix-common-array-of-two-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2766-find-the-prefix-common-array-of-two-arrays) |
 ## String
 |  |
