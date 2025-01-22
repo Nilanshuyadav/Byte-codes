@@ -21,6 +21,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
 | [1524-string-matching-in-an-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1524-string-matching-in-an-array) |
 | [1762-furthest-building-you-can-reach](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1762-furthest-building-you-can-reach) |
+| [1876-map-of-highest-peak](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1876-map-of-highest-peak) |
 | [1895-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1895-minimum-number-of-operations-to-move-all-balls-to-each-box) |
 | [2292-counting-words-with-a-given-prefix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2292-counting-words-with-a-given-prefix) |
 | [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
@@ -80,6 +81,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | ------- |
 | [0074-search-a-2d-matrix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0074-search-a-2d-matrix) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
+| [1876-map-of-highest-peak](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1876-map-of-highest-peak) |
 ## Binary Search
 |  |
 | ------- |
@@ -123,6 +125,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | ------- |
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
 | [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
+| [1876-map-of-highest-peak](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1876-map-of-highest-peak) |
 ## Graph
 |  |
 | ------- |
