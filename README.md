@@ -114,6 +114,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0124-binary-tree-maximum-path-sum](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0124-binary-tree-maximum-path-sum) |
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
 | [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
+| [0820-find-eventual-safe-states](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0820-find-eventual-safe-states) |
 | [3058-maximum-number-of-k-divisible-components](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3058-maximum-number-of-k-divisible-components) |
 ## Binary Tree
 |  |
@@ -125,15 +126,18 @@ A Open source repository in which source code of different types of DS-Algo ques
 | ------- |
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
 | [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
+| [0820-find-eventual-safe-states](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0820-find-eventual-safe-states) |
 | [1876-map-of-highest-peak](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1876-map-of-highest-peak) |
 ## Graph
 |  |
 | ------- |
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
+| [0820-find-eventual-safe-states](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0820-find-eventual-safe-states) |
 ## Topological Sort
 |  |
 | ------- |
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
+| [0820-find-eventual-safe-states](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0820-find-eventual-safe-states) |
 ## Stack
 |  |
 | ------- |
