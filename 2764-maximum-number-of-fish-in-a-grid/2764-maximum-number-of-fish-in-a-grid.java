@@ -21,30 +21,17 @@ class Solution {
     }
 
     public int helper(int r, int c, int[][] grid, int row, int col){
-        Queue<int[]> q = new LinkedList<>();
+        int sum = grid[r][c];
+        int new_r, new_c;
         vis[r][c] = true;
+        
+        for(int i=0; i<4; i++){
+            new_r = r + r_arr[i];
+            new_c = c + c_arr[i];
 
-        q.add(new int[]{r, c});
-        int temp[], ro, co, sum=0, new_r, new_c;
-        System.out.println();
-        while(!q.isEmpty()){
-            temp = q.remove();
+            if(new_r<0 || new_c<0 || new_r>=row || new_c>=col || vis[new_r][new_c] || grid[new_r][new_c]==0) continue;
 
-            ro = temp[0];
-            co = temp[1];
-
-            sum += grid[ro][co];
-
-            for(int i=0; i<4; i++){
-                new_r = ro + r_arr[i];
-                new_c = co + c_arr[i];
-
-                if(new_r<0 || new_c<0 || new_r>=row || new_c>=col || vis[new_r][new_c] || grid[new_r][new_c]==0) continue;
-
-                vis[new_r][new_c] = true;
-                q.add(new int[]{new_r,new_c});
-            }
-
+            sum += helper(new_r, new_c, grid, row, col);
         }
 
         return sum;
