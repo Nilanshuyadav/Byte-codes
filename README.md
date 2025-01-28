@@ -28,6 +28,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [2465-shifting-letters-ii](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2465-shifting-letters-ii) |
 | [2533-bitwise-xor-of-all-pairings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2533-bitwise-xor-of-all-pairings) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
+| [2764-maximum-number-of-fish-in-a-grid](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2764-maximum-number-of-fish-in-a-grid) |
 | [2766-find-the-prefix-common-array-of-two-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2766-find-the-prefix-common-array-of-two-arrays) |
 | [2792-neighboring-bitwise-xor](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2792-neighboring-bitwise-xor) |
 | [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
@@ -82,6 +83,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0074-search-a-2d-matrix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0074-search-a-2d-matrix) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [1876-map-of-highest-peak](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1876-map-of-highest-peak) |
+| [2764-maximum-number-of-fish-in-a-grid](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2764-maximum-number-of-fish-in-a-grid) |
 ## Binary Search
 |  |
 | ------- |
@@ -115,6 +117,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0207-course-schedule](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0207-course-schedule) |
 | [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
 | [0820-find-eventual-safe-states](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0820-find-eventual-safe-states) |
+| [2764-maximum-number-of-fish-in-a-grid](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2764-maximum-number-of-fish-in-a-grid) |
 | [3058-maximum-number-of-k-divisible-components](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3058-maximum-number-of-k-divisible-components) |
 ## Binary Tree
 |  |
@@ -128,6 +131,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0662-maximum-width-of-binary-tree](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0662-maximum-width-of-binary-tree) |
 | [0820-find-eventual-safe-states](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0820-find-eventual-safe-states) |
 | [1876-map-of-highest-peak](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1876-map-of-highest-peak) |
+| [2764-maximum-number-of-fish-in-a-grid](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2764-maximum-number-of-fish-in-a-grid) |
 ## Graph
 |  |
 | ------- |
@@ -188,4 +192,8 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [2533-bitwise-xor-of-all-pairings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2533-bitwise-xor-of-all-pairings) |
+## Union Find
+|  |
+| ------- |
+| [2764-maximum-number-of-fish-in-a-grid](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2764-maximum-number-of-fish-in-a-grid) |
 <!---LeetCode Topics End-->
