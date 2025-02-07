@@ -203,4 +203,8 @@ A Open source repository in which source code of different types of DS-Algo ques
 | ------- |
 | [0684-redundant-connection](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0684-redundant-connection) |
 | [2764-maximum-number-of-fish-in-a-grid](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2764-maximum-number-of-fish-in-a-grid) |
+## Database
+|  |
+| ------- |
+| [0175-combine-two-tables](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0175-combine-two-tables) |
 <!---LeetCode Topics End-->
