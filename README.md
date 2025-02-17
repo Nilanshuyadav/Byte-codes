@@ -54,6 +54,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0078-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0078-subsets) |
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0131-palindrome-partitioning](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0131-palindrome-partitioning) |
+| [1160-letter-tile-possibilities](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1160-letter-tile-possibilities) |
 ## Bit Manipulation
 |  |
 | ------- |
@@ -68,6 +69,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [0079-word-search](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0079-word-search) |
 | [0131-palindrome-partitioning](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0131-palindrome-partitioning) |
 | [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
+| [1160-letter-tile-possibilities](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1160-letter-tile-possibilities) |
 | [1502-construct-k-palindrome-strings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1502-construct-k-palindrome-strings) |
 | [1524-string-matching-in-an-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1524-string-matching-in-an-array) |
 | [1537-maximum-score-after-splitting-a-string](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1537-maximum-score-after-splitting-a-string) |
@@ -184,6 +186,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0952-word-subsets](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0952-word-subsets) |
+| [1160-letter-tile-possibilities](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1160-letter-tile-possibilities) |
 | [1502-construct-k-palindrome-strings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1502-construct-k-palindrome-strings) |
 | [1915-check-if-one-string-swap-can-make-strings-equal](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1915-check-if-one-string-swap-can-make-strings-equal) |
 | [2766-find-the-prefix-common-array-of-two-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2766-find-the-prefix-common-array-of-two-arrays) |
@@ -191,6 +194,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 ## Counting
 |  |
 | ------- |
+| [1160-letter-tile-possibilities](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1160-letter-tile-possibilities) |
 | [1502-construct-k-palindrome-strings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1502-construct-k-palindrome-strings) |
 | [1915-check-if-one-string-swap-can-make-strings-equal](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1915-check-if-one-string-swap-can-make-strings-equal) |
 | [3455-minimum-length-of-string-after-operations](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3455-minimum-length-of-string-after-operations) |
