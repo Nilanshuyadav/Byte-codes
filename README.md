@@ -32,6 +32,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [2766-find-the-prefix-common-array-of-two-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2766-find-the-prefix-common-array-of-two-arrays) |
 | [2792-neighboring-bitwise-xor](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2792-neighboring-bitwise-xor) |
 | [3309-count-prefix-and-suffix-pairs-i](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3309-count-prefix-and-suffix-pairs-i) |
+| [3621-minimum-operations-to-make-array-values-equal-to-k](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3621-minimum-operations-to-make-array-values-equal-to-k) |
 ## Dynamic Programming
 |  |
 | ------- |
@@ -191,6 +192,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [1915-check-if-one-string-swap-can-make-strings-equal](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1915-check-if-one-string-swap-can-make-strings-equal) |
 | [2766-find-the-prefix-common-array-of-two-arrays](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2766-find-the-prefix-common-array-of-two-arrays) |
 | [3455-minimum-length-of-string-after-operations](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3455-minimum-length-of-string-after-operations) |
+| [3621-minimum-operations-to-make-array-values-equal-to-k](https://github.com/Nilanshuyadav/Byte-codes/tree/master/3621-minimum-operations-to-make-array-values-equal-to-k) |
 ## Counting
 |  |
 | ------- |
