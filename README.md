@@ -26,6 +26,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [2292-counting-words-with-a-given-prefix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2292-counting-words-with-a-given-prefix) |
 | [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
 | [2465-shifting-letters-ii](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2465-shifting-letters-ii) |
+| [2527-count-subarrays-with-fixed-bounds](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2527-count-subarrays-with-fixed-bounds) |
 | [2533-bitwise-xor-of-all-pairings](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2533-bitwise-xor-of-all-pairings) |
 | [2691-count-vowel-strings-in-ranges](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2691-count-vowel-strings-in-ranges) |
 | [2764-maximum-number-of-fish-in-a-grid](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2764-maximum-number-of-fish-in-a-grid) |
@@ -213,4 +214,16 @@ A Open source repository in which source code of different types of DS-Algo ques
 |  |
 | ------- |
 | [0175-combine-two-tables](https://github.com/Nilanshuyadav/Byte-codes/tree/master/0175-combine-two-tables) |
+## Queue
+|  |
+| ------- |
+| [2527-count-subarrays-with-fixed-bounds](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2527-count-subarrays-with-fixed-bounds) |
+## Sliding Window
+|  |
+| ------- |
+| [2527-count-subarrays-with-fixed-bounds](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2527-count-subarrays-with-fixed-bounds) |
+## Monotonic Queue
+|  |
+| ------- |
+| [2527-count-subarrays-with-fixed-bounds](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2527-count-subarrays-with-fixed-bounds) |
 <!---LeetCode Topics End-->
