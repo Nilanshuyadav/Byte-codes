@@ -23,6 +23,7 @@ A Open source repository in which source code of different types of DS-Algo ques
 | [1762-furthest-building-you-can-reach](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1762-furthest-building-you-can-reach) |
 | [1876-map-of-highest-peak](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1876-map-of-highest-peak) |
 | [1895-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/Nilanshuyadav/Byte-codes/tree/master/1895-minimum-number-of-operations-to-move-all-balls-to-each-box) |
+| [2048-build-array-from-permutation](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2048-build-array-from-permutation) |
 | [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2292-counting-words-with-a-given-prefix](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2292-counting-words-with-a-given-prefix) |
 | [2358-number-of-ways-to-split-array](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2358-number-of-ways-to-split-array) |
@@ -232,4 +233,8 @@ A Open source repository in which source code of different types of DS-Algo ques
 | ------- |
 | [2180-maximum-number-of-tasks-you-can-assign](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2180-maximum-number-of-tasks-you-can-assign) |
 | [2527-count-subarrays-with-fixed-bounds](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2527-count-subarrays-with-fixed-bounds) |
+## Simulation
+|  |
+| ------- |
+| [2048-build-array-from-permutation](https://github.com/Nilanshuyadav/Byte-codes/tree/master/2048-build-array-from-permutation) |
 <!---LeetCode Topics End-->
